@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "at": "2026-10-02T19:48:14-07:00",
+  "canonical": "https://localtakehome.com/",
+  "deployment": "https://f6383e99.localtakehome.pages.dev",
+  "changes": [
+    "Tagline 'True take-home pay for where you actually live.' sits to the right of the logo lockup inside the brand row, not under it, so the glass header is shorter.",
+    "75% glass, blur, and 22px rounded inset sticky card kept. Header card padding 8px 18px."
+  ]
+}

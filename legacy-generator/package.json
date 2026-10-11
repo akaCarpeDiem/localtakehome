@@ -1,0 +1,12 @@
+{
+  "name": "localtakehome",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data": "node scripts/compile-states.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/engine.test.mjs",
+    "start": "node scripts/serve.mjs",
+    "dev": "npm run build && npm start"
+  }
+}

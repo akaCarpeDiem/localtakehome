@@ -1,0 +1,12 @@
+node_modules/
+build/
+dist/
+legacy-generator/dist/
+.wrangler/
+.env*
+.dev.vars
+*.log
+__pycache__/
+agent-tools/
+uploads/
+.DS_Store

@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-07 ~19:55 PT",
+  "deploy": "21f5ab78 (production, branch main); previous 2df89a28",
+  "backup": "backups/localtakehome-pre-font-hero-20261007-195410",
+  "font": {
+    "old": "Fraunces (self-hosted static 500/600/700 + italic 500/600)",
+    "new": "Source Serif 4 (SIL OFL), self-hosted latin woff2 static instances cut from the variable font, weight-matched to the old Fraunces darkness: slot 500=wght 520, 600=630, 700=730 (italic 500/600). Source files + license in lt-review/fonts-ss4.",
+    "why": "the owner disliked Fraunces' ball-terminal lowercase f. Source Serif 4 has a plain f, ~same set width (-0.8% on the H1) and x-height, so headings did not reflow.",
+    "loading": "@font-face font-display: swap as before, plus <link rel=preload> for source-serif-4-600.woff2 on all 82 pages",
+    "oldFilesKept": "fonts/fraunces-*.woff2 left in place (unused) so stale cached CSS can't 404"
+  },
+  "heroBlurb": "index.html .lede[data-lth=hero-blurb] replaces 'Federal, FICA, state, and local taxes — based on where you live.'",
+  "partners": "Static HTML already clean since AdSense pass; js/partners.mjs now a no-op stub (no card/ad markup strings), calculator.mjs no longer renders the hidden [data-partners] host or adSlot().",
+  "patchOrder": "python3 lt-review/patch/header.py <dir> && python3 lt-review/patch/hero.py <dir>  (both idempotent with verify guards). Bump CSS_VER in header.py for any CSS change; current 20261007f1. Never fetch a new ?v= CSS URL on the live domain until the live HTML references it.",
+  "calcRegression": "8/8 identical (lt-review/calc-after4.json)"
+}

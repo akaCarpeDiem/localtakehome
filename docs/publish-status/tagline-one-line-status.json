@@ -1,0 +1,25 @@
+{
+  "status": "deployed",
+  "deployedAt": "2026-10-02T19:56:00-07:00",
+  "project": "localtakehome",
+  "liveUrl": "https://localtakehome.com",
+  "pagesUrl": "https://localtakehome.pages.dev",
+  "deploymentUrl": "https://7edbedb4.localtakehome.pages.dev",
+  "verified": {
+    "customDomain": "https://localtakehome.com/ serves site.css?v=20261002c",
+    "deployment": "https://7edbedb4.localtakehome.pages.dev/ serves the updated HTML and stylesheet",
+    "tagline": "Single-line warm Fraunces 600 tagline with nowrap; full phrase stays on one line",
+    "glassHeader": "75% inset frosted glass, rounded sticky header locks retained"
+  },
+  "whatChanged": [
+    "Restyled .tagline with the display serif, warm ink color, 600 weight, larger responsive size, and nowrap.",
+    "Kept the full tagline beside the logo; added compact mobile layout rules so it remains one line without wrapping.",
+    "Bumped site.css cache-bust from 20261002b to 20261002c on all 81 HTML pages.",
+    "Did not rebuild from localtakehome-src; PromptShare was not touched."
+  ],
+  "filesChanged": [
+    "css/site.css",
+    "all 81 HTML pages (cache-bust only)",
+    ".publish/tagline-one-line-status.json"
+  ]
+}

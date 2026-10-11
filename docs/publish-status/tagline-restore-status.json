@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-07 PT",
+  "deploy": "2df89a28 (production, branch main); earlier same-day 7873580b superseded because its CSS cache-bust v=20261007t1 got edge-cached with old CSS",
+  "rootCause": "The Oct 2 header styling (glass card header, bold Fraunces tagline, floating background orbs) only ever existed in the deployed files, never in localtakehome-src. On Oct 4 deploy 9698ae13 rebuilt the site from localtakehome-src, shipping src's plain CSS (12.5px muted gray tagline, flat bar) and site.mjs without initAtmosphere. 38f1282c re-added only the rate-block CSS/JS. AdSense/About patches did not cause it.",
+  "fix": "lt-review/patch/header.py (idempotent, marker 'lth-header-v2' + 'lth-header-v2-nav'): CSS rebuilt from lt-review/css-history/oct2c-site.css + logo-matching tagline (charcoal #1f272c, teal #0c9784 bold larger 'live.' via span.tagline-live), logo ~15% smaller, compact phone layout, nav kept on one row 901-1180px; initAtmosphere restored in js/site.mjs; all 82 HTML pages get the live. span; css/js ?v=20261007t2.",
+  "WARNING": "Never rebuild/deploy from localtakehome-src: it lacks the header styling, orbs, rate blocks and AdSense content. After any patch run `python3 lt-review/patch/header.py <dir>` - it re-applies and its verify() fails loudly if the tagline/glass header is missing. Bump CSS_VER (never reuse a ?v= value) and do not request the new CSS URL on the live domain until the HTML shows the new ?v= (edge caches CSS 4h).",
+  "calcRegression": "8/8 cases identical to calc-before.json (calc-after3.json)",
+  "screenshots": "lt-review/tagline-{home,ohio}-{desktop,laptop,w920,phone,small}.png",
+  "backup": "backups/localtakehome-pre-tagline-20261007-194112"
+}

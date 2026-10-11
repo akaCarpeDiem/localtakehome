@@ -1,0 +1,24 @@
+{
+  "status": "deployed",
+  "deployedAt": "2026-10-02T19:20:03-07:00",
+  "project": "localtakehome",
+  "liveUrl": "https://localtakehome.com",
+  "pagesUrl": "https://localtakehome.pages.dev",
+  "deploymentUrl": "https://df82c6a0.localtakehome.pages.dev",
+  "verified": {
+    "homepage": "https://localtakehome.com/ serves site.css?v=20261002b",
+    "css": "https://localtakehome.com/css/site.css?v=20261002b is 28021 bytes and includes the floating glass header",
+    "rateBlocksAndOrbs": "atmosphere and rate-blocks rules still present in the live stylesheet"
+  },
+  "whatChanged": [
+    "Replaced the full-bleed sticky header bar with an inset frosted card.",
+    "The site-header shell is transparent and sticky, with 14px padding above the card so warm paper shows around it, including above the top.",
+    "The glass is .header-inner: #FFFBF5 at 75% opacity, 18px blur, saturate 1.4, 22px corners, soft shadow. No full-width hairline under the header.",
+    "Logo, tagline, and nav stay inside the card. Mobile menu opens as a separate rounded glass panel under the card.",
+    "Cache-bust only: site.css?v=20261002b on all 81 HTML pages. site.mjs unchanged. localtakehome-src was not rebuilt."
+  ],
+  "filesChanged": [
+    "css/site.css",
+    "all HTML pages (cache-bust only: site.css?v=20261002b)"
+  ]
+}

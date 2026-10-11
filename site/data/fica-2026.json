@@ -1,0 +1,52 @@
+{
+  "taxYear": 2026,
+  "jurisdictionId": "US-FICA",
+  "name": "Social Security and Medicare (FICA)",
+  "type": "fica",
+  "lastVerified": "2026-09-27",
+  "socialSecurity": {
+    "name": "Social Security",
+    "employeeRate": 0.062,
+    "employerRate": 0.062,
+    "selfEmployedRate": 0.124,
+    "wageBase": 184500,
+    "employeeMax": 11439,
+    "sourceLabel": "SSA contribution and benefit base · 2026"
+  },
+  "medicare": {
+    "name": "Medicare",
+    "employeeRate": 0.0145,
+    "employerRate": 0.0145,
+    "selfEmployedRate": 0.029,
+    "wageBase": null,
+    "sourceLabel": "IRS Pub 15 · 2026"
+  },
+  "additionalMedicare": {
+    "name": "Additional Medicare",
+    "rate": 0.009,
+    "employerWithholdingThreshold": 200000,
+    "thresholds": {
+      "single": 200000,
+      "hoh": 200000,
+      "mfj": 250000,
+      "mfs": 125000
+    },
+    "sourceLabel": "IRC §3101(b)(2) · filing-status thresholds"
+  },
+  "selfEmploymentFactor": 0.9235,
+  "sources": [
+    {
+      "name": "SSA, Contribution and benefit base",
+      "url": "https://www.ssa.gov/oact/cola/cbb.html"
+    },
+    {
+      "name": "IRS Publication 15 (Circular E), Employer's Tax Guide",
+      "url": "https://www.irs.gov/publications/p15"
+    },
+    {
+      "name": "IRS, Questions and answers for the Additional Medicare Tax",
+      "url": "https://www.irs.gov/businesses/small-businesses-self-employed/questions-and-answers-for-the-additional-medicare-tax"
+    }
+  ],
+  "notes": "Employee Social Security is 6.2% of wages up to $184,500 ($11,439 maximum). Employer Social Security matches that. Medicare is 1.45% of all wages for the employee and the employer, with no wage base. Additional Medicare Tax is 0.9% and has no employer match. Employers must start withholding it when wages from that employer exceed $200,000, regardless of filing status. The tax actually owed on a return uses $200,000 (single or head of household), $250,000 (married filing jointly), and $125,000 (married filing separately). This estimate uses the return thresholds and says so on the stub. Traditional 401(k), 403(b), and TSP deferrals do not reduce Social Security or Medicare wages. Section 125 health premiums, health FSA, dependent care is not separately modeled, commuter benefits, and HSA contributions through a cafeteria plan generally do reduce FICA wages. Self-employment tax is 12.4% plus 2.9% on 92.35% of net earnings, with Social Security capped at the wage base, plus 0.9% Additional Medicare on the 92.35% base above the filing-status threshold. Half of the 12.4% and 2.9% portions is treated as an above-the-line deduction. Additional Medicare is not included in that half."
+}

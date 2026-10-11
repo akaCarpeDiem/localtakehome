@@ -1,0 +1,53 @@
+{
+  "status": "deployed",
+  "deployedAt": "2026-10-02T15:04:00-07:00",
+  "project": "localtakehome",
+  "liveUrl": "https://localtakehome.com",
+  "pagesUrl": "https://localtakehome.pages.dev",
+  "deploymentUrl": "https://d3fabc0e.localtakehome.pages.dev",
+  "tryUrl": "https://localtakehome.com/hourly-paycheck-calculator/?type=hourly&basis=period&state=TX&blocks=8x40:Base;4x48d:Night;2x60od:Night%2520%252B%2520OT",
+  "annualTryUrl": "https://localtakehome.com/hourly-paycheck-calculator/?type=hourly&state=TX&blocks=8x40:Base;4x48d:Night;2x60od:Night%2520%252B%2520OT",
+  "smoke": {
+    "scenario": "This pay period, biweekly, Texas, single: 8h base @ $40 + 4h night differential @ $48 + 2h night+OT stacked @ $60",
+    "grossThisPaycheck": 632.0,
+    "lines": [
+      "Base $320",
+      "Night differential $192",
+      "Night + OT $120"
+    ],
+    "annualizedIfEveryCheckMatches": 16432.0,
+    "netThisPaycheckTexasSingle": 582.38,
+    "annualProjectionSameHoursPerWeek": {
+      "grossYear": 32864.0,
+      "grossPerBiweeklyCheck": 1264.0,
+      "note": "Annual mode treats each block as hours per week times paid weeks (default 52), not as one 14-hour shift."
+    }
+  },
+  "howToUse": [
+    "Open the calculator and choose Hourly.",
+    "Leave the single rate/hours/OT fields as the default path.",
+    "Click \u201cAdd rate blocks\u201d under the hourly fields. Existing rate, hours, and OT become the first lines.",
+    "Each block has a label (Base, Night, Weekend, Hazard, OT, Night + OT, Custom), hours, and an absolute $/hr rate.",
+    "Check Overtime, Differential, or both when those hours are stacked. The checkboxes label the stub line; dollars are always hours times the rate you type.",
+    "\u201cThis pay period\u201d uses block hours for one paycheck and annualizes by pay frequency. \u201cAnnual projection\u201d uses block hours per week times paid weeks.",
+    "\u201cUse one rate\u201d returns to the simple fields.",
+    "Works on the home calculator and every state/city calculator, including /hourly-paycheck-calculator."
+  ],
+  "visuals": [
+    "Sticky header is frosted glass: surface at about 58% opacity, 18px blur, saturate 1.35, warm hairline and soft shadow.",
+    "Five slow CSS orbs (mineral green, copper, cream) sit behind the page on the warm paper background. Reduced-motion turns the animation off. Print hides them."
+  ],
+  "filesChanged": [
+    "js/engine.mjs",
+    "js/calculator.mjs",
+    "js/site.mjs",
+    "css/site.css",
+    "_headers",
+    "all HTML pages (cache-bust only: site.css?v=20261002a and site.mjs?v=20261002a)"
+  ],
+  "followUps": [
+    "localtakehome-src was not rebuilt. A future npm run build that copies dist over localtakehome-deploy would drop this feature unless it is ported into src.",
+    "Rate blocks are absolute dollars per hour. The old OT multiplier still exists only on the single-rate path.",
+    "A 14-hour shift is entered as hours for the whole paycheck (or per week in annual mode), not as clock in/out times."
+  ]
+}

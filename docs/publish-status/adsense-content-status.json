@@ -1,0 +1,33 @@
+{
+  "status": "deployed",
+  "deployedAt": "2026-10-07T19:20:00-07:00",
+  "project": "localtakehome",
+  "deployments": [
+    "https://b6ab05e6.localtakehome.pages.dev",
+    "https://79bd3c09.localtakehome.pages.dev",
+    "https://1b7ef20a.localtakehome.pages.dev (final)"
+  ],
+  "backup": "/workspace/backups/localtakehome-pre-adsense-20261007-190147",
+  "patchScripts": "/workspace/lt-review/patch/{apply.py,content.py,pages.py} (idempotent; applied in place to localtakehome-deploy)",
+  "whatChanged": [
+    "Removed placeholder Partner cards (href=#partner) and empty Advertisement boxes from 8 static pages; js/partners.mjs gated by PLACEMENTS_LIVE=false",
+    "Added original explanatory guides + FAQs (with FAQPage JSON-LD) to home, paycheck, hourly, overtime, 401k, employer cost, raise, compare, contractor, bonus, W-4, map",
+    "Added data-driven '<State> income tax rules used for 2026' section to all 51 state pages (from data/states-2026.json)",
+    "Rewrote About, Privacy (AdSense disclosures, opt-outs, consent), Terms; new /contact/ page; Contact link in every footer",
+    "Canonical/og:url/internal links/sitemap now use trailing-slash URLs (old ones 308-redirected); sitemap has lastmod + /contact/",
+    "support@ email wrapped in <!--email_off--> so Cloudflare does not show [email protected]",
+    "Replaced 3 dead NY source links (html + data json url fields only)",
+    ".skip link top -40px -> -200px (black sliver showed on phones); site.css cache-bust 20261007a",
+    ".publish is excluded from the deployed copy"
+  ],
+  "calculatorCheck": "8 scenarios identical before/after (see /workspace/lt-review/calc-before.json, calc-after.json)",
+  "followUps": [
+    "localtakehome-src was NOT rebuilt; an npm build copied over deploy would drop this and earlier deploy-only work"
+  ],
+  "followUp_2026-10-07_1940PT": {
+    "deployment": "https://5ddc2249.localtakehome.pages.dev",
+    "backup": "/workspace/backups/localtakehome-pre-about-owner-20261007-193547",
+    "change": "About intro + 'How you can check the numbers' + owner = LocalTakehome; Privacy/Terms 'owned and operated by LocalTakehome'. Edited in place; patch/pages.py ABOUT is now stale - do not re-run apply.py's replace_main for about/privacy/terms."
+  },
+  "followUp_2026-10-07_tagline": "Header restored in deploy 2df89a28 via lt-review/patch/header.py. If apply.py is ever re-run, re-run header.py afterwards (and fix apply.py replace_main stale about/privacy/terms text first)."
+}

@@ -1,0 +1,9 @@
+/css/*
+  Cache-Control: public, max-age=300, must-revalidate
+/ads.txt
+  Content-Type: text/plain; charset=utf-8
+
+/.publish/*
+  Cache-Control: no-store
+  CDN-Cache-Control: no-store
+  X-Robots-Tag: noindex

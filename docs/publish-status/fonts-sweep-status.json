@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-07 ~20:20 PT",
+  "deploy": "b2d975d1 (production); previous 21f5ab78",
+  "backup": "backups/localtakehome-pre-fonts-20261007-201914",
+  "change": "Font sweep cleanup only: served CSS still had a comment naming the old font; reworded to '/* lth-font-ss4: Source Serif 4 display serif (plain lowercase f) */'. No visual change.",
+  "headerPy": "CSS_VER 20261007f2; migration strips the old comment; verify guard now also asserts the served CSS contains no 'Fraunces'.",
+  "patchOrder": "python3 lt-review/patch/header.py <dir> && python3 lt-review/patch/hero.py <dir>",
+  "verify": "live scan 82 pages + 10 assets: 0 'Fraunces'; calculator 8/8 identical to calc-before.json (lt-review/calc-after5.json)"
+}

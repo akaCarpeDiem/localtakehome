@@ -1,0 +1,1397 @@
+{
+  "taxYear": 2026,
+  "lastVerified": "2026-09-28",
+  "rule": "A local tax is applied only when the user selects that jurisdiction. New York City tax is never applied to the rest of New York. A custom percent overrides the selected jurisdiction and is applied to gross wages. Local rates change; if a named place\u2019s rate differs from our lastVerified date, use the custom local rate field.",
+  "sourcesOverview": [
+    {
+      "name": "Tax Foundation, local income taxes primer",
+      "url": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/"
+    },
+    {
+      "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+      "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+    },
+    {
+      "name": "Indiana Department of Revenue, Departmental Notice #1",
+      "url": "https://www.in.gov/dor/files/dn01.pdf"
+    }
+  ],
+  "jurisdictions": [
+    {
+      "id": "nyc",
+      "name": "New York City",
+      "state": "NY",
+      "type": "city",
+      "appliesWhen": "resident-only",
+      "method": "brackets",
+      "base": "state-taxable",
+      "residentOnlyNote": "New York City income tax applies to residents of the five boroughs. Working in Manhattan, Brooklyn, Queens, the Bronx, or Staten Island does not, by itself, create a city income tax.",
+      "brackets": {
+        "single": [
+          {
+            "over": 0,
+            "rate": 0.03078
+          },
+          {
+            "over": 12000,
+            "rate": 0.03762
+          },
+          {
+            "over": 25000,
+            "rate": 0.03819
+          },
+          {
+            "over": 50000,
+            "rate": 0.03876
+          }
+        ],
+        "mfs": [
+          {
+            "over": 0,
+            "rate": 0.03078
+          },
+          {
+            "over": 12000,
+            "rate": 0.03762
+          },
+          {
+            "over": 25000,
+            "rate": 0.03819
+          },
+          {
+            "over": 50000,
+            "rate": 0.03876
+          }
+        ],
+        "hoh": [
+          {
+            "over": 0,
+            "rate": 0.03078
+          },
+          {
+            "over": 14400,
+            "rate": 0.03762
+          },
+          {
+            "over": 30000,
+            "rate": 0.03819
+          },
+          {
+            "over": 60000,
+            "rate": 0.03876
+          }
+        ],
+        "mfj": [
+          {
+            "over": 0,
+            "rate": 0.03078
+          },
+          {
+            "over": 21600,
+            "rate": 0.03762
+          },
+          {
+            "over": 45000,
+            "rate": 0.03819
+          },
+          {
+            "over": 90000,
+            "rate": 0.03876
+          }
+        ]
+      },
+      "sourceLabel": "NYC resident tax \u00b7 IT-201 schedule",
+      "source": {
+        "name": "New York State, New York City tax rates",
+        "url": "https://www.tax.ny.gov/pit/file/tax-tables/"
+      },
+      "confidence": "modeled",
+      "notes": "Resident rates of 3.078%, 3.762%, 3.819%, and 3.876% have been the NYC schedule for years and remain the rates published for recent IT-201 instructions. The base here is New York taxable income (wages after the New York standard deduction and deductions that reduce New York wages). NYC modifications, the household credit, and the school tax credit are not modeled, so a real return can differ by a few hundred dollars."
+    },
+    {
+      "id": "yonkers",
+      "name": "Yonkers",
+      "state": "NY",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "surcharge",
+      "residentSurchargeOfStateTax": 0.1675,
+      "nonresidentRate": 0.005,
+      "nonresidentBase": "gross",
+      "sourceLabel": "Yonkers resident surcharge / nonresident earnings tax",
+      "source": {
+        "name": "New York State, Yonkers tax",
+        "url": "https://www.tax.ny.gov/pit/file/tax-tables/"
+      },
+      "confidence": "modeled",
+      "notes": "Yonkers residents pay a surcharge of 16.75% of their net New York State tax. Nonresidents who work in Yonkers pay a 0.50% earnings tax on wages sourced to the city. The resident surcharge is not a flat wage percent, so it moves when state tax moves."
+    },
+    {
+      "id": "philadelphia",
+      "name": "Philadelphia",
+      "state": "PA",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0374,
+      "nonresidentRate": 0.0343,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Philadelphia wage tax \u00b7 FY2026",
+      "source": {
+        "name": "City of Philadelphia Department of Revenue, wage tax cut effective July 1, 2025",
+        "url": "https://www.phila.gov/2025-06-18-philly-extends-deadline-for-relief-program-announces-tax-cuts/"
+      },
+      "confidence": "published",
+      "notes": "Effective July 1, 2025 (fiscal year 2026), the wage and earnings tax is 3.74% for residents and 3.43% for nonresidents. Residents owe it on wages wherever earned. Nonresidents owe it on wages earned in the city. Traditional 401(k) deferrals and most cafeteria-plan amounts stay in the wage-tax base in this model. The city has scheduled further small reductions through FY2030; those future rates are not used here."
+    },
+    {
+      "id": "pittsburgh",
+      "name": "Pittsburgh",
+      "state": "PA",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.03,
+      "nonresidentRate": 0.01,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Pittsburgh EIT + school district \u00b7 3% / 1%",
+      "source": {
+        "name": "City of Pittsburgh, Earned Income Tax",
+        "url": "https://www.pittsburghpa.gov/City-Government/Finance-Budget/Taxes"
+      },
+      "confidence": "published",
+      "notes": "City of Pittsburgh publishes a 3% resident earned income tax (1% city + 2% Pittsburgh Public Schools) and 1% for nonresidents who work in the city. Modeled on gross wages. The $52 local services tax owed to the workplace is not included. Act 32 collectors administer withholding; confirm the current rate sheet if your municipality differs from city+school."
+    },
+    {
+      "id": "detroit",
+      "name": "Detroit",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.024,
+      "nonresidentRate": 0.012,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Detroit income tax \u00b7 2.4% / 1.2%",
+      "source": {
+        "name": "City of Detroit income tax",
+        "url": "https://detroitmi.gov/departments/office-chief-financial-officer/ocfo-divisions/office-treasury/income-tax"
+      },
+      "confidence": "published",
+      "notes": "Detroit's resident rate is 2.4%. Michigan law sets the nonresident city rate at half the resident rate, 1.2%, on income earned in the city. The estimate uses gross wages and does not apply the city's exemptions or the nonresident allocation form. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the Detroit base.",
+      "lastVerified": "2026-09-28"
+    },
+    {
+      "id": "columbus-oh",
+      "name": "Columbus, Ohio",
+      "state": "OH",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.025,
+      "nonresidentRate": 0.025,
+      "base": "qualifying-wages",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Columbus municipal income tax \u00b7 2.5%",
+      "source": {
+        "name": "City of Columbus income tax division",
+        "url": "https://www.columbus.gov/Government/Departments/Income-Tax-Division"
+      },
+      "confidence": "published",
+      "notes": "Columbus withholds 2.5% municipal income tax on qualifying wages earned in the city. Traditional 401(k) deferrals are generally excluded from Ohio municipal qualifying wages, and this model excludes them along with Section 125 amounts. If you live in one Ohio city and work in another, a credit usually prevents full double taxation. This estimate applies only the city you select.",
+      "lastVerified": "2026-09-28"
+    },
+    {
+      "id": "cleveland-oh",
+      "name": "Cleveland",
+      "state": "OH",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.025,
+      "nonresidentRate": 0.025,
+      "base": "qualifying-wages",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Cleveland municipal income tax \u00b7 2.5%",
+      "source": {
+        "name": "Central Collection Agency, Cleveland municipal tax",
+        "url": "https://www.ccatax.ci.cleveland.oh.us/"
+      },
+      "confidence": "published",
+      "notes": "Cleveland's municipal income tax rate is 2.5%. Same qualifying-wage and one-city credit limits as the Columbus model.",
+      "lastVerified": "2026-09-28"
+    },
+    {
+      "id": "montgomery-md",
+      "name": "Montgomery County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 2026 local rates",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "confidence": "published",
+      "notes": "Montgomery County's 2026 local income tax rate is 3.20% of Maryland taxable net income. Every Maryland county plus Baltimore City levies a local rate; many are named in this file. Counties not listed (or Anne Arundel/Frederick tiered schedules you want to override) can use the custom percent. The nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification.",
+      "lastVerified": "2026-09-28"
+    },
+    {
+      "id": "baltimore-md",
+      "name": "Baltimore City",
+      "state": "MD",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 Baltimore City 3.20%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "confidence": "published",
+      "notes": "Baltimore City's 2026 local rate is 3.20% of Maryland taxable net income. Nonresident switch uses the 2.25% simplification described on the Montgomery County record.",
+      "lastVerified": "2026-09-28"
+    },
+    {
+      "id": "marion-in",
+      "name": "Marion County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0202,
+      "nonresidentRate": 0.0202,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Marion 2.02%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "confidence": "published",
+      "notes": "Marion County (Indianapolis) local income tax is 2.02% on the Indiana DOR Departmental Notice #1 county chart for 2026 (unchanged on the Oct. 1, 2026 revision). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 2.02% for both switches. Additional major Indiana counties are also named; use the custom percent for counties not listed.",
+      "lastVerified": "2026-09-28"
+    },
+    {
+      "id": "portland-multnomah",
+      "name": "Portland / Multnomah County",
+      "state": "OR",
+      "type": "metro",
+      "appliesWhen": "resident-only",
+      "method": "layered-threshold",
+      "base": "state-taxable",
+      "residentOnlyNote": "Metro and Multnomah income taxes apply to residents of those districts. Working in Portland while living in Vancouver, Washington, does not trigger them.",
+      "layers": [
+        {
+          "id": "metro-shs",
+          "name": "Metro supportive housing services",
+          "tiers": [
+            {
+              "rate": 0.01,
+              "threshold": {
+                "single": 128000,
+                "mfs": 128000,
+                "hoh": 128000,
+                "mfj": 205000
+              }
+            }
+          ]
+        },
+        {
+          "id": "multnomah-pfa",
+          "name": "Multnomah Preschool for All",
+          "tiers": [
+            {
+              "rate": 0.015,
+              "threshold": {
+                "single": 125000,
+                "mfs": 125000,
+                "hoh": 125000,
+                "mfj": 200000
+              }
+            },
+            {
+              "rate": 0.015,
+              "threshold": {
+                "single": 250000,
+                "mfs": 250000,
+                "hoh": 250000,
+                "mfj": 400000
+              }
+            }
+          ]
+        }
+      ],
+      "sourceLabel": "Metro SHS 2026 indexed + Multnomah PFA",
+      "source": {
+        "name": "City of Portland Revenue Division, Personal Income Tax (Metro SHS + Multnomah PFA)",
+        "url": "https://www.portland.gov/revenue/personal-tax"
+      },
+      "confidence": "published",
+      "notes": "A Portland resident inside both Metro and Multnomah County is modeled with two taxes on Oregon taxable income: 1% Metro supportive housing services above the 2026 inflation-indexed thresholds of $128,000 single / $205,000 joint (was $125,000 / $200,000 for 2021\u20132025), plus Multnomah Preschool for All at 1.5% above $125,000 single / $200,000 joint and another 1.5% above $250,000 single / $400,000 joint. Sources: Portland.gov personal-tax page and Metro SHS revenue forecast. These taxes are filed with the Oregon return; not every employer withholds them. Someone in Washington County Metro but outside Multnomah would owe only the Metro layer \u2014 this combined jurisdiction is the Portland-in-Multnomah case."
+    },
+    {
+      "id": "dc-note",
+      "name": "District of Columbia",
+      "state": "DC",
+      "type": "district",
+      "appliesWhen": "reference",
+      "method": "reference",
+      "sourceLabel": "Taxed as the DC income-tax jurisdiction",
+      "source": {
+        "name": "DC Office of Tax and Revenue",
+        "url": "https://otr.cfo.dc.gov/"
+      },
+      "confidence": "published",
+      "notes": "The District is its own income tax in the state table, from 4% to 10.75%. There is no second city layer on top. Selecting this record does not add another tax."
+    },
+    {
+      "id": "allegany-md",
+      "name": "Allegany County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Allegany County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "anne-arundel-md",
+      "name": "Anne Arundel County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-only",
+      "method": "brackets",
+      "base": "state-taxable",
+      "residentOnlyNote": "Anne Arundel County local tax follows the county of residence. Nonresidents of Maryland who owe the special 2.25% local-equivalent amount can enter 2.25 in the custom local rate field.",
+      "brackets": {
+        "single": [
+          {
+            "over": 0,
+            "rate": 0.027
+          },
+          {
+            "over": 50000,
+            "rate": 0.0294
+          },
+          {
+            "over": 400000,
+            "rate": 0.032
+          }
+        ],
+        "mfs": [
+          {
+            "over": 0,
+            "rate": 0.027
+          },
+          {
+            "over": 50000,
+            "rate": 0.0294
+          },
+          {
+            "over": 400000,
+            "rate": 0.032
+          }
+        ],
+        "hoh": [
+          {
+            "over": 0,
+            "rate": 0.027
+          },
+          {
+            "over": 75000,
+            "rate": 0.0294
+          },
+          {
+            "over": 480000,
+            "rate": 0.032
+          }
+        ],
+        "mfj": [
+          {
+            "over": 0,
+            "rate": 0.027
+          },
+          {
+            "over": 75000,
+            "rate": 0.0294
+          },
+          {
+            "over": 480000,
+            "rate": 0.032
+          }
+        ]
+      },
+      "sourceLabel": "Maryland Comptroller \u00b7 Anne Arundel tiered 2026",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Anne Arundel County uses progressive local rates for 2026: 2.70%, 2.94%, and 3.20% of Maryland taxable net income, with thresholds that differ for single/MFS vs MFJ/HOH (Comptroller Withholding Tax Facts 2026). Modeled as resident brackets on Maryland taxable income. Frederick County's cliff (flat-by-income-band) schedule is not named here \u2014 use the custom percent."
+    },
+    {
+      "id": "baltimore-county-md",
+      "name": "Baltimore County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Baltimore County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "calvert-md",
+      "name": "Calvert County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Calvert County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "caroline-md",
+      "name": "Caroline County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Caroline County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "carroll-md",
+      "name": "Carroll County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0303,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.03%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Carroll County, Maryland's 2026 local income tax rate is 3.03% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "cecil-md",
+      "name": "Cecil County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0274,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 2.74%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Cecil County, Maryland's 2026 local income tax rate is 2.74% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "charles-md",
+      "name": "Charles County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0303,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.03%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Charles County, Maryland's 2026 local income tax rate is 3.03% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "dorchester-md",
+      "name": "Dorchester County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.033,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.3%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Dorchester County, Maryland's 2026 local income tax rate is 3.3% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "garrett-md",
+      "name": "Garrett County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0265,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 2.65%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Garrett County, Maryland's 2026 local income tax rate is 2.65% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "harford-md",
+      "name": "Harford County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0306,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.06%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Harford County, Maryland's 2026 local income tax rate is 3.06% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "howard-md",
+      "name": "Howard County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Howard County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "kent-md",
+      "name": "Kent County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.033,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.3%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Kent County, Maryland's 2026 local income tax rate is 3.3% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "prince-georges-md",
+      "name": "Prince George's County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Prince George's County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "queen-annes-md",
+      "name": "Queen Anne's County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Queen Anne's County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "st-marys-md",
+      "name": "St. Mary's County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "St. Mary's County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "somerset-md",
+      "name": "Somerset County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Somerset County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "talbot-md",
+      "name": "Talbot County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.024,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 2.4%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Talbot County, Maryland's 2026 local income tax rate is 2.4% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "washington-md",
+      "name": "Washington County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0295,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 2.95%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Washington County, Maryland's 2026 local income tax rate is 2.95% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "wicomico-md",
+      "name": "Wicomico County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.032,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 3.2%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Wicomico County, Maryland's 2026 local income tax rate is 3.2% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "worcester-md",
+      "name": "Worcester County, Maryland",
+      "state": "MD",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0225,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Maryland Comptroller \u00b7 2.25%",
+      "source": {
+        "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+        "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Worcester County, Maryland's 2026 local income tax rate is 2.25% of Maryland taxable net income (Comptroller Withholding Tax Facts 2026). Nonresident switch uses 2.25%, the rate Maryland uses for many nonresident withholding situations, and is a simplification."
+    },
+    {
+      "id": "grand-rapids-mi",
+      "name": "Grand Rapids",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.015,
+      "nonresidentRate": 0.0075,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Grand Rapids income tax \u00b7 1.5% / 0.75%",
+      "source": {
+        "name": "City of Grand Rapids, Income Tax Guide for Individuals",
+        "url": "https://www.grandrapidsmi.gov/departments/fiscal-services/income-tax/individual-taxpayers/income-tax-guide-for-individuals/"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Grand Rapids resident city income tax is 1.5%. Michigan law sets the nonresident city rate at half the resident rate (0.75%) on income earned in the city. Modeled on gross wages; city exemptions are not applied. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the city base."
+    },
+    {
+      "id": "lansing-mi",
+      "name": "Lansing",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.01,
+      "nonresidentRate": 0.005,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Lansing income tax \u00b7 1% / 0.5%",
+      "source": {
+        "name": "City of Lansing, Individual Tax Forms / L-1040 instructions",
+        "url": "https://www.lansingmi.gov/539/Individual-Tax-Forms"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Lansing resident city income tax is 1%. Michigan law sets the nonresident city rate at half the resident rate (0.5%) on income earned in the city. Modeled on gross wages; city exemptions are not applied. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the city base."
+    },
+    {
+      "id": "flint-mi",
+      "name": "Flint",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.01,
+      "nonresidentRate": 0.005,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Flint income tax \u00b7 1% / 0.5%",
+      "source": {
+        "name": "City of Flint, Form F-1040 Instructions",
+        "url": "https://www.cityofflint.com/wp-content/uploads/2026/01/2025-F-1040-Instructions.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Flint resident city income tax is 1%. Michigan law sets the nonresident city rate at half the resident rate (0.5%) on income earned in the city. Modeled on gross wages; city exemptions are not applied. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the city base."
+    },
+    {
+      "id": "pontiac-mi",
+      "name": "Pontiac",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.01,
+      "nonresidentRate": 0.005,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Pontiac income tax \u00b7 1% / 0.5%",
+      "source": {
+        "name": "City of Pontiac Finance, Income Tax FAQs",
+        "url": "https://www.pontiac.mi.us/departments/finance/income_tax/faqs.php"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Pontiac resident city income tax is 1%. Michigan law sets the nonresident city rate at half the resident rate (0.5%) on income earned in the city. Modeled on gross wages; city exemptions are not applied. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the city base."
+    },
+    {
+      "id": "saginaw-mi",
+      "name": "Saginaw",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.015,
+      "nonresidentRate": 0.0075,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Saginaw income tax \u00b7 1.5% / 0.75%",
+      "source": {
+        "name": "City of Saginaw, Income Tax",
+        "url": "https://www.cityofsaginawmi.gov/416/Income-Tax"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Saginaw resident city income tax is 1.5%. Michigan law sets the nonresident city rate at half the resident rate (0.75%) on income earned in the city. Modeled on gross wages; city exemptions are not applied. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the city base."
+    },
+    {
+      "id": "battle-creek-mi",
+      "name": "Battle Creek",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.01,
+      "nonresidentRate": 0.005,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Battle Creek income tax \u00b7 1% / 0.5%",
+      "source": {
+        "name": "Michigan city income tax rates (Battle Creek 1% / 0.5%)",
+        "url": "https://www.tax-rates.org/michigan/local-income-taxes"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Battle Creek resident city income tax is 1%. Michigan law sets the nonresident city rate at half the resident rate (0.5%) on income earned in the city. Modeled on gross wages; city exemptions are not applied. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the city base. Rate matches the standard Michigan City Income Tax Act schedule used by most MI cities outside Detroit, Grand Rapids, Highland Park, and Saginaw."
+    },
+    {
+      "id": "jackson-mi",
+      "name": "Jackson",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.01,
+      "nonresidentRate": 0.005,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Jackson income tax \u00b7 1% / 0.5%",
+      "source": {
+        "name": "Michigan city income tax rates (Jackson 1% / 0.5%)",
+        "url": "https://www.tax-rates.org/michigan/local-income-taxes"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Jackson resident city income tax is 1%. Michigan law sets the nonresident city rate at half the resident rate (0.5%) on income earned in the city. Modeled on gross wages; city exemptions are not applied. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the city base. Rate matches the standard Michigan City Income Tax Act schedule."
+    },
+    {
+      "id": "muskegon-mi",
+      "name": "Muskegon",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.01,
+      "nonresidentRate": 0.005,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Muskegon income tax \u00b7 1% / 0.5%",
+      "source": {
+        "name": "Michigan city income tax rates (Muskegon 1% / 0.5%)",
+        "url": "https://www.tax-rates.org/michigan/local-income-taxes"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Muskegon resident city income tax is 1%. Michigan law sets the nonresident city rate at half the resident rate (0.5%) on income earned in the city. Modeled on gross wages; city exemptions are not applied. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the city base. Rate matches the standard Michigan City Income Tax Act schedule."
+    },
+    {
+      "id": "highland-park-mi",
+      "name": "Highland Park",
+      "state": "MI",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.02,
+      "nonresidentRate": 0.01,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Highland Park income tax \u00b7 2% / 1%",
+      "source": {
+        "name": "Michigan city income tax rates (Highland Park 2% / 1%)",
+        "url": "https://www.tax-rates.org/michigan/local-income-taxes"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Highland Park resident city income tax is 2%. Michigan law sets the nonresident city rate at half the resident rate (1%) on income earned in the city. Modeled on gross wages; city exemptions are not applied. Traditional 401(k) treatment can differ from federal; this model leaves deferrals in the city base."
+    },
+    {
+      "id": "kansas-city-mo",
+      "name": "Kansas City, Missouri",
+      "state": "MO",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.01,
+      "nonresidentRate": 0.01,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Kansas City earnings tax \u00b7 1%",
+      "source": {
+        "name": "City of Kansas City, Earnings Tax (E-Tax)",
+        "url": "https://www.kcmo.gov/city-hall/departments/finance/earnings-tax"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Kansas City, Missouri levies a 1% earnings tax on salaries, wages, commissions, tips, and similar compensation. Residents owe it on earnings wherever earned; nonresidents owe it on earnings within city limits. Modeled on gross wages. Voters renewed the tax in April 2026 for another five-year period. Retirement and similar non-earned income is outside this wage model."
+    },
+    {
+      "id": "st-louis-mo",
+      "name": "St. Louis, Missouri",
+      "state": "MO",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.01,
+      "nonresidentRate": 0.01,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "St. Louis earnings tax \u00b7 1%",
+      "source": {
+        "name": "City of St. Louis Collector of Revenue, Earnings Tax",
+        "url": "https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/index.cfm"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "The City of St. Louis collects a 1% earnings tax from residents (wherever earned) and from nonresidents on compensation for work performed in the city. Modeled on gross wages. The separate 0.5% employer payroll expense tax is not an employee line and is omitted."
+    },
+    {
+      "id": "wilmington-de",
+      "name": "Wilmington, Delaware",
+      "state": "DE",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0125,
+      "nonresidentRate": 0.0125,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Wilmington wage tax \u00b7 1.25%",
+      "source": {
+        "name": "City of Wilmington wage / earned income tax (1.25%)",
+        "url": "https://www.newcastlede.gov/DocumentCenter/View/20147/City-of-Wilmington-Wage-Tax-Information-PDF"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Wilmington's city wage (earned income) tax is 1.25% of gross wages for residents and for nonresidents who work in the city. Rate is set by the Delaware General Assembly and remains 1.25% on city FY2025 rate sheets and current employer guides. Modeled on gross wages."
+    },
+    {
+      "id": "louisville-ky",
+      "name": "Louisville / Jefferson County",
+      "state": "KY",
+      "type": "metro",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.022,
+      "nonresidentRate": 0.0145,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Louisville Metro OL tax \u00b7 2.2% / 1.45%",
+      "source": {
+        "name": "Louisville Metro Revenue Commission, Form W-1 / OL instructions",
+        "url": "https://louisvilleky.gov/sites/default/files/2024-12/w-1_instructions_2025.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Louisville Metro (all of Jefferson County) occupational license tax on compensation is 2.2% for residents (1.25% Metro + 0.20% TARC + 0.75% school boards) and 1.45% for nonresidents who work in Louisville Metro (school-board portion does not apply). Modeled on gross wages. Other Kentucky localities are not named \u2014 use the custom percent."
+    },
+    {
+      "id": "lexington-ky",
+      "name": "Lexington / Fayette County",
+      "state": "KY",
+      "type": "metro",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0225,
+      "nonresidentRate": 0.0225,
+      "base": "gross",
+      "pretaxReducesBase": false,
+      "sourceLabel": "Lexington-Fayette occupational license fee \u00b7 2.25%",
+      "source": {
+        "name": "Lexington-Fayette Urban County Government, Occupational license fee rates",
+        "url": "https://www.lexingtonky.gov/working/business-licensing-taxes/occupational-license-fee-rates-current-forms"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Lexington-Fayette assesses a 2.25% occupational license fee on individual compensation and business net profits. Modeled at 2.25% for both resident and nonresident switches on gross wages. Age-65 and other refund programs are not modeled."
+    },
+    {
+      "id": "cincinnati-oh",
+      "name": "Cincinnati",
+      "state": "OH",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.018,
+      "nonresidentRate": 0.018,
+      "base": "qualifying-wages",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Cincinnati municipal income tax \u00b7 1.8%",
+      "source": {
+        "name": "City of Cincinnati Income Tax Division",
+        "url": "https://www.cincinnati-oh.gov/finance/income-taxes/"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Cincinnati's municipal income tax rate is 1.8%. Traditional 401(k) deferrals are generally excluded from Ohio municipal qualifying wages, and this model excludes them along with Section 125 amounts. If you live in one Ohio city and work in another, a credit usually prevents full double taxation. This estimate applies only the city you select."
+    },
+    {
+      "id": "toledo-oh",
+      "name": "Toledo",
+      "state": "OH",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.025,
+      "nonresidentRate": 0.025,
+      "base": "qualifying-wages",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Toledo municipal income tax \u00b7 2.5%",
+      "source": {
+        "name": "Ohio Department of Taxation municipal income tax rate table (Toledo 2.50%)",
+        "url": "https://dam.assets.ohio.gov/image/upload/v1741618460/tax.ohio.gov/muni-net-profit/municipal.tax.rate-3.7.25.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Toledo's municipal income tax rate is 2.5%. Traditional 401(k) deferrals are generally excluded from Ohio municipal qualifying wages, and this model excludes them along with Section 125 amounts. If you live in one Ohio city and work in another, a credit usually prevents full double taxation. This estimate applies only the city you select."
+    },
+    {
+      "id": "akron-oh",
+      "name": "Akron",
+      "state": "OH",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.025,
+      "nonresidentRate": 0.025,
+      "base": "qualifying-wages",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Akron municipal income tax \u00b7 2.5%",
+      "source": {
+        "name": "Ohio Department of Taxation municipal income tax rate table (Akron 2.50%)",
+        "url": "https://dam.assets.ohio.gov/image/upload/v1741618460/tax.ohio.gov/muni-net-profit/municipal.tax.rate-3.7.25.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Akron's municipal income tax rate is 2.5%. Traditional 401(k) deferrals are generally excluded from Ohio municipal qualifying wages, and this model excludes them along with Section 125 amounts. If you live in one Ohio city and work in another, a credit usually prevents full double taxation. This estimate applies only the city you select."
+    },
+    {
+      "id": "dayton-oh",
+      "name": "Dayton",
+      "state": "OH",
+      "type": "city",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.025,
+      "nonresidentRate": 0.025,
+      "base": "qualifying-wages",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Dayton municipal income tax \u00b7 2.5%",
+      "source": {
+        "name": "Ohio Department of Taxation municipal income tax rate table (Dayton 2.50%)",
+        "url": "https://dam.assets.ohio.gov/image/upload/v1741618460/tax.ohio.gov/muni-net-profit/municipal.tax.rate-3.7.25.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Dayton's municipal income tax rate is 2.5%. Traditional 401(k) deferrals are generally excluded from Ohio municipal qualifying wages, and this model excludes them along with Section 125 amounts. If you live in one Ohio city and work in another, a credit usually prevents full double taxation. This estimate applies only the city you select."
+    },
+    {
+      "id": "lake-in",
+      "name": "Lake County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.015,
+      "nonresidentRate": 0.015,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Lake County 1.5%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Lake County, Indiana local income tax is 1.5% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 1.5% for both switches."
+    },
+    {
+      "id": "allen-in",
+      "name": "Allen County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0159,
+      "nonresidentRate": 0.0159,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Allen County 1.59%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Allen County, Indiana local income tax is 1.59% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 1.59% for both switches."
+    },
+    {
+      "id": "hamilton-in",
+      "name": "Hamilton County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.011,
+      "nonresidentRate": 0.011,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Hamilton County 1.1%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Hamilton County, Indiana local income tax is 1.1% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 1.1% for both switches."
+    },
+    {
+      "id": "st-joseph-in",
+      "name": "St. Joseph County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0175,
+      "nonresidentRate": 0.0175,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 St. Joseph County 1.75%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "St. Joseph County, Indiana local income tax is 1.75% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 1.75% for both switches."
+    },
+    {
+      "id": "elkhart-in",
+      "name": "Elkhart County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.02,
+      "nonresidentRate": 0.02,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Elkhart County 2%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Elkhart County, Indiana local income tax is 2% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 2% for both switches."
+    },
+    {
+      "id": "tippecanoe-in",
+      "name": "Tippecanoe County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0128,
+      "nonresidentRate": 0.0128,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Tippecanoe County 1.28%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Tippecanoe County, Indiana local income tax is 1.28% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 1.28% for both switches."
+    },
+    {
+      "id": "vanderburgh-in",
+      "name": "Vanderburgh County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0125,
+      "nonresidentRate": 0.0125,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Vanderburgh County 1.25%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Vanderburgh County, Indiana local income tax is 1.25% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 1.25% for both switches."
+    },
+    {
+      "id": "monroe-in",
+      "name": "Monroe County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0214,
+      "nonresidentRate": 0.0214,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Monroe County 2.14%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Monroe County, Indiana local income tax is 2.14% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 2.14% for both switches."
+    },
+    {
+      "id": "hendricks-in",
+      "name": "Hendricks County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.017,
+      "nonresidentRate": 0.017,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Hendricks County 1.7%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Hendricks County, Indiana local income tax is 1.7% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 1.7% for both switches."
+    },
+    {
+      "id": "madison-in",
+      "name": "Madison County, Indiana",
+      "state": "IN",
+      "type": "county",
+      "appliesWhen": "resident-or-work",
+      "method": "flat",
+      "residentRate": 0.0225,
+      "nonresidentRate": 0.0225,
+      "base": "state-taxable",
+      "pretaxReducesBase": true,
+      "sourceLabel": "Indiana DOR DN#1 \u00b7 Madison County 2.25%",
+      "source": {
+        "name": "Indiana Department of Revenue, Departmental Notice #1 (county tax rates)",
+        "url": "https://www.in.gov/dor/files/dn01.pdf"
+      },
+      "lastVerified": "2026-09-28",
+      "confidence": "published",
+      "notes": "Madison County, Indiana local income tax is 2.25% on the Indiana DOR Departmental Notice #1 county chart effective Oct. 1, 2026 (same chart used for calendar-year 2026 withholding). County of residence on January 1 controls for residents; nonresidents are taxed on the employment county. This estimate uses 2.25% for both switches."
+    }
+  ]
+}
