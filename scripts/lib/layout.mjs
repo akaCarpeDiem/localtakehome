@@ -110,6 +110,8 @@ export function faqHTML(faqs, title = "Questions") {
  */
 export function renderPage(page, assets) {
   const url = `${SITE.origin}${page.path === "/404.html" ? "/" : page.path}`;
+  // Search results cut long titles; the keywords matter more than the brand suffix.
+  const title = page.title.length > 62 ? page.title.replace(/ \| LocalTakehome$/, "") : page.title;
   const current = (item) => (item.match || [item.href]).includes(page.path) || (item.href !== "/" && page.section === item.href);
   const nav = NAV.map((item) => `<a href="${item.href}"${current(item) ? ' aria-current="page"' : ""}>${item.label}</a>`).join("");
   const tools = TOOL_LINKS.map((item) => `<a href="${item.href}"${item.href === page.path ? ' aria-current="page"' : ""}><strong>${item.label}</strong><span>${item.blurb}</span></a>`).join("");
@@ -130,12 +132,12 @@ export function renderPage(page, assets) {
 ${GA_TAG}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(page.title)}</title>
+  <title>${esc(title)}</title>
   <meta name="description" content="${esc(page.description)}">
   <link rel="canonical" href="${url}">
   <meta name="robots" content="${page.noindex ? "noindex,follow" : "index,follow,max-image-preview:large"}">
   <meta name="theme-color" content="#F4EFE6">
-  <meta property="og:title" content="${esc(page.ogTitle || page.title)}">
+  <meta property="og:title" content="${esc(page.ogTitle || title)}">
   <meta property="og:description" content="${esc(page.description)}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${url}">

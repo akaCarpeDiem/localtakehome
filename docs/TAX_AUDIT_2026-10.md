@@ -1,3 +1,26 @@
+# Tax data audit, October 2026
+
+Working notes from the review of every 2026 figure against official sources (October 11, 2026).
+They are kept as a record of what was checked and where. Notes near the top were written before
+the checking was finished ("verify", "maybe"); later notes supersede them. The figures that were
+adopted are the ones in `src/data/*.json`, each with its own source link.
+
+## Still estimated or not independently confirmed
+
+- Vermont: 2026 standard deduction and head-of-household schedule (state marked "estimated").
+- Nebraska: head-of-household brackets and standard deduction (state marked "estimated").
+- Utah: the 2026 dependent exemption amount (2025's $2,111 is used; state marked "estimated").
+- Oregon: head-of-household standard deduction ($4,685).
+- Arizona: the law sets the standard deduction at $15,750 / $31,500 / $23,625 from 2025; no separate 2026 figure was found.
+- South Carolina: whether a dependent exemption survives Act 110 (none is applied).
+- California: the exemption-credit phase-out at high incomes is not calculated.
+- Minnesota Paid Leave: rate taken from a secondary source.
+- State treatment of the federal tips and overtime deductions: applied only for Arizona, and Alabama's own $1,000 overtime deduction. Other states are assumed to tax tips and overtime in full.
+- Michigan cities other than Detroit: the city's personal exemption amount is not applied.
+- Wilmington, Delaware: charged on gross wages (the city's own definition was not found).
+
+## Notes
+
 # localtakehome.com audit notes (started 2026-10-11)
 Live site: static, ES modules: /js/site.mjs calculator.mjs engine.mjs tools.mjs data.mjs format.mjs partners.mjs view.mjs; data /data/{federal,fica,states,local,state-payroll}-2026.json; css /css/site.css. AdSense ca-pub-4059575347806121, GA4 G-S9BK9NYDGC, CF web analytics. lockup PNG 557 KB (perf).
 No GitHub repo visible (asked user -> Grokbot step 0).

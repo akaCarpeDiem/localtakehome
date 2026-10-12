@@ -239,7 +239,7 @@ function notFound(ctx) {
     path: "/404.html",
     noindex: true,
     title: "Page Not Found | LocalTakehome",
-    description: "That page is not here. The paycheck calculator is.",
+    description: "That page is not here, but the 2026 paycheck calculator is. Enter a salary and a state.",
     body: `<div class="wrap page prose">
     <header class="mast"><p class="kicker">404</p><h1>That page is not here.</h1>
     <p class="lede">The link may be old. The calculator is still here: enter a salary and a state to go straight to an estimate.</p></header>

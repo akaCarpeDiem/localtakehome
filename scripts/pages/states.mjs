@@ -219,7 +219,7 @@ function statePage(ctx, state, rankAt) {
     path: statePath(state),
     section: "/states/",
     kind: "calculator",
-    title: `${name} Paycheck Calculator 2026: Take-Home Pay After Taxes | LocalTakehome`,
+    title: `${name} Paycheck Calculator 2026: Take-Home Pay After Taxes`,
     description: `Work out your 2026 take-home pay in ${the}. ${state.wageTax ? `${name} income tax (${rateLabel(state)})` : `No state income tax`}, federal tax, Social Security and Medicare${locals.length ? `, plus ${locals.length} local income taxes` : ""}, line by line.`,
     h1: `${name} paycheck calculator`,
     trail: [{ label: "States", href: "/states/" }, { label: name }],

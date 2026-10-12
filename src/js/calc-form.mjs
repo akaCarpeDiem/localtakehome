@@ -34,10 +34,10 @@ const STATUS_OPTIONS = [
 ];
 
 const FREQ_OPTIONS = [
-  ["weekly", "Weekly"],
-  ["biweekly", "Every 2 weeks"],
-  ["semimonthly", "Twice a month"],
-  ["monthly", "Monthly"],
+  ["weekly", "Weekly", "Weekly"],
+  ["biweekly", "Every 2 weeks", "2 weeks"],
+  ["semimonthly", "Twice a month", "2× month"],
+  ["monthly", "Monthly", "Monthly"],
 ];
 
 /** Every field with its default. Strings stay strings so the form shows what was typed. */
@@ -426,7 +426,7 @@ export function formHTML(tables, v) {
 
     <fieldset class="field">
       <legend class="label">How often you are paid</legend>
-      <div class="seg four" role="radiogroup" aria-label="How often you are paid">${FREQ_OPTIONS.map(([id, label]) => radio("frequency", id, v.frequency, label)).join("")}</div>
+      <div class="seg four" role="radiogroup" aria-label="How often you are paid">${FREQ_OPTIONS.map(([id, label, short]) => radio("frequency", id, v.frequency, label === short ? label : `<span class="long">${label}</span><span class="short" aria-hidden="true">${short}</span>`)).join("")}</div>
     </fieldset>
 
     <div class="grid-2">

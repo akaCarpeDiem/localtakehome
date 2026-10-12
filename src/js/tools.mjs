@@ -48,7 +48,7 @@ function money(name, label, value, { suffix = "", hint = "", big = false } = {})
 }
 
 function number(name, label, value, suffix = "", hint = "") {
-  return `<label class="field"><span class="label">${label}</span><span class="control"><input name="${name}" inputmode="decimal" autocomplete="off" value="${esc(value)}">${suffix ? `<span class="affix">${suffix}</span>` : ""}</span>${hint ? `<span class="hint">${hint}</span>` : ""}</label>`;
+  return `<label class="field"><span class="label">${label}</span><span class="control"><input name="${name}" inputmode="decimal" autocomplete="off" placeholder="0" value="${esc(value)}">${suffix ? `<span class="affix">${suffix}</span>` : ""}</span>${hint ? `<span class="hint">${hint}</span>` : ""}</label>`;
 }
 
 function figure(label, value, sub = "", tone = "") {
@@ -482,7 +482,7 @@ const rank = {
     const body = rows
       .map(
         (row, index) =>
-          `<tr><td class="num rank">${index + 1}</td><th scope="row"><a href="${href(row.state.id)}">${esc(row.state.name)}</a></th><td class="num">${usd0(row.stateTax)}</td><td class="num">${usd0(row.net)}</td><td class="num">${usd0(row.net / 12)}</td><td class="num diff">${index === 0 ? "" : signed(row.net - best.net)}</td></tr>`,
+          `<tr><td class="num rank">${index + 1}</td><th scope="row"><a href="${href(row.state.id)}">${esc(row.state.name)}</a></th><td class="num">${usd0(row.stateTax)}</td><td class="num">${usd0(row.net)}</td><td class="num">${usd0(row.net / 12)}</td><td class="num diff">${index === 0 ? "" : Math.abs(row.net - best.net) < 0.5 ? "same" : signed(row.net - best.net)}</td></tr>`,
       )
       .join("");
     const tied = rows.filter((row) => Math.abs(row.net - best.net) < 0.5).length;

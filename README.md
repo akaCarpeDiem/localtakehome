@@ -1,6 +1,6 @@
 # LocalTakehome
 
-Source for https://localtakehome.com, a free 2026 U.S. take-home pay calculator: federal, FICA, state, state payroll programs, and city/county wage taxes. It is a static site hosted on Cloudflare Pages, plus one Pages Functions middleware. All calculations run in the browser.
+Source for https://localtakehome.com, a free 2026 U.S. take-home pay calculator: federal income tax, Social Security and Medicare, state income tax, state payroll programs, and city and county income taxes. It is a generated static site hosted on Cloudflare Pages, plus one Pages Functions middleware. All calculations run in the browser.
 
 Read AGENTS.md first. It has the rules for what must not change.
 
@@ -8,33 +8,49 @@ Read AGENTS.md first. It has the rules for what must not change.
 
 | Path | What it is |
 | --- | --- |
-| `site/` | **The live site (source of truth).** HTML for 82 pages (home, 51 state pages, city/county pages, tools, legal), plus `js/`, `css/`, `data/`, `fonts/`, `assets/`, `_headers`, `ads.txt`, `robots.txt`, `sitemap.xml`, and `404.html`. Edit here. |
-| `site/js/engine.mjs` | The tax engine (pure functions). `data.mjs` loads `site/data/*.json`, `calculator.mjs` and `view.mjs` render the UI, `tools.mjs` holds the extra calculators, and `site.mjs` holds the shell and header. |
-| `site/data/` | The 2026 tax tables: `federal-2026.json`, `fica-2026.json`, `states-2026.json`, `local-2026.json`, `state-payroll-2026.json`. |
+| `src/data/` | The 2026 rate tables: `federal-2026.json`, `fica-2026.json`, `states-2026.json`, `local-2026.json`, `state-payroll-2026.json`. Every entry has a source and a date. |
+| `src/js/engine.mjs` | The tax engine. Pure functions, no DOM. `calculateTakeHome(input, tables)` returns every line, the working behind it, notes and sources. |
+| `src/js/` (the rest) | `calc-form.mjs` (the calculator's form, link format and conversion to engine input), `view.mjs` (results as HTML), `tools.mjs` (the smaller calculators), `calculator.mjs` and `site.mjs` (browser wiring), `format.mjs`, `data.mjs`. |
+| `src/css/site.css` | The stylesheet. |
+| `src/content/` | Text of the About, Contact, Privacy and Terms pages. |
+| `src/static/` | Files copied as they are: fonts, images, `ads.txt`, `robots.txt`, `_headers`, the web manifest. |
+| `scripts/build.mjs` | The generator. Writes `build/out` (the deploy folder) and stages `functions/` beside it. |
+| `scripts/lib/` | The page frame (`layout.mjs`: head, header, footer, GA and AdSense tags) and shared helpers. |
+| `scripts/pages/` | One builder per kind of page: home, tools, states, cities, salaries and hourly wages, guides, info pages. |
+| `scripts/content/cities.mjs` | The list of city and county pages. |
+| `scripts/deploy.sh`, `scripts/compare-live.sh` | Deploy with wrangler; compare `build/out` with the live site byte for byte. |
 | `functions/_middleware.ts` | A Pages Function that 301s www to the apex and returns 404 for `/.publish/*`. |
-| `patches/header.py`, `patches/hero.py` | Idempotent patch-and-verify scripts that run at build time, in this order. They hold the glass header, the Source Serif 4 font, the privacy-safe GA4 tag, CSS cache-busting, the homepage hero blurb, and the partner stub. `patches/assets/` holds their inputs. |
-| `patches/history/` | The Oct 7 AdSense content-pass scripts. They are already applied; do not re-run them. |
-| `scripts/build.sh` | Copies `site/` to `build/out`, runs the patches, and stages `functions/`. |
-| `scripts/deploy.sh` | Builds, then runs `wrangler pages deploy`. |
-| `scripts/compare-live.sh` | Compares `build/out` byte-for-byte with the live site. |
-| `scripts/original/deploy_lt.sh` | The original box deploy script, kept for reference. It uses absolute /workspace paths. |
-| `tests/engine.test.mjs` | Engine and data tests (node:test) against `site/js` and `site/data`. |
-| `legacy-generator/` | The old Node generator and its docs: TAX_DATA_SOURCES.md, ENGINE_AUDIT.md, and others. It is **out of date**; see AGENTS.md. |
-| `docs/publish-status/` | Change logs for each deploy (Oct 2–7, 2026). |
-| `docs/archive/PROJECT_BRIEF.md` | The original product brief, written under the working name TrueTakehome. |
+| `tests/engine.test.mjs` | Engine and data tests with hand-worked expected values. |
+| `tests/build.test.mjs` | Builds the site and checks it: old URLs still exist, required tags on every page, figures match the engine, repeatable output. |
+| `docs/` | The October 2026 tax audit notes, older deploy logs and the original brief. |
 
 ## Commands
 
 ```bash
-npm ci                    # installs wrangler only (the site has no runtime deps)
-npm test                  # engine/data tests
+npm ci                    # installs wrangler only (the site has no runtime dependencies)
+npm test                  # engine tests, then a full build and checks on the output
 npm run build             # -> build/out (deploy folder) + build/functions
 npm run compare-live      # build/out vs https://localtakehome.com
 npm run deploy:preview    # preview deploy (needs CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID)
 npm run deploy            # PRODUCTION; only with the owner's go-ahead
 ```
 
-Requirements: Node 20+ and Python 3. Local preview: `npx serve build/out`, or any static server pointed at `build/out`.
+Requirements: Node 20 or newer. Nothing else: the build uses no packages. Local preview: any static server pointed at `build/out`, for example `python3 -m http.server 5180 --directory build/out`.
+
+The build stops with a list of problems if a rate file fails its checks, a link is broken, a figure failed to compute, or a page is missing the analytics or AdSense tag. `LTH_DRAFT=1 npm run build` lets a half-finished site build while you are writing pages; never deploy a draft build.
+
+## What gets generated
+
+About 820 pages from one command:
+
+- the home page and the other full-calculator pages (paycheck, hourly, W-4)
+- 11 smaller calculators (compare, bonus, raise, overtime, tips, 401(k), salary needed, salary to hourly, contractor or employee, employer cost, take-home pay by state)
+- a page for each state and D.C., and for about 65 cities and counties
+- "$X a year after taxes" pages nationally and for each state, and "$X an hour" pages
+- guides, the method page, the update log, the embed page, and the legal pages
+- `sitemap.xml`
+
+To add a city, add a line to `scripts/content/cities.mjs`. To add a salary or hourly page, add the amount to the lists at the top of `scripts/lib/shared.mjs`. To add a guide, add it in `scripts/pages/guides.mjs`.
 
 ## Hosting
 
@@ -44,4 +60,4 @@ Requirements: Node 20+ and Python 3. Local preview: `npx serve build/out`, or an
 
 ## Tax data
 
-The 2026 figures come from IRS Rev. Proc. 2025-32 and Publication 15-T (federal), the SSA (Social Security wage base $184,500), the Tax Foundation's 2026 state income tax table (state brackets), and each city's or county's tax agency (local rates). Each JSON entry carries its source URL and a `lastVerified` date. The full inventory is in `legacy-generator/TAX_DATA_SOURCES.md`. `assertTaxDataIntegrity()` in the engine and `npm test` check the tables.
+Federal figures come from IRS Rev. Proc. 2025-32 and the IRS pages on the 2025 budget law; the Social Security wage base from the SSA; state rates and rules from each state's tax agency, cross-checked against the Tax Foundation's 2026 table; local rates from each city's or county's tax agency. `assertTaxDataIntegrity()` in the engine checks the tables, and the build refuses to run if it reports a problem. `docs/TAX_AUDIT_2026-10.md` lists what was verified and what is still an estimate.

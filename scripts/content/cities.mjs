@@ -8,7 +8,7 @@ export const CITIES = [
   // Places with their own income tax
   { slug: "new-york-city", name: "New York City", state: "NY", local: "nyc", note: "The city tax follows where you live, not where you work. Commuters from New Jersey, Long Island or Westchester do not pay it." },
   { slug: "yonkers", name: "Yonkers", state: "NY", local: "yonkers" },
-  { slug: "philadelphia", name: "Philadelphia", state: "PA", local: "philadelphia", note: "Philadelphia's wage tax is charged on gross pay: neither a 401(k) nor pre-tax health premiums reduce it." },
+  { slug: "philadelphia", name: "Philadelphia", state: "PA", local: "philadelphia" },
   { slug: "pittsburgh", name: "Pittsburgh", state: "PA", local: "pittsburgh" },
   { slug: "detroit", name: "Detroit", state: "MI", local: "detroit" },
   { slug: "grand-rapids", name: "Grand Rapids", state: "MI", local: "grand-rapids-mi" },

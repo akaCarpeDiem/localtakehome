@@ -50,7 +50,7 @@ export function homePages(ctx) {
     path: "/",
     kind: "calculator",
     title: "Paycheck Calculator 2026: Take-Home Pay by State and City | LocalTakehome",
-    description: `Free 2026 take-home pay calculator for all 50 states, D.C. and ${localCount} city and county income taxes. See federal, state and local tax line by line. Nothing you type leaves your browser.`,
+    description: `Free 2026 paycheck calculator for all 50 states, D.C. and ${localCount} city and county income taxes. See every tax line. Nothing you type leaves your browser.`,
     h1: "Paycheck calculator",
     ld: [faqLd(faqs)],
     body: `<div class="wrap page">

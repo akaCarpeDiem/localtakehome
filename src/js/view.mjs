@@ -150,7 +150,7 @@ export function renderSources(result) {
 export function renderHeadline(result, { sample = false, view = "period", keepNext = null, hoursPerYear = 2080 } = {}) {
   const place = resultPlace(result);
   const tabs = ["period", "month", "year"]
-    .map((id) => `<button type="button" role="tab" aria-selected="${id === view ? "true" : "false"}" data-view="${id}">${id === "period" ? "Paycheck" : id === "month" ? "Month" : "Year"}</button>`)
+    .map((id) => `<button type="button" aria-pressed="${id === view ? "true" : "false"}" data-view="${id}">${id === "period" ? "Paycheck" : id === "month" ? "Month" : "Year"}</button>`)
     .join("");
   const gross = view === "year" ? result.annual.gross : view === "month" ? result.annual.gross / 12 : result.grossPeriod;
   const taxShare = result.effectiveTaxRate;
@@ -171,7 +171,7 @@ export function renderHeadline(result, { sample = false, view = "period", keepNe
       ${sample ? `<span class="flag">Example</span>` : ""}
     </header>
     <div class="net">
-      <div class="view-tabs" role="tablist" aria-label="Show take-home pay per">${tabs}</div>
+      <div class="view-tabs" role="group" aria-label="Show take-home pay per">${tabs}</div>
       <p class="net-figure"><span data-net>${usd(netFor(result, view))}</span> <small data-net-unit>${VIEW_LABEL[view]}</small></p>
       <p class="net-sub">from <span data-gross>${usd(gross)}</span> before taxes${view === "period" ? ` · ${result.periods} paychecks a year` : ""}</p>
     </div>
