@@ -2,10 +2,10 @@
   "name": "localtakehome",
   "private": true,
   "type": "module",
-  "description": "LocalTakehome (localtakehome.com): 2026 U.S. take-home pay calculator. Static site + one Pages middleware.",
+  "description": "LocalTakehome (localtakehome.com): 2026 U.S. take-home pay calculator. A generated static site plus one Pages middleware.",
   "scripts": {
-    "test": "node --test tests/engine.test.mjs",
-    "build": "bash scripts/build.sh",
+    "test": "node --test tests/engine.test.mjs tests/build.test.mjs",
+    "build": "node scripts/build.mjs",
     "compare-live": "bash scripts/compare-live.sh",
     "deploy:preview": "bash scripts/deploy.sh preview",
     "deploy": "bash scripts/deploy.sh main"

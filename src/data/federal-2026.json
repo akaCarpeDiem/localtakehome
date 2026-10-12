@@ -1,0 +1,206 @@
+{
+ "taxYear": 2026,
+ "jurisdictionId": "US",
+ "name": "United States federal income tax",
+ "type": "federal-income",
+ "lastVerified": "2026-10-11",
+ "method": "Federal income tax is estimated for the year: wages after pre-tax deductions, plus other income entered, minus the 2026 standard deduction and any extra deductions, taxed with the Rev. Proc. 2025-32 rate schedules, then reduced by credits for children and other dependents. The year's tax is spread evenly over the paychecks. This is the same arithmetic as the IRS percentage method for a 2020-or-later Form W-4 with no adjustments. If the Step 2 multiple-jobs box is on, half the standard deduction and half-width brackets are used.",
+ "standardDeduction": {
+  "single": 16100,
+  "mfs": 16100,
+  "mfj": 32200,
+  "hoh": 24150
+ },
+ "brackets": {
+  "single": [
+   {
+    "over": 0,
+    "rate": 0.1
+   },
+   {
+    "over": 12400,
+    "rate": 0.12
+   },
+   {
+    "over": 50400,
+    "rate": 0.22
+   },
+   {
+    "over": 105700,
+    "rate": 0.24
+   },
+   {
+    "over": 201775,
+    "rate": 0.32
+   },
+   {
+    "over": 256225,
+    "rate": 0.35
+   },
+   {
+    "over": 640600,
+    "rate": 0.37
+   }
+  ],
+  "mfj": [
+   {
+    "over": 0,
+    "rate": 0.1
+   },
+   {
+    "over": 24800,
+    "rate": 0.12
+   },
+   {
+    "over": 100800,
+    "rate": 0.22
+   },
+   {
+    "over": 211400,
+    "rate": 0.24
+   },
+   {
+    "over": 403550,
+    "rate": 0.32
+   },
+   {
+    "over": 512450,
+    "rate": 0.35
+   },
+   {
+    "over": 768700,
+    "rate": 0.37
+   }
+  ],
+  "mfs": [
+   {
+    "over": 0,
+    "rate": 0.1
+   },
+   {
+    "over": 12400,
+    "rate": 0.12
+   },
+   {
+    "over": 50400,
+    "rate": 0.22
+   },
+   {
+    "over": 105700,
+    "rate": 0.24
+   },
+   {
+    "over": 201775,
+    "rate": 0.32
+   },
+   {
+    "over": 256225,
+    "rate": 0.35
+   },
+   {
+    "over": 384350,
+    "rate": 0.37
+   }
+  ],
+  "hoh": [
+   {
+    "over": 0,
+    "rate": 0.1
+   },
+   {
+    "over": 17700,
+    "rate": 0.12
+   },
+   {
+    "over": 67450,
+    "rate": 0.22
+   },
+   {
+    "over": 105700,
+    "rate": 0.24
+   },
+   {
+    "over": 201750,
+    "rate": 0.32
+   },
+   {
+    "over": 256200,
+    "rate": 0.35
+   },
+   {
+    "over": 640600,
+    "rate": 0.37
+   }
+  ]
+ },
+ "limits": {
+  "electiveDeferral401k": 24500,
+  "hsaSelfOnly": 4400,
+  "hsaFamily": 8750,
+  "healthFsa": 3400,
+  "supplementalWithholdingRate": 0.22,
+  "catchUp401k": 8000,
+  "catchUp401kAge60to63": 11250,
+  "ira": 7500,
+  "iraCatchUp": 1100
+ },
+ "sources": [
+  {
+   "name": "IRS newsroom, tax year 2026 inflation adjustments (Rev. Proc. 2025-32)",
+   "url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill"
+  },
+  {
+   "name": "Rev. Proc. 2025-32 (PDF)",
+   "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+  },
+  {
+   "name": "Tax Foundation, 2026 federal income tax brackets",
+   "url": "https://taxfoundation.org/data/all/federal/2026-tax-brackets/"
+  },
+  {
+   "name": "IRS Publication 15-T, Federal Income Tax Withholding Methods",
+   "url": "https://www.irs.gov/publications/p15t"
+  },
+  {
+   "name": "IRS, 401(k) limit increases to $24,500 for 2026, IRA limit increases to $7,500",
+   "url": "https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500"
+  }
+ ],
+ "notes": "Standard deduction: single and married filing separately $16,100; married filing jointly $32,200; head of household $24,150. Head of household bracket thresholds follow Rev. Proc. 2025-32 Table 2, including the 32% threshold at $201,750 and the 35% threshold at $256,200 (they are not identical to the single schedule). Supplemental wages are often withheld at a flat 22% federal rate; that method is offered on the bonus tool and is not the default paycheck math. Contribution limits are planning caps for warnings only: 401(k)/403(b)/TSP elective deferral $24,500; HSA $4,400 self-only and $8,750 family (Rev. Proc. 2025-19); health FSA salary reduction $3,400. Catch-up contributions are not applied automatically.",
+ "credits": {
+  "childTaxCredit": 2200,
+  "otherDependentCredit": 500,
+  "phaseoutStart": {
+   "single": 200000,
+   "hoh": 200000,
+   "mfs": 200000,
+   "mfj": 400000
+  },
+  "phaseoutPer1000": 50,
+  "note": "Child tax credit of $2,200 per qualifying child under 17 and $500 for other dependents, reduced by $50 for each $1,000 of income above $200,000 ($400,000 joint)."
+ },
+ "workerDeductions": {
+  "years": "2025 through 2028",
+  "tipsMax": 25000,
+  "overtimeMax": {
+   "single": 12500,
+   "hoh": 12500,
+   "mfj": 25000,
+   "mfs": 0
+  },
+  "phaseoutStart": {
+   "single": 150000,
+   "hoh": 150000,
+   "mfj": 300000,
+   "mfs": 0
+  },
+  "phaseoutPer1000": 100,
+  "note": "The 2025 budget law (Public Law 119-21) created federal income tax deductions for qualified tips (up to $25,000) and for the premium part of overtime pay (up to $12,500, or $25,000 on a joint return) for 2025 through 2028. Each shrinks by $100 for every $1,000 of income above $150,000 ($300,000 joint) and is not available to married people filing separately. They reduce income tax only; Social Security and Medicare still apply.",
+  "sources": [
+   {
+    "name": "IRS, One, Big, Beautiful Bill provisions: deductions for tips and overtime",
+    "url": "https://www.irs.gov/newsroom/one-big-beautiful-bill-provisions"
+   }
+  ]
+ }
+}

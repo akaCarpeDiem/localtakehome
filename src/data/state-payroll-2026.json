@@ -1,0 +1,393 @@
+{
+ "taxYear": 2026,
+ "lastVerified": "2026-10-11",
+ "schema": 2,
+ "baseRule": "Employee state payroll contributions are modeled on Social Security and Medicare wages: gross pay minus Section 125 premiums, FSA, HSA and commuter benefits, and not minus traditional 401(k). They do not reduce federal taxable wages. They are left out in contractor mode. A program marked 'up to' is the most an employer may take from pay; some employers pay part or all of it themselves.",
+ "programs": [
+  {
+   "id": "ak-ui",
+   "state": "AK",
+   "name": "Alaska unemployment insurance",
+   "shortWhy": "Alaska is one of three states where employees pay into unemployment insurance. The 2026 employee rate is 0.50% of the first $54,200 of wages, $271 at most.",
+   "employeeRate": 0.005,
+   "employerRate": 0,
+   "wageBase": 54200,
+   "annualMax": 271.0,
+   "sourceLabel": "AK DOL · 2026",
+   "source": {
+    "name": "Alaska Department of Labor, 2026 unemployment insurance tax rates",
+    "url": "https://labor.alaska.gov/estax/2026-experience-rates.html"
+   },
+   "confidence": "published",
+   "notes": "",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "ca-sdi",
+   "state": "CA",
+   "name": "California SDI",
+   "shortWhy": "California disability and paid family leave, withheld from the employee. The 2026 rate is 1.3% with no wage ceiling.",
+   "employeeRate": 0.013,
+   "employerRate": 0,
+   "wageBase": null,
+   "annualMax": null,
+   "sourceLabel": "CA EDD · 2026",
+   "source": {
+    "name": "California EDD, SDI contribution rates",
+    "url": "https://edd.ca.gov/en/disability/Contribution_Rates_and_Benefit_Amounts/"
+   },
+   "confidence": "published",
+   "notes": "Starting January 1, 2026 the worker contribution rate is 1.3% of wages. Senate Bill 951 removed the taxable wage ceiling beginning in 2024. This one withholding funds Disability Insurance and Paid Family Leave.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "co-famli",
+   "state": "CO",
+   "name": "Colorado FAMLI",
+   "shortWhy": "Colorado paid family and medical leave. The 2026 employee share is 0.44% of wages up to the $184,500 Social Security wage base.",
+   "employeeRate": 0.0044,
+   "employerRate": 0.0044,
+   "wageBase": 184500,
+   "annualMax": 811.8,
+   "sourceLabel": "CO FAMLI · 2026",
+   "source": {
+    "name": "Colorado FAMLI Division",
+    "url": "https://famli.colorado.gov/"
+   },
+   "confidence": "published",
+   "notes": "For 2026 the employee contribution is 0.44% up to the Social Security wage base, maximum $811.80. Employers with 10 or more employees pay a matching 0.44%. Smaller employers may owe no employer share; that exception is not modeled on the employer-cost tool.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "ct-pfml",
+   "state": "CT",
+   "name": "Connecticut Paid Leave",
+   "shortWhy": "Connecticut paid leave. Employees contribute 0.5% of wages up to the Social Security wage base.",
+   "employeeRate": 0.005,
+   "employerRate": 0,
+   "wageBase": 184500,
+   "annualMax": null,
+   "sourceLabel": "CT Paid Leave · 2026",
+   "source": {
+    "name": "Connecticut Paid Leave Authority",
+    "url": "https://ctpaidleave.org/"
+   },
+   "confidence": "published",
+   "notes": "The employee contribution rate is one-half of one percent of wages up to the Social Security contribution base. There is no employer premium in the standard plan.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "de-pfml",
+   "state": "DE",
+   "name": "Delaware Paid Leave",
+   "shortWhy": "Delaware Paid Leave. The 2026 contribution is 0.8% of wages up to $184,500 and employers may take up to half of it, 0.4%, from pay.",
+   "employeeRate": 0.004,
+   "employerRate": 0.004,
+   "wageBase": 184500,
+   "annualMax": null,
+   "sourceLabel": "DE Paid Leave · 2026",
+   "source": {
+    "name": "Delaware Department of Labor, Delaware Paid Leave",
+    "url": "https://labor.delaware.gov/delaware-paid-leave/"
+   },
+   "confidence": "published",
+   "notes": "Total 0.8% (medical 0.4%, family caregiving 0.08%, parental 0.32%). Employers with 25 or more employees owe all three lines; those with 10 to 24 owe only parental. Employers may deduct up to 50% from wages.",
+   "lastVerified": "2026-10-11",
+   "upTo": true
+  },
+  {
+   "id": "hi-tdi",
+   "state": "HI",
+   "name": "Hawaii temporary disability insurance",
+   "shortWhy": "Hawaii temporary disability insurance. An employer may withhold up to half the premium cost, but no more than 0.5% of weekly wages, $7.50 a week at most in 2026.",
+   "employeeRate": 0.005,
+   "employerRate": 0,
+   "wageBase": 78010.92,
+   "annualMax": 390.0,
+   "sourceLabel": "HI DLIR · 2026",
+   "source": {
+    "name": "Hawaii Department of Labor and Industrial Relations, 2026 maximum weekly wage base",
+    "url": "https://labor.hawaii.gov/dcd/files/2025/12/2026-Maximum-Weekly-Wage-Base.pdf"
+   },
+   "confidence": "published",
+   "notes": "2026 maximum weekly wage base $1,500.21; maximum weekly deduction $7.50. Many employers pay the whole premium.",
+   "lastVerified": "2026-10-11",
+   "upTo": true
+  },
+  {
+   "id": "me-pfml",
+   "state": "ME",
+   "name": "Maine Paid Family and Medical Leave",
+   "shortWhy": "Maine paid leave. The contribution is 1% of wages up to $184,500 at employers with 15 or more employees, and no more than half, 0.5%, can come from the employee.",
+   "employeeRate": 0.005,
+   "employerRate": 0.005,
+   "wageBase": 184500,
+   "annualMax": null,
+   "sourceLabel": "ME PFML · 2026",
+   "source": {
+    "name": "Maine Department of Labor, Paid Family and Medical Leave employer FAQ",
+    "url": "https://www1.maine.gov/paidleave/docs/2026/employers/faq/employerFAQenglish.pdf"
+   },
+   "confidence": "published",
+   "notes": "Employers with fewer than 15 employees owe 0.5% in total and may deduct all of it from wages.",
+   "lastVerified": "2026-10-11",
+   "upTo": true
+  },
+  {
+   "id": "ma-pfml",
+   "state": "MA",
+   "name": "Massachusetts Paid Family and Medical Leave",
+   "shortWhy": "Massachusetts paid leave. The 2026 contribution is 0.88% of wages up to $184,500; the employee share is up to 0.46% (0.28% medical and 0.18% family).",
+   "employeeRate": 0.0046,
+   "employerRate": 0.0042,
+   "wageBase": 184500,
+   "annualMax": null,
+   "sourceLabel": "MA DFML · 2026",
+   "source": {
+    "name": "Massachusetts Department of Family and Medical Leave, contribution rates",
+    "url": "https://www.mass.gov/info-details/family-and-medical-leave-contribution-rates-for-employers"
+   },
+   "confidence": "published",
+   "notes": "Employers with 25 or more covered workers pay the remaining 0.42%. Smaller employers pay no share but may still deduct up to 0.46% from wages.",
+   "lastVerified": "2026-10-11",
+   "upTo": true
+  },
+  {
+   "id": "mn-pl",
+   "state": "MN",
+   "name": "Minnesota Paid Leave",
+   "shortWhy": "Minnesota Paid Leave began January 1, 2026. The premium is 0.88% of wages up to $184,500 and employers may take up to half, 0.44%, from pay.",
+   "employeeRate": 0.0044,
+   "employerRate": 0.0044,
+   "wageBase": 184500,
+   "annualMax": null,
+   "sourceLabel": "MN Paid Leave · 2026",
+   "source": {
+    "name": "Minnesota Paid Leave, premium rate and contributions",
+    "url": "https://mn.gov/deed/paidleave/employers/premiums/"
+   },
+   "confidence": "published",
+   "notes": "",
+   "lastVerified": "2026-10-11",
+   "upTo": true
+  },
+  {
+   "id": "nj-ui",
+   "state": "NJ",
+   "name": "New Jersey unemployment and workforce funds",
+   "shortWhy": "New Jersey workers pay 0.3825% for unemployment insurance and 0.0425% for workforce funds on the first $44,800 of 2026 wages, $190.40 at most.",
+   "employeeRate": 0.00425,
+   "employerRate": 0,
+   "wageBase": 44800,
+   "annualMax": 190.4,
+   "sourceLabel": "NJ DOL · 2026",
+   "source": {
+    "name": "New Jersey Department of Labor, rate information and contributions",
+    "url": "https://www.nj.gov/labor/ea/employer-services/rate-info/"
+   },
+   "confidence": "published",
+   "notes": "",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "nj-tdi",
+   "state": "NJ",
+   "name": "New Jersey temporary disability insurance",
+   "shortWhy": "New Jersey temporary disability insurance. The 2026 worker rate is 0.19% of the first $171,100 of wages, $325.09 at most.",
+   "employeeRate": 0.0019,
+   "employerRate": 0,
+   "wageBase": 171100,
+   "annualMax": 325.09,
+   "sourceLabel": "NJ DOL · 2026",
+   "source": {
+    "name": "New Jersey Department of Labor, rate information and contributions",
+    "url": "https://www.nj.gov/labor/ea/employer-services/rate-info/"
+   },
+   "confidence": "published",
+   "notes": "",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "nj-fli",
+   "state": "NJ",
+   "name": "New Jersey family leave insurance",
+   "shortWhy": "New Jersey family leave insurance. The 2026 worker rate is 0.23% of the first $171,100 of wages, $393.53 at most.",
+   "employeeRate": 0.0023,
+   "employerRate": 0,
+   "wageBase": 171100,
+   "annualMax": 393.53,
+   "sourceLabel": "NJ DOL · 2026",
+   "source": {
+    "name": "New Jersey Department of Labor, rate information and contributions",
+    "url": "https://www.nj.gov/labor/ea/employer-services/rate-info/"
+   },
+   "confidence": "published",
+   "notes": "",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "ny-dbl",
+   "state": "NY",
+   "name": "New York disability (DBL)",
+   "shortWhy": "New York disability benefits. Withholding is 0.5% of wages but capped at $0.60 a week, $31.20 for the year.",
+   "employeeRate": 0.005,
+   "employerRate": 0,
+   "wageBase": null,
+   "annualMax": 31.2,
+   "sourceLabel": "NY DBL · 2026",
+   "source": {
+    "name": "New York State, disability benefits contribution cap",
+    "url": "https://www.wcb.ny.gov/content/main/DisabilityBenefits/employer-disability-benefits.jsp"
+   },
+   "confidence": "published",
+   "notes": "Employee contribution cannot exceed $0.60 per week. The annual maximum modeled here is $31.20.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "ny-pfl",
+   "state": "NY",
+   "name": "New York Paid Family Leave",
+   "shortWhy": "New York Paid Family Leave. For 2026 the employee rate is 0.432% of wages up to a $95,348.76 base, $411.91 maximum.",
+   "employeeRate": 0.00432,
+   "employerRate": 0,
+   "wageBase": 95348.76,
+   "annualMax": 411.91,
+   "sourceLabel": "NY PFL · 2026",
+   "source": {
+    "name": "New York Paid Family Leave, 2026 rates",
+    "url": "https://paidfamilyleave.ny.gov/2026-paid-family-leave-information"
+   },
+   "confidence": "published",
+   "notes": "2026 employee contribution rate 0.432%. The maximum annual contribution is $411.91, which is 0.432% of the statewide average weekly wage annualized to $95,348.76.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "or-pfml",
+   "state": "OR",
+   "name": "Paid Leave Oregon",
+   "shortWhy": "Paid Leave Oregon. The 2026 contribution is 1% of wages up to $184,500; employees pay 60% of it, 0.6% of wages.",
+   "employeeRate": 0.006,
+   "employerRate": 0.004,
+   "wageBase": 184500,
+   "annualMax": null,
+   "sourceLabel": "Paid Leave Oregon · 2026",
+   "source": {
+    "name": "Oregon Employment Department, current tax rates",
+    "url": "https://www.oregon.gov/employ/businesses/tax/pages/current-tax-rate.aspx"
+   },
+   "confidence": "published",
+   "notes": "Employers with 25 or more employees pay the other 40%.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "or-transit",
+   "state": "OR",
+   "name": "Oregon statewide transit tax",
+   "shortWhy": "A 0.1% statewide transit tax withheld from Oregon wages. There is no wage cap. It is separate from TriMet, which employers pay.",
+   "employeeRate": 0.001,
+   "employerRate": 0,
+   "wageBase": null,
+   "annualMax": null,
+   "sourceLabel": "ORS 320.550",
+   "source": {
+    "name": "Oregon Department of Revenue, Statewide Transit Tax",
+    "url": "https://www.oregon.gov/dor/programs/businesses/pages/statewide-transit-tax.aspx"
+   },
+   "confidence": "published",
+   "notes": "Employee withholding of one-tenth of one percent has been in effect since July 2018 and remains 0.1%. TriMet and Lane Transit payroll taxes are employer excise taxes and are not in the employee stub.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "pa-uc",
+   "state": "PA",
+   "name": "Pennsylvania unemployment compensation",
+   "shortWhy": "Pennsylvania employees pay 0.07% of all wages toward unemployment compensation. There is no wage cap.",
+   "employeeRate": 0.0007,
+   "employerRate": 0,
+   "wageBase": null,
+   "annualMax": null,
+   "sourceLabel": "PA L&I · 2026",
+   "source": {
+    "name": "Pennsylvania Department of Labor and Industry, employee UC withholding",
+    "url": "https://www.pa.gov/agencies/dli/resources/for-employers-and-educators/how-to-file/uc-tax/employee-withholding"
+   },
+   "confidence": "published",
+   "notes": "",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "ri-tdi",
+   "state": "RI",
+   "name": "Rhode Island temporary disability insurance",
+   "shortWhy": "Rhode Island temporary disability and caregiver insurance. The 2026 rate is 1.1% of the first $100,000 of wages, $1,100 at most.",
+   "employeeRate": 0.011,
+   "employerRate": 0,
+   "wageBase": 100000,
+   "annualMax": 1100.0,
+   "sourceLabel": "RI DLT · 2026",
+   "source": {
+    "name": "Rhode Island Department of Labor and Training, 2026 UI and TDI tax rates",
+    "url": "https://dlt.ri.gov/press-releases/2026-tax-rates-unemployment-insurance-and-temporary-disability-insurance"
+   },
+   "confidence": "published",
+   "notes": "",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "wa-pfml",
+   "state": "WA",
+   "name": "Washington Paid Family & Medical Leave",
+   "shortWhy": "Washington paid leave. The 2026 premium is 1.13% of wages up to $184,500; employees pay 71.43% of it, about 0.807% of wages.",
+   "employeeRate": 0.0080716,
+   "employerRate": 0.0032284,
+   "wageBase": 184500,
+   "annualMax": null,
+   "sourceLabel": "WA PFML · 2026",
+   "source": {
+    "name": "Washington Employment Security Department, 2026 Paid Leave premium rate",
+    "url": "https://esd.wa.gov/node/1109"
+   },
+   "confidence": "published",
+   "notes": "2026 total premium is 1.13%. Employees pay 71.43% of the premium (about 0.808% of wages) and employers pay 28.57% (about 0.323%), up to the Social Security wage base. Small-employer exemptions from the employer share are not modeled; the employee share is still withheld.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "wa-cares",
+   "state": "WA",
+   "name": "WA Cares",
+   "shortWhy": "Washington's long-term care premium. 0.58% of wages with no cap, unless you have an approved exemption. This estimate assumes no exemption.",
+   "employeeRate": 0.0058,
+   "employerRate": 0,
+   "wageBase": null,
+   "annualMax": null,
+   "sourceLabel": "WA Cares Fund",
+   "source": {
+    "name": "WA Cares Fund",
+    "url": "https://wacaresfund.wa.gov/"
+   },
+   "confidence": "published",
+   "notes": "The premium is 0.58% of gross wages with no wage cap. Workers with an approved exemption (including many who opted out during the original window, or who live outside Washington) do not pay it. This estimate cannot see an exemption, so it includes the premium.",
+   "lastVerified": "2026-10-11"
+  }
+ ],
+ "notModeledPrograms": [
+  {
+   "state": "DC",
+   "name": "District of Columbia paid family leave",
+   "note": "D.C. paid family leave is paid by employers and is not withheld from employees.",
+   "informational": true
+  },
+  {
+   "state": "OR",
+   "name": "Oregon Workers' Benefit Fund assessment",
+   "note": "Oregon employees also pay about one cent for each hour worked into the Workers' Benefit Fund (about $21 a year at full time). It is too small to change the estimate and is not shown as a line.",
+   "informational": true
+  },
+  {
+   "state": "VT",
+   "name": "Vermont child care contribution",
+   "note": "Vermont employers pay a 0.44% child care contribution and may take up to a quarter of it (0.11% of wages) from pay. It is not included because many employers pay all of it.",
+   "informational": true
+  }
+ ]
+}

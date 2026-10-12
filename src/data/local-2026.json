@@ -1,0 +1,3097 @@
+{
+ "taxYear": 2026,
+ "lastVerified": "2026-10-11",
+ "rule": "A local tax is applied only when the user selects that place. New York City tax is never applied to the rest of New York. A custom percent replaces the selected place and is applied to gross wages. Local rates change during the year; each entry shows the date it was last checked.",
+ "sourcesOverview": [
+  {
+   "name": "Tax Foundation, local income taxes primer",
+   "url": "https://taxfoundation.org/research/all/state/local-income-taxes-2023/"
+  },
+  {
+   "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+   "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+  },
+  {
+   "name": "Indiana Department of Revenue, Departmental Notice #1",
+   "url": "https://www.in.gov/dor/files/dn01.pdf"
+  }
+ ],
+ "jurisdictions": [
+  {
+   "id": "nyc",
+   "name": "New York City",
+   "state": "NY",
+   "type": "city",
+   "appliesWhen": "resident-only",
+   "method": "brackets",
+   "base": "state-taxable",
+   "residentOnlyNote": "New York City income tax applies to residents of the five boroughs. Working in Manhattan, Brooklyn, Queens, the Bronx, or Staten Island does not, by itself, create a city income tax.",
+   "brackets": {
+    "single": [
+     {
+      "over": 0,
+      "rate": 0.03078
+     },
+     {
+      "over": 12000,
+      "rate": 0.03762
+     },
+     {
+      "over": 25000,
+      "rate": 0.03819
+     },
+     {
+      "over": 50000,
+      "rate": 0.03876
+     }
+    ],
+    "mfs": [
+     {
+      "over": 0,
+      "rate": 0.03078
+     },
+     {
+      "over": 12000,
+      "rate": 0.03762
+     },
+     {
+      "over": 25000,
+      "rate": 0.03819
+     },
+     {
+      "over": 50000,
+      "rate": 0.03876
+     }
+    ],
+    "hoh": [
+     {
+      "over": 0,
+      "rate": 0.03078
+     },
+     {
+      "over": 14400,
+      "rate": 0.03762
+     },
+     {
+      "over": 30000,
+      "rate": 0.03819
+     },
+     {
+      "over": 60000,
+      "rate": 0.03876
+     }
+    ],
+    "mfj": [
+     {
+      "over": 0,
+      "rate": 0.03078
+     },
+     {
+      "over": 21600,
+      "rate": 0.03762
+     },
+     {
+      "over": 45000,
+      "rate": 0.03819
+     },
+     {
+      "over": 90000,
+      "rate": 0.03876
+     }
+    ]
+   },
+   "sourceLabel": "NYC resident tax · IT-201 schedule",
+   "source": {
+    "name": "New York State, New York City tax rates",
+    "url": "https://www.tax.ny.gov/pit/file/tax-tables/"
+   },
+   "confidence": "modeled",
+   "notes": "New York City residents pay city income tax at 3.078%, 3.762%, 3.819% and 3.876% of New York taxable income. It follows where you live: working in the five boroughs does not create city tax. The city's household and school tax credits are not included, so a real return can be a little lower.",
+   "lastVerified": "2026-09-28"
+  },
+  {
+   "id": "yonkers",
+   "name": "Yonkers",
+   "state": "NY",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "surcharge",
+   "residentSurchargeOfStateTax": 0.1675,
+   "nonresidentRate": 0.005,
+   "nonresidentBase": "gross",
+   "sourceLabel": "Yonkers resident surcharge / nonresident earnings tax",
+   "source": {
+    "name": "New York State, Yonkers tax",
+    "url": "https://www.tax.ny.gov/pit/file/tax-tables/"
+   },
+   "confidence": "modeled",
+   "notes": "Yonkers residents pay a surcharge of 16.75% of their New York State income tax. People who work in Yonkers and live elsewhere pay 0.5% of the wages earned there.",
+   "lastVerified": "2026-09-28"
+  },
+  {
+   "id": "philadelphia",
+   "name": "Philadelphia",
+   "state": "PA",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.03735,
+   "nonresidentRate": 0.03425,
+   "base": "gross",
+   "pretaxReducesBase": false,
+   "sourceLabel": "Philadelphia wage tax · effective July 1, 2026",
+   "source": {
+    "name": "City of Philadelphia, Wage Tax (employers)",
+    "url": "https://www.phila.gov/services/payments-assistance-taxes/taxes/business-taxes/business-taxes-by-type/wage-tax-employers/"
+   },
+   "confidence": "published",
+   "notes": "Rates effective July 1, 2026: 3.735% for residents and 3.425% for nonresidents who work in the city (3.74% and 3.43% from July 1, 2025 through June 30, 2026). The estimate applies the current rate to the whole year. The wage tax is charged on gross compensation; 401(k) contributions do not reduce it.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "pittsburgh",
+   "name": "Pittsburgh",
+   "state": "PA",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.03,
+   "nonresidentRate": 0.01,
+   "base": "state-wages",
+   "sourceLabel": "Pittsburgh EIT + school district · 3% / 1%",
+   "source": {
+    "name": "City of Pittsburgh, Earned Income Tax",
+    "url": "https://www.pittsburghpa.gov/City-Government/Finance-Budget/Taxes"
+   },
+   "confidence": "published",
+   "notes": "Pittsburgh residents pay a 3% earned income tax (1% to the city and 2% to Pittsburgh Public Schools). People who work in the city and live elsewhere in Pennsylvania pay their home municipality's rate or 1%, whichever is higher; the work-only switch uses 1%. The tax follows Pennsylvania's definition of wages, so 401(k) contributions stay in and health premiums come out. Everyone who works in the city and earns $12,000 or more also pays the $52 Local Services Tax, shown as its own line.",
+   "lastVerified": "2026-10-11",
+   "fixedAnnual": 52,
+   "fixedAnnualMinWages": 12000,
+   "fixedAnnualName": "Pittsburgh Local Services Tax"
+  },
+  {
+   "id": "detroit",
+   "name": "Detroit",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.024,
+   "nonresidentRate": 0.012,
+   "base": "federal-wages",
+   "sourceLabel": "Detroit income tax · 2.4% / 1.2%",
+   "source": {
+    "name": "Michigan Department of Treasury, City of Detroit income tax withholding guide (Form 5469), 2026",
+    "url": "https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/City-Withholding/TY2026/5469_ty2026.pdf"
+   },
+   "confidence": "published",
+   "notes": "Detroit taxes residents at 2.4% and nonresidents who work in the city at 1.2%. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out, and each person on the return gets a $600 exemption. A nonresident who works part of the time outside Detroit owes tax only on the Detroit share; this estimate assumes all of the work is in the city.",
+   "lastVerified": "2026-10-11",
+   "exemptionPerPerson": 600
+  },
+  {
+   "id": "columbus-oh",
+   "name": "Columbus, Ohio",
+   "state": "OH",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "medicare-wages",
+   "sourceLabel": "Columbus municipal income tax · 2.5%",
+   "source": {
+    "name": "City of Columbus income tax division",
+    "url": "https://www.columbus.gov/Government/Departments/Income-Tax-Division"
+   },
+   "confidence": "published",
+   "notes": "Columbus's municipal income tax is 2.5% of qualifying wages, for residents and for people who work there. Qualifying wages follow Medicare wages: 401(k) contributions stay in, and cafeteria-plan health premiums, FSA and HSA amounts come out. If you live in one Ohio city and work in another, the city where you live usually gives a credit for tax paid to the other. This estimate applies only the city you select.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "cleveland-oh",
+   "name": "Cleveland",
+   "state": "OH",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "medicare-wages",
+   "sourceLabel": "Cleveland municipal income tax · 2.5%",
+   "source": {
+    "name": "Central Collection Agency, Cleveland municipal tax",
+    "url": "https://www.ccatax.ci.cleveland.oh.us/"
+   },
+   "confidence": "published",
+   "notes": "Cleveland's municipal income tax is 2.5% of qualifying wages, for residents and for people who work there. Qualifying wages follow Medicare wages: 401(k) contributions stay in, and cafeteria-plan health premiums, FSA and HSA amounts come out. If you live in one Ohio city and work in another, the city where you live usually gives a credit for tax paid to the other. This estimate applies only the city you select.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "montgomery-md",
+   "name": "Montgomery County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 2026 local rates",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "confidence": "published",
+   "notes": "Montgomery County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "lastVerified": "2026-10-11",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "baltimore-md",
+   "name": "Baltimore City",
+   "state": "MD",
+   "type": "city",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · Baltimore City 3.20%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "confidence": "published",
+   "notes": "Baltimore City's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "lastVerified": "2026-10-11",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "portland-multnomah",
+   "name": "Portland / Multnomah County",
+   "state": "OR",
+   "type": "metro",
+   "appliesWhen": "resident-only",
+   "method": "layered-threshold",
+   "base": "state-taxable",
+   "residentOnlyNote": "Metro and Multnomah income taxes apply to residents of those districts. Working in Portland while living in Vancouver, Washington, does not trigger them.",
+   "layers": [
+    {
+     "id": "metro-shs",
+     "name": "Metro supportive housing services",
+     "tiers": [
+      {
+       "rate": 0.01,
+       "threshold": {
+        "single": 128000,
+        "mfs": 128000,
+        "hoh": 128000,
+        "mfj": 205000
+       }
+      }
+     ]
+    },
+    {
+     "id": "multnomah-pfa",
+     "name": "Multnomah Preschool for All",
+     "tiers": [
+      {
+       "rate": 0.015,
+       "threshold": {
+        "single": 125000,
+        "mfs": 125000,
+        "hoh": 125000,
+        "mfj": 200000
+       }
+      },
+      {
+       "rate": 0.015,
+       "threshold": {
+        "single": 250000,
+        "mfs": 250000,
+        "hoh": 250000,
+        "mfj": 400000
+       }
+      }
+     ]
+    }
+   ],
+   "sourceLabel": "Metro SHS 2026 indexed + Multnomah PFA",
+   "source": {
+    "name": "City of Portland Revenue Division, Personal Income Tax (Metro SHS + Multnomah PFA)",
+    "url": "https://www.portland.gov/revenue/personal-tax"
+   },
+   "confidence": "published",
+   "notes": "A Portland resident inside both Metro and Multnomah County can owe two extra income taxes on Oregon taxable income: Metro's 1% supportive housing services tax above $128,000 ($205,000 joint) for 2026, and Multnomah County's Preschool for All tax of 1.5% above $125,000 ($200,000 joint) plus another 1.5% above $250,000 ($400,000 joint). Both follow where you live. Employers must withhold them only for higher earners, so many people settle up on a return.",
+   "lastVerified": "2026-09-28"
+  },
+  {
+   "id": "dc-note",
+   "name": "District of Columbia",
+   "state": "DC",
+   "type": "district",
+   "appliesWhen": "reference",
+   "method": "reference",
+   "sourceLabel": "Taxed as the DC income-tax jurisdiction",
+   "source": {
+    "name": "DC Office of Tax and Revenue",
+    "url": "https://otr.cfo.dc.gov/"
+   },
+   "confidence": "published",
+   "notes": "The District of Columbia's income tax is the state-level line. There is no second city tax on top.",
+   "lastVerified": "2026-09-28"
+  },
+  {
+   "id": "allegany-md",
+   "name": "Allegany County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Allegany County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "anne-arundel-md",
+   "name": "Anne Arundel County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "brackets",
+   "base": "state-taxable",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead.",
+   "brackets": {
+    "single": [
+     {
+      "over": 0,
+      "rate": 0.027
+     },
+     {
+      "over": 50000,
+      "rate": 0.0294
+     },
+     {
+      "over": 400000,
+      "rate": 0.032
+     }
+    ],
+    "mfs": [
+     {
+      "over": 0,
+      "rate": 0.027
+     },
+     {
+      "over": 50000,
+      "rate": 0.0294
+     },
+     {
+      "over": 400000,
+      "rate": 0.032
+     }
+    ],
+    "hoh": [
+     {
+      "over": 0,
+      "rate": 0.027
+     },
+     {
+      "over": 75000,
+      "rate": 0.0294
+     },
+     {
+      "over": 480000,
+      "rate": 0.032
+     }
+    ],
+    "mfj": [
+     {
+      "over": 0,
+      "rate": 0.027
+     },
+     {
+      "over": 75000,
+      "rate": 0.0294
+     },
+     {
+      "over": 480000,
+      "rate": 0.032
+     }
+    ]
+   },
+   "sourceLabel": "Maryland Comptroller · Anne Arundel tiered 2026",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Anne Arundel County uses three local rates in 2026: 2.70% of the first $50,000 of Maryland taxable income ($75,000 joint or head of household), 2.94% up to $400,000 ($480,000), and 3.20% above that."
+  },
+  {
+   "id": "baltimore-county-md",
+   "name": "Baltimore County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Baltimore County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "calvert-md",
+   "name": "Calvert County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Calvert County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "caroline-md",
+   "name": "Caroline County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Caroline County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "carroll-md",
+   "name": "Carroll County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0303,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.03%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Carroll County's 2026 local income tax is 3.03% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "cecil-md",
+   "name": "Cecil County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0274,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 2.74%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Cecil County's 2026 local income tax is 2.74% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "charles-md",
+   "name": "Charles County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0303,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.03%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Charles County's 2026 local income tax is 3.03% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "dorchester-md",
+   "name": "Dorchester County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.033,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.3%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Dorchester County's 2026 local income tax is 3.3% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "frederick-md",
+   "name": "Frederick County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "tiered-flat",
+   "base": "state-taxable",
+   "tiers": {
+    "single": [
+     [
+      25000,
+      0.0225
+     ],
+     [
+      50000,
+      0.0275
+     ],
+     [
+      150000,
+      0.0296
+     ],
+     [
+      null,
+      0.032
+     ]
+    ],
+    "mfs": [
+     [
+      25000,
+      0.0225
+     ],
+     [
+      50000,
+      0.0275
+     ],
+     [
+      150000,
+      0.0296
+     ],
+     [
+      null,
+      0.032
+     ]
+    ],
+    "mfj": [
+     [
+      25000,
+      0.0225
+     ],
+     [
+      100000,
+      0.0275
+     ],
+     [
+      250000,
+      0.0296
+     ],
+     [
+      null,
+      0.032
+     ]
+    ],
+    "hoh": [
+     [
+      25000,
+      0.0225
+     ],
+     [
+      100000,
+      0.0275
+     ],
+     [
+      250000,
+      0.0296
+     ],
+     [
+      null,
+      0.032
+     ]
+    ]
+   },
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead.",
+   "sourceLabel": "Frederick County income tax · 2026",
+   "source": {
+    "name": "Comptroller of Maryland, 2026 county income tax rates (via USDA National Finance Center bulletin)",
+    "url": "https://help.nfc.usda.gov/bulletins/2026/1783003892.htm"
+   },
+   "confidence": "published",
+   "notes": "Frederick County's rate depends on Maryland taxable income and applies to all of it: 2.25% up to $25,000; 2.75% up to $50,000 ($100,000 joint or head of household); 2.96% up to $150,000 ($250,000); 3.2% above.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "garrett-md",
+   "name": "Garrett County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0265,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 2.65%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Garrett County's 2026 local income tax is 2.65% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "harford-md",
+   "name": "Harford County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0306,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.06%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Harford County's 2026 local income tax is 3.06% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "howard-md",
+   "name": "Howard County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Howard County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "kent-md",
+   "name": "Kent County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.033,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.3%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Kent County's 2026 local income tax is 3.3% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "prince-georges-md",
+   "name": "Prince George's County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Prince George's County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "queen-annes-md",
+   "name": "Queen Anne's County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Queen Anne's County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "st-marys-md",
+   "name": "St. Mary's County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "St. Mary's County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "somerset-md",
+   "name": "Somerset County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Somerset County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "talbot-md",
+   "name": "Talbot County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.024,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 2.4%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Talbot County's 2026 local income tax is 2.4% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "washington-md",
+   "name": "Washington County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0295,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 2.95%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Washington County's 2026 local income tax is 2.95% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "wicomico-md",
+   "name": "Wicomico County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.032,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 3.2%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Wicomico County's 2026 local income tax is 3.2% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "worcester-md",
+   "name": "Worcester County, Maryland",
+   "state": "MD",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0225,
+   "base": "state-taxable",
+   "sourceLabel": "Maryland Comptroller · 2.25%",
+   "source": {
+    "name": "Comptroller of Maryland, Withholding Tax Facts 2026",
+    "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Worcester County's 2026 local income tax is 2.25% of Maryland taxable income. Maryland local tax goes to the county where you live, not where you work. People who work in Maryland and live in a state without a reciprocal agreement pay a 2.25% special nonresident rate instead.",
+   "residentOnlyNote": "Maryland local tax goes to the county where you live, not where you work. Choose your home county instead."
+  },
+  {
+   "id": "grand-rapids-mi",
+   "name": "Grand Rapids",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.015,
+   "nonresidentRate": 0.0075,
+   "base": "federal-wages",
+   "sourceLabel": "Grand Rapids income tax · 1.5% / 0.75%",
+   "source": {
+    "name": "City of Grand Rapids, Income Tax Guide for Individuals",
+    "url": "https://www.grandrapidsmi.gov/departments/fiscal-services/income-tax/individual-taxpayers/income-tax-guide-for-individuals/"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Grand Rapids taxes residents at 1.5% and nonresidents who work in the city at 0.75%, half the resident rate. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out. The city's personal exemption (a few dollars of tax per person) is not applied, so the estimate is slightly high."
+  },
+  {
+   "id": "lansing-mi",
+   "name": "Lansing",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.005,
+   "base": "federal-wages",
+   "sourceLabel": "Lansing income tax · 1% / 0.5%",
+   "source": {
+    "name": "City of Lansing, Individual Tax Forms / L-1040 instructions",
+    "url": "https://www.lansingmi.gov/539/Individual-Tax-Forms"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Lansing taxes residents at 1% and nonresidents who work in the city at 0.5%, half the resident rate. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out. The city's personal exemption (a few dollars of tax per person) is not applied, so the estimate is slightly high."
+  },
+  {
+   "id": "flint-mi",
+   "name": "Flint",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.005,
+   "base": "federal-wages",
+   "sourceLabel": "Flint income tax · 1% / 0.5%",
+   "source": {
+    "name": "City of Flint, Form F-1040 Instructions",
+    "url": "https://www.cityofflint.com/wp-content/uploads/2026/01/2025-F-1040-Instructions.pdf"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Flint taxes residents at 1% and nonresidents who work in the city at 0.5%, half the resident rate. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out. The city's personal exemption (a few dollars of tax per person) is not applied, so the estimate is slightly high."
+  },
+  {
+   "id": "pontiac-mi",
+   "name": "Pontiac",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.005,
+   "base": "federal-wages",
+   "sourceLabel": "Pontiac income tax · 1% / 0.5%",
+   "source": {
+    "name": "City of Pontiac Finance, Income Tax FAQs",
+    "url": "https://www.pontiac.mi.us/departments/finance/income_tax/faqs.php"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Pontiac taxes residents at 1% and nonresidents who work in the city at 0.5%, half the resident rate. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out. The city's personal exemption (a few dollars of tax per person) is not applied, so the estimate is slightly high."
+  },
+  {
+   "id": "saginaw-mi",
+   "name": "Saginaw",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.015,
+   "nonresidentRate": 0.0075,
+   "base": "federal-wages",
+   "sourceLabel": "Saginaw income tax · 1.5% / 0.75%",
+   "source": {
+    "name": "City of Saginaw, Income Tax",
+    "url": "https://www.cityofsaginawmi.gov/416/Income-Tax"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Saginaw taxes residents at 1.5% and nonresidents who work in the city at 0.75%, half the resident rate. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out. The city's personal exemption (a few dollars of tax per person) is not applied, so the estimate is slightly high."
+  },
+  {
+   "id": "battle-creek-mi",
+   "name": "Battle Creek",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.005,
+   "base": "federal-wages",
+   "sourceLabel": "Battle Creek income tax · 1% / 0.5%",
+   "source": {
+    "name": "Michigan city income tax rates (Battle Creek 1% / 0.5%)",
+    "url": "https://www.tax-rates.org/michigan/local-income-taxes"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Battle Creek taxes residents at 1% and nonresidents who work in the city at 0.5%, half the resident rate. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out. The city's personal exemption (a few dollars of tax per person) is not applied, so the estimate is slightly high."
+  },
+  {
+   "id": "jackson-mi",
+   "name": "Jackson",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.005,
+   "base": "federal-wages",
+   "sourceLabel": "Jackson income tax · 1% / 0.5%",
+   "source": {
+    "name": "Michigan city income tax rates (Jackson 1% / 0.5%)",
+    "url": "https://www.tax-rates.org/michigan/local-income-taxes"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Jackson taxes residents at 1% and nonresidents who work in the city at 0.5%, half the resident rate. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out. The city's personal exemption (a few dollars of tax per person) is not applied, so the estimate is slightly high."
+  },
+  {
+   "id": "muskegon-mi",
+   "name": "Muskegon",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.005,
+   "base": "federal-wages",
+   "sourceLabel": "Muskegon income tax · 1% / 0.5%",
+   "source": {
+    "name": "Michigan city income tax rates (Muskegon 1% / 0.5%)",
+    "url": "https://www.tax-rates.org/michigan/local-income-taxes"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Muskegon taxes residents at 1% and nonresidents who work in the city at 0.5%, half the resident rate. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out. The city's personal exemption (a few dollars of tax per person) is not applied, so the estimate is slightly high."
+  },
+  {
+   "id": "highland-park-mi",
+   "name": "Highland Park",
+   "state": "MI",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.02,
+   "nonresidentRate": 0.01,
+   "base": "federal-wages",
+   "sourceLabel": "Highland Park income tax · 2% / 1%",
+   "source": {
+    "name": "Michigan city income tax rates (Highland Park 2% / 1%)",
+    "url": "https://www.tax-rates.org/michigan/local-income-taxes"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Highland Park taxes residents at 2% and nonresidents who work in the city at 1%, half the resident rate. The tax starts from the same wages as the federal return, so 401(k) and cafeteria-plan amounts come out. The city's personal exemption (a few dollars of tax per person) is not applied, so the estimate is slightly high."
+  },
+  {
+   "id": "kansas-city-mo",
+   "name": "Kansas City, Missouri",
+   "state": "MO",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.01,
+   "base": "federal-wages",
+   "sourceLabel": "Kansas City earnings tax · 1%",
+   "source": {
+    "name": "City of Kansas City, Missouri, Form RD-109 wage earner return instructions",
+    "url": "https://kcmo.gov/home/showpublisheddocument/7761/637788725319600000"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Kansas City, Missouri charges a 1% earnings tax. Residents owe it on all earnings; nonresidents owe it on what they earn inside the city. It is charged on the wages in box 1 of the W-2, so 401(k) contributions and cafeteria-plan amounts come out. Voters renewed the tax in April 2026 for five more years."
+  },
+  {
+   "id": "st-louis-mo",
+   "name": "St. Louis, Missouri",
+   "state": "MO",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.01,
+   "base": "federal-wages",
+   "sourceLabel": "St. Louis earnings tax · 1%",
+   "source": {
+    "name": "City of St. Louis Collector of Revenue, taxable and non-taxable items",
+    "url": "https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/taxable-items.cfm"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "The City of St. Louis charges a 1% earnings tax. Residents owe it on all earnings; nonresidents owe it on work done in the city. Contributions to retirement plans and cafeteria plans are not taxed. The separate 0.5% payroll expense tax is paid by employers and is not a paycheck line."
+  },
+  {
+   "id": "wilmington-de",
+   "name": "Wilmington, Delaware",
+   "state": "DE",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.0125,
+   "nonresidentRate": 0.0125,
+   "base": "gross",
+   "pretaxReducesBase": false,
+   "sourceLabel": "Wilmington wage tax · 1.25%",
+   "source": {
+    "name": "City of Wilmington wage / earned income tax (1.25%)",
+    "url": "https://www.newcastlede.gov/DocumentCenter/View/20147/City-of-Wilmington-Wage-Tax-Information-PDF"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Wilmington charges a 1.25% wage tax on residents and on people who work in the city. It is estimated on gross wages."
+  },
+  {
+   "id": "louisville-ky",
+   "name": "Louisville / Jefferson County",
+   "state": "KY",
+   "type": "metro",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.022,
+   "nonresidentRate": 0.0145,
+   "base": "gross",
+   "pretaxReducesBase": false,
+   "sourceLabel": "Louisville Metro OL tax · 2.2% / 1.45%",
+   "source": {
+    "name": "Louisville Metro Revenue Commission, Form W-1 / OL instructions",
+    "url": "https://louisvilleky.gov/sites/default/files/2024-12/w-1_instructions_2025.pdf"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Louisville Metro (all of Jefferson County) charges an occupational tax of 2.2% for residents (1.25% Metro, 0.20% transit, 0.75% schools) and 1.45% for people who work there and live elsewhere. It is charged on gross wages, with nothing taken off for 401(k) or benefit contributions."
+  },
+  {
+   "id": "lexington-ky",
+   "name": "Lexington / Fayette County",
+   "state": "KY",
+   "type": "metro",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.0225,
+   "nonresidentRate": 0.0225,
+   "base": "gross",
+   "pretaxReducesBase": false,
+   "sourceLabel": "Lexington-Fayette occupational license fee · 2.25%",
+   "source": {
+    "name": "Lexington-Fayette Urban County Government, Occupational license fee rates",
+    "url": "https://www.lexingtonky.gov/working/business-licensing-taxes/occupational-license-fee-rates-current-forms"
+   },
+   "lastVerified": "2026-09-28",
+   "confidence": "published",
+   "notes": "Lexington-Fayette charges a 2.25% occupational license fee on wages earned in the county, with nothing taken off for 401(k) or benefit contributions. Fayette County residents also pay a separate school district occupational tax, which is not included here."
+  },
+  {
+   "id": "cincinnati-oh",
+   "name": "Cincinnati",
+   "state": "OH",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.018,
+   "nonresidentRate": 0.018,
+   "base": "medicare-wages",
+   "sourceLabel": "Cincinnati municipal income tax · 1.8%",
+   "source": {
+    "name": "City of Cincinnati Income Tax Division",
+    "url": "https://www.cincinnati-oh.gov/finance/income-taxes/"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Cincinnati's municipal income tax is 1.8% of qualifying wages, for residents and for people who work there. Qualifying wages follow Medicare wages: 401(k) contributions stay in, and cafeteria-plan health premiums, FSA and HSA amounts come out. If you live in one Ohio city and work in another, the city where you live usually gives a credit for tax paid to the other. This estimate applies only the city you select."
+  },
+  {
+   "id": "toledo-oh",
+   "name": "Toledo",
+   "state": "OH",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "medicare-wages",
+   "sourceLabel": "Toledo municipal income tax · 2.5%",
+   "source": {
+    "name": "Ohio Department of Taxation municipal income tax rate table (Toledo 2.50%)",
+    "url": "https://dam.assets.ohio.gov/image/upload/v1741618460/tax.ohio.gov/muni-net-profit/municipal.tax.rate-3.7.25.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Toledo's municipal income tax is 2.5% of qualifying wages, for residents and for people who work there. Qualifying wages follow Medicare wages: 401(k) contributions stay in, and cafeteria-plan health premiums, FSA and HSA amounts come out. If you live in one Ohio city and work in another, the city where you live usually gives a credit for tax paid to the other. This estimate applies only the city you select."
+  },
+  {
+   "id": "akron-oh",
+   "name": "Akron",
+   "state": "OH",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "medicare-wages",
+   "sourceLabel": "Akron municipal income tax · 2.5%",
+   "source": {
+    "name": "Ohio Department of Taxation municipal income tax rate table (Akron 2.50%)",
+    "url": "https://dam.assets.ohio.gov/image/upload/v1741618460/tax.ohio.gov/muni-net-profit/municipal.tax.rate-3.7.25.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Akron's municipal income tax is 2.5% of qualifying wages, for residents and for people who work there. Qualifying wages follow Medicare wages: 401(k) contributions stay in, and cafeteria-plan health premiums, FSA and HSA amounts come out. If you live in one Ohio city and work in another, the city where you live usually gives a credit for tax paid to the other. This estimate applies only the city you select."
+  },
+  {
+   "id": "dayton-oh",
+   "name": "Dayton",
+   "state": "OH",
+   "type": "city",
+   "appliesWhen": "resident-or-work",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "medicare-wages",
+   "sourceLabel": "Dayton municipal income tax · 2.5%",
+   "source": {
+    "name": "Ohio Department of Taxation municipal income tax rate table (Dayton 2.50%)",
+    "url": "https://dam.assets.ohio.gov/image/upload/v1741618460/tax.ohio.gov/muni-net-profit/municipal.tax.rate-3.7.25.pdf"
+   },
+   "lastVerified": "2026-10-11",
+   "confidence": "published",
+   "notes": "Dayton's municipal income tax is 2.5% of qualifying wages, for residents and for people who work there. Qualifying wages follow Medicare wages: 401(k) contributions stay in, and cafeteria-plan health premiums, FSA and HSA amounts come out. If you live in one Ohio city and work in another, the city where you live usually gives a credit for tax paid to the other. This estimate applies only the city you select."
+  },
+  {
+   "id": "adams-in",
+   "name": "Adams County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.016,
+   "nonresidentRate": 0.016,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Adams County income tax · 1.6%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Adams County's income tax rate is 1.6%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "allen-in",
+   "name": "Allen County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0159,
+   "nonresidentRate": 0.0159,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Allen County income tax · 1.59%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Allen County's income tax rate is 1.59%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "bartholomew-in",
+   "name": "Bartholomew County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0175,
+   "nonresidentRate": 0.0175,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Bartholomew County income tax · 1.75%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Bartholomew County's income tax rate is 1.75%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "benton-in",
+   "name": "Benton County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0179,
+   "nonresidentRate": 0.0179,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Benton County income tax · 1.79%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Benton County's income tax rate is 1.79%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "blackford-in",
+   "name": "Blackford County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Blackford County income tax · 2.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Blackford County's income tax rate is 2.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "boone-in",
+   "name": "Boone County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0171,
+   "nonresidentRate": 0.0171,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Boone County income tax · 1.71%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Boone County's income tax rate is 1.71%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "brown-in",
+   "name": "Brown County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.025234,
+   "nonresidentRate": 0.025234,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Brown County income tax · 2.5234%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Brown County's income tax rate is 2.5234%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "carroll-in",
+   "name": "Carroll County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.024733,
+   "nonresidentRate": 0.024733,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Carroll County income tax · 2.4733%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Carroll County's income tax rate is 2.4733%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "cass-in",
+   "name": "Cass County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0295,
+   "nonresidentRate": 0.0295,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Cass County income tax · 2.95%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Cass County's income tax rate is 2.95%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "clark-in",
+   "name": "Clark County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.02,
+   "nonresidentRate": 0.02,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Clark County income tax · 2%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Clark County's income tax rate is 2%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "clay-in",
+   "name": "Clay County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0235,
+   "nonresidentRate": 0.0235,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Clay County income tax · 2.35%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Clay County's income tax rate is 2.35%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "clinton-in",
+   "name": "Clinton County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0265,
+   "nonresidentRate": 0.0265,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Clinton County income tax · 2.65%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Clinton County's income tax rate is 2.65%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "crawford-in",
+   "name": "Crawford County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0165,
+   "nonresidentRate": 0.0165,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Crawford County income tax · 1.65%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Crawford County's income tax rate is 1.65%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "daviess-in",
+   "name": "Daviess County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.015,
+   "nonresidentRate": 0.015,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Daviess County income tax · 1.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Daviess County's income tax rate is 1.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "dearborn-in",
+   "name": "Dearborn County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.014,
+   "nonresidentRate": 0.014,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Dearborn County income tax · 1.4%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Dearborn County's income tax rate is 1.4%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "decatur-in",
+   "name": "Decatur County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0245,
+   "nonresidentRate": 0.0245,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Decatur County income tax · 2.45%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Decatur County's income tax rate is 2.45%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "dekalb-in",
+   "name": "DeKalb County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0213,
+   "nonresidentRate": 0.0213,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "DeKalb County income tax · 2.13%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "DeKalb County's income tax rate is 2.13%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "delaware-in",
+   "name": "Delaware County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.015,
+   "nonresidentRate": 0.015,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Delaware County income tax · 1.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Delaware County's income tax rate is 1.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "dubois-in",
+   "name": "Dubois County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.012,
+   "nonresidentRate": 0.012,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Dubois County income tax · 1.2%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Dubois County's income tax rate is 1.2%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "elkhart-in",
+   "name": "Elkhart County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.02,
+   "nonresidentRate": 0.02,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Elkhart County income tax · 2%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Elkhart County's income tax rate is 2%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "fayette-in",
+   "name": "Fayette County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0282,
+   "nonresidentRate": 0.0282,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Fayette County income tax · 2.82%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Fayette County's income tax rate is 2.82%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "floyd-in",
+   "name": "Floyd County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0189,
+   "nonresidentRate": 0.0189,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Floyd County income tax · 1.89%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Floyd County's income tax rate is 1.89%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "fountain-in",
+   "name": "Fountain County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.021,
+   "nonresidentRate": 0.021,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Fountain County income tax · 2.1%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Fountain County's income tax rate is 2.1%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "franklin-in",
+   "name": "Franklin County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.017,
+   "nonresidentRate": 0.017,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Franklin County income tax · 1.7%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Franklin County's income tax rate is 1.7%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "fulton-in",
+   "name": "Fulton County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0288,
+   "nonresidentRate": 0.0288,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Fulton County income tax · 2.88%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Fulton County's income tax rate is 2.88%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "gibson-in",
+   "name": "Gibson County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.013,
+   "nonresidentRate": 0.013,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Gibson County income tax · 1.3%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Gibson County's income tax rate is 1.3%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "grant-in",
+   "name": "Grant County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0275,
+   "nonresidentRate": 0.0275,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Grant County income tax · 2.75%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Grant County's income tax rate is 2.75%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "greene-in",
+   "name": "Greene County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0235,
+   "nonresidentRate": 0.0235,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Greene County income tax · 2.35%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Greene County's income tax rate is 2.35%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "hamilton-in",
+   "name": "Hamilton County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.011,
+   "nonresidentRate": 0.011,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Hamilton County income tax · 1.1%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Hamilton County's income tax rate is 1.1%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "hancock-in",
+   "name": "Hancock County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0194,
+   "nonresidentRate": 0.0194,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Hancock County income tax · 1.94%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Hancock County's income tax rate is 1.94%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "harrison-in",
+   "name": "Harrison County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.01,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Harrison County income tax · 1%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Harrison County's income tax rate is 1%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "hendricks-in",
+   "name": "Hendricks County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.017,
+   "nonresidentRate": 0.017,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Hendricks County income tax · 1.7%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Hendricks County's income tax rate is 1.7%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "henry-in",
+   "name": "Henry County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0202,
+   "nonresidentRate": 0.0202,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Henry County income tax · 2.02%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Henry County's income tax rate is 2.02%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "howard-in",
+   "name": "Howard County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0235,
+   "nonresidentRate": 0.0235,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Howard County income tax · 2.35%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Howard County's income tax rate is 2.35%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "huntington-in",
+   "name": "Huntington County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0195,
+   "nonresidentRate": 0.0195,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Huntington County income tax · 1.95%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Huntington County's income tax rate is 1.95%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "jackson-in",
+   "name": "Jackson County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.021,
+   "nonresidentRate": 0.021,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Jackson County income tax · 2.1%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Jackson County's income tax rate is 2.1%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "jasper-in",
+   "name": "Jasper County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.02864,
+   "nonresidentRate": 0.02864,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Jasper County income tax · 2.864%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Jasper County's income tax rate is 2.864%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "jay-in",
+   "name": "Jay County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Jay County income tax · 2.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Jay County's income tax rate is 2.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "jefferson-in",
+   "name": "Jefferson County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0103,
+   "nonresidentRate": 0.0103,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Jefferson County income tax · 1.03%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Jefferson County's income tax rate is 1.03%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "jennings-in",
+   "name": "Jennings County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Jennings County income tax · 2.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Jennings County's income tax rate is 2.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "johnson-in",
+   "name": "Johnson County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.014,
+   "nonresidentRate": 0.014,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Johnson County income tax · 1.4%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Johnson County's income tax rate is 1.4%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "knox-in",
+   "name": "Knox County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.017,
+   "nonresidentRate": 0.017,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Knox County income tax · 1.7%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Knox County's income tax rate is 1.7%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "kosciusko-in",
+   "name": "Kosciusko County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.01,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Kosciusko County income tax · 1%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Kosciusko County's income tax rate is 1%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "lagrange-in",
+   "name": "LaGrange County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0165,
+   "nonresidentRate": 0.0165,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "LaGrange County income tax · 1.65%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "LaGrange County's income tax rate is 1.65%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "lake-in",
+   "name": "Lake County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.015,
+   "nonresidentRate": 0.015,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Lake County income tax · 1.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Lake County's income tax rate is 1.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "laporte-in",
+   "name": "LaPorte County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0145,
+   "nonresidentRate": 0.0145,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "LaPorte County income tax · 1.45%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "LaPorte County's income tax rate is 1.45%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "lawrence-in",
+   "name": "Lawrence County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0175,
+   "nonresidentRate": 0.0175,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Lawrence County income tax · 1.75%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Lawrence County's income tax rate is 1.75%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "madison-in",
+   "name": "Madison County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0225,
+   "nonresidentRate": 0.0225,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Madison County income tax · 2.25%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Madison County's income tax rate is 2.25%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "marion-in",
+   "name": "Marion County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0202,
+   "nonresidentRate": 0.0202,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Marion County income tax · 2.02%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Marion County's income tax rate is 2.02%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "marshall-in",
+   "name": "Marshall County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0125,
+   "nonresidentRate": 0.0125,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Marshall County income tax · 1.25%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Marshall County's income tax rate is 1.25%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "martin-in",
+   "name": "Martin County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Martin County income tax · 2.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Martin County's income tax rate is 2.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "miami-in",
+   "name": "Miami County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0254,
+   "nonresidentRate": 0.0254,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Miami County income tax · 2.54%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Miami County's income tax rate is 2.54%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "monroe-in",
+   "name": "Monroe County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0214,
+   "nonresidentRate": 0.0214,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Monroe County income tax · 2.14%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Monroe County's income tax rate is 2.14%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "montgomery-in",
+   "name": "Montgomery County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0265,
+   "nonresidentRate": 0.0265,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Montgomery County income tax · 2.65%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Montgomery County's income tax rate is 2.65%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "morgan-in",
+   "name": "Morgan County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0272,
+   "nonresidentRate": 0.0272,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Morgan County income tax · 2.72%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Morgan County's income tax rate is 2.72%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "newton-in",
+   "name": "Newton County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.01,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Newton County income tax · 1%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Newton County's income tax rate is 1%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "noble-in",
+   "name": "Noble County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0175,
+   "nonresidentRate": 0.0175,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Noble County income tax · 1.75%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Noble County's income tax rate is 1.75%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "ohio-in",
+   "name": "Ohio County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.02,
+   "nonresidentRate": 0.02,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Ohio County income tax · 2%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Ohio County's income tax rate is 2%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "orange-in",
+   "name": "Orange County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0175,
+   "nonresidentRate": 0.0175,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Orange County income tax · 1.75%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Orange County's income tax rate is 1.75%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "owen-in",
+   "name": "Owen County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.025,
+   "nonresidentRate": 0.025,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Owen County income tax · 2.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Owen County's income tax rate is 2.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "parke-in",
+   "name": "Parke County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0265,
+   "nonresidentRate": 0.0265,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Parke County income tax · 2.65%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Parke County's income tax rate is 2.65%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "perry-in",
+   "name": "Perry County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.014,
+   "nonresidentRate": 0.014,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Perry County income tax · 1.4%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Perry County's income tax rate is 1.4%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "pike-in",
+   "name": "Pike County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.012,
+   "nonresidentRate": 0.012,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Pike County income tax · 1.2%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Pike County's income tax rate is 1.2%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "porter-in",
+   "name": "Porter County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.005,
+   "nonresidentRate": 0.005,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Porter County income tax · 0.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Porter County's income tax rate is 0.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "posey-in",
+   "name": "Posey County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0145,
+   "nonresidentRate": 0.0145,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Posey County income tax · 1.45%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Posey County's income tax rate is 1.45%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "pulaski-in",
+   "name": "Pulaski County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0285,
+   "nonresidentRate": 0.0285,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Pulaski County income tax · 2.85%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Pulaski County's income tax rate is 2.85%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "putnam-in",
+   "name": "Putnam County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.023,
+   "nonresidentRate": 0.023,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Putnam County income tax · 2.3%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Putnam County's income tax rate is 2.3%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "randolph-in",
+   "name": "Randolph County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.03,
+   "nonresidentRate": 0.03,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Randolph County income tax · 3%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Randolph County's income tax rate is 3%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "ripley-in",
+   "name": "Ripley County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0238,
+   "nonresidentRate": 0.0238,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Ripley County income tax · 2.38%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Ripley County's income tax rate is 2.38%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "rush-in",
+   "name": "Rush County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0215,
+   "nonresidentRate": 0.0215,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Rush County income tax · 2.15%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Rush County's income tax rate is 2.15%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "st-joseph-in",
+   "name": "St. Joseph County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0175,
+   "nonresidentRate": 0.0175,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "St. Joseph County income tax · 1.75%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "St. Joseph County's income tax rate is 1.75%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "scott-in",
+   "name": "Scott County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0216,
+   "nonresidentRate": 0.0216,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Scott County income tax · 2.16%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Scott County's income tax rate is 2.16%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "shelby-in",
+   "name": "Shelby County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.017,
+   "nonresidentRate": 0.017,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Shelby County income tax · 1.7%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Shelby County's income tax rate is 1.7%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "spencer-in",
+   "name": "Spencer County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.008,
+   "nonresidentRate": 0.008,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Spencer County income tax · 0.8%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Spencer County's income tax rate is 0.8%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "starke-in",
+   "name": "Starke County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0171,
+   "nonresidentRate": 0.0171,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Starke County income tax · 1.71%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Starke County's income tax rate is 1.71%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "steuben-in",
+   "name": "Steuben County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0199,
+   "nonresidentRate": 0.0199,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Steuben County income tax · 1.99%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Steuben County's income tax rate is 1.99%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "sullivan-in",
+   "name": "Sullivan County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.017,
+   "nonresidentRate": 0.017,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Sullivan County income tax · 1.7%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Sullivan County's income tax rate is 1.7%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "switzerland-in",
+   "name": "Switzerland County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0145,
+   "nonresidentRate": 0.0145,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Switzerland County income tax · 1.45%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Switzerland County's income tax rate is 1.45%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "tippecanoe-in",
+   "name": "Tippecanoe County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0128,
+   "nonresidentRate": 0.0128,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Tippecanoe County income tax · 1.28%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Tippecanoe County's income tax rate is 1.28%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "tipton-in",
+   "name": "Tipton County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.026,
+   "nonresidentRate": 0.026,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Tipton County income tax · 2.6%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Tipton County's income tax rate is 2.6%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "union-in",
+   "name": "Union County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0275,
+   "nonresidentRate": 0.0275,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Union County income tax · 2.75%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Union County's income tax rate is 2.75%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "vanderburgh-in",
+   "name": "Vanderburgh County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0125,
+   "nonresidentRate": 0.0125,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Vanderburgh County income tax · 1.25%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Vanderburgh County's income tax rate is 1.25%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "vermillion-in",
+   "name": "Vermillion County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.015,
+   "nonresidentRate": 0.015,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Vermillion County income tax · 1.5%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Vermillion County's income tax rate is 1.5%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "vigo-in",
+   "name": "Vigo County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.02,
+   "nonresidentRate": 0.02,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Vigo County income tax · 2%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Vigo County's income tax rate is 2%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "wabash-in",
+   "name": "Wabash County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.029,
+   "nonresidentRate": 0.029,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Wabash County income tax · 2.9%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Wabash County's income tax rate is 2.9%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "warren-in",
+   "name": "Warren County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0212,
+   "nonresidentRate": 0.0212,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Warren County income tax · 2.12%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Warren County's income tax rate is 2.12%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "warrick-in",
+   "name": "Warrick County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.01,
+   "nonresidentRate": 0.01,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Warrick County income tax · 1%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Warrick County's income tax rate is 1%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "washington-in",
+   "name": "Washington County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.02,
+   "nonresidentRate": 0.02,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Washington County income tax · 2%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Washington County's income tax rate is 2%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "wayne-in",
+   "name": "Wayne County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0125,
+   "nonresidentRate": 0.0125,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Wayne County income tax · 1.25%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Wayne County's income tax rate is 1.25%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "wells-in",
+   "name": "Wells County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.021,
+   "nonresidentRate": 0.021,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Wells County income tax · 2.1%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Wells County's income tax rate is 2.1%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "white-in",
+   "name": "White County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.0232,
+   "nonresidentRate": 0.0232,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "White County income tax · 2.32%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "White County's income tax rate is 2.32%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "whitley-in",
+   "name": "Whitley County, Indiana",
+   "state": "IN",
+   "type": "county",
+   "appliesWhen": "resident-only",
+   "method": "flat",
+   "residentRate": 0.016829,
+   "nonresidentRate": 0.016829,
+   "base": "state-taxable",
+   "residentOnlyNote": "Indiana county tax goes to the county where you lived on January 1, not where you work. Choose your home county instead.",
+   "sourceLabel": "Whitley County income tax · 1.6829%",
+   "source": {
+    "name": "Indiana Department of Revenue, Departmental Notice #1 (effective October 1, 2026)",
+    "url": "https://www.in.gov/dor/files/reference/dn01.pdf"
+   },
+   "confidence": "published",
+   "notes": "Whitley County's income tax rate is 1.6829%, in effect from October 1, 2026. Indiana county tax goes to the county where you lived on January 1 and is charged on Indiana taxable income after exemptions.",
+   "lastVerified": "2026-10-11"
+  },
+  {
+   "id": "denver-co",
+   "name": "Denver",
+   "state": "CO",
+   "type": "city",
+   "appliesWhen": "work",
+   "method": "fixed",
+   "monthly": 5.75,
+   "minMonthlyWages": 500,
+   "sourceLabel": "Denver occupational privilege tax · $5.75 a month",
+   "source": {
+    "name": "City and County of Denver, Tax Guide Topic 61: Occupational Privilege Taxes",
+    "url": "https://www.denvergov.org/content/dam/denvergov/Portals/571/documents/TaxGuide/TaxGuideTopic61_OccupationalPrivilegeTaxes.pdf"
+   },
+   "confidence": "published",
+   "notes": "Denver charges employees who work in the city and earn at least $500 in a month an occupational privilege tax of $5.75 a month ($69 a year). It is a flat amount, not a percent of pay, and it is owed by where you work, not where you live.",
+   "lastVerified": "2026-10-11"
+  }
+ ],
+ "schema": 2
+}
