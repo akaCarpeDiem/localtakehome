@@ -552,10 +552,11 @@
      "mfs": 12000,
      "hoh": 12000,
      "mfj": 16000
-    }
+    },
+    "tipsFollowFederal": true
    },
    "why": "Colorado taxes federal taxable income at a flat 4.4%. Paid family and medical leave (FAMLI) is a separate paycheck line.",
-   "notes": "Colorado starts from federal taxable income, so the federal standard deduction applies. Taxpayers with adjusted gross income above $300,000 must add back the part of their federal deduction above $12,000 ($16,000 joint). Colorado requires overtime deducted on the federal return to be added back, so the federal overtime deduction does not reduce Colorado tax.",
+   "notes": "Colorado starts from federal taxable income, so the federal standard deduction applies. Taxpayers with adjusted gross income above $300,000 must add back the part of their federal deduction above $12,000 ($16,000 joint). Colorado requires overtime deducted on the federal return to be added back, so the federal overtime deduction does not reduce Colorado tax. Colorado starts from federal taxable income, so the federal deduction for tips also comes off Colorado taxable income. From 2026 Colorado adds the overtime deduction back (House Bill 25-1296), so overtime is taxed in full.",
    "sources": [
     {
      "name": "Colorado Department of Revenue, individual income tax",
@@ -564,8 +565,13 @@
     {
      "name": "USDA National Finance Center, Colorado withholding formula, 2026",
      "url": "https://help.nfc.usda.gov/bulletins/2026/1772551649.htm"
+    },
+    {
+     "name": "Thomson Reuters, Which states are decoupling from federal tax provisions? (updated March 30, 2026)",
+     "url": "https://tax.thomsonreuters.com/blog/state-decoupling-from-federal-tax-provisions/"
     }
-   ]
+   ],
+   "changed": "State treatment of the federal tips and overtime deductions added."
   },
   {
    "id": "CT",
@@ -1365,7 +1371,7 @@
     "dependent": 5000
    },
    "why": "Georgia taxes income at a flat 4.99% for 2026 after a $15,000 standard deduction ($30,000 joint) and $5,000 per dependent.",
-   "notes": "House Bill 463 (2026) lowered the rate from 5.19% to 4.99% retroactive to January 1, 2026, raised the standard deduction to $15,000 (single, head of household, married filing separately) and $30,000 (joint), and raised the dependent deduction to $5,000. Employers withheld at 5.19% before May 11, 2026, so early-2026 paychecks ran slightly high.",
+   "notes": "House Bill 463 (2026) lowered the rate from 5.19% to 4.99% retroactive to January 1, 2026, raised the standard deduction to $15,000 (single, head of household, married filing separately) and $30,000 (joint), and raised the dependent deduction to $5,000. Employers withheld at 5.19% before May 11, 2026, so early-2026 paychecks ran slightly high. For 2026 through 2028 Georgia excludes up to $1,750 of overtime premium pay and up to $1,750 of cash tips from taxable income (House Bill 463).",
    "sources": [
     {
      "name": "Georgia Department of Revenue, 2026 Employer's Tax Guide (revised September 2026)",
@@ -1374,9 +1380,18 @@
     {
      "name": "EY Tax News, Georgia revised withholding formula for 2026",
      "url": "https://taxnews.ey.com/news/2026-1294-georgia-department-of-revenue-releases-revised-withholding-formula-reflecting-lower-income-tax-rate-for-2026"
+    },
+    {
+     "name": "Paylocity, Georgia reduces individual income tax rates for 2026 (House Bill 463), June 4, 2026",
+     "url": "https://www.paylocity.com/resources/tax-compliance/alerts/georgia-reduces-individual-income-tax-rates-for-2026/"
     }
    ],
-   "changed": "Rate corrected from 5.19% to 4.99%; standard deduction $15,000 / $30,000 and dependent deduction $5,000 (House Bill 463)."
+   "changed": "Rate corrected from 5.19% to 4.99%; standard deduction $15,000 / $30,000 and dependent deduction $5,000 (House Bill 463). State treatment of the federal tips and overtime deductions added.",
+   "params": {
+    "ownTipsMax": 1750,
+    "ownOvertimeMax": 1750,
+    "tipsOvertimeYears": "2026 to 2028"
+   }
   },
   {
    "id": "HI",
@@ -1601,7 +1616,7 @@
    "mfsUses": "single",
    "sd": "federal",
    "why": "Idaho taxes income above a small zero bracket at a flat 5.3% after the federal standard deduction.",
-   "notes": "House Bill 40 (2025) set the rate at 5.3%. The first $4,811 of Idaho taxable income ($9,622 joint or head of household) is not taxed.",
+   "notes": "House Bill 40 (2025) set the rate at 5.3%. The first $4,811 of Idaho taxable income ($9,622 joint or head of household) is not taxed. Idaho starts from federal taxable income, and House Bill 559 (2026) adopted the federal deductions for tips and overtime premium pay, so the amounts deducted on the federal return also come off Idaho taxable income.",
    "sources": [
     {
      "name": "Tax Foundation, State Individual Income Tax Rates and Brackets, 2026",
@@ -1610,8 +1625,16 @@
     {
      "name": "USDA National Finance Center, Idaho withholding formula, 2026",
      "url": "https://help.nfc.usda.gov/bulletins/2026/1786997961.htm"
+    },
+    {
+     "name": "KMVT, Idaho tax filing changes are coming with new conformity bill (House Bill 559), February 13, 2026",
+     "url": "https://www.kmvt.com/2026/02/13/idaho-tax-filing-changes-are-coming-with-new-conformity-bill/"
     }
-   ]
+   ],
+   "params": {
+    "tipsOvertimeFollowFederal": true
+   },
+   "changed": "State treatment of the federal tips and overtime deductions added."
   },
   {
    "id": "IL",
@@ -1679,7 +1702,7 @@
     "dependent": 2500
    },
    "why": "Indiana taxes income at a flat 2.95% for 2026 after a $1,000 exemption per person. Every county adds its own income tax.",
-   "notes": "The rate fell from 3.0% to 2.95% on January 1, 2026. Each taxpayer and dependent gets a $1,000 exemption, and each dependent child gets an additional $1,500; this estimate treats every dependent entered as a child ($2,500). County income tax is selected separately and uses the same taxable income.",
+   "notes": "The rate fell from 3.0% to 2.95% on January 1, 2026. Each taxpayer and dependent gets a $1,000 exemption, and each dependent child gets an additional $1,500; this estimate treats every dependent entered as a child ($2,500). County income tax is selected separately and uses the same taxable income. For 2026 only, Indiana allows the same deductions for tips and overtime premium pay as the federal return, for state and county income tax.",
    "sources": [
     {
      "name": "Indiana Department of Revenue, Departmental Notice #1 (county rates and withholding)",
@@ -1688,9 +1711,17 @@
     {
      "name": "USDA National Finance Center, Indiana withholding formula, 2026",
      "url": "https://help.nfc.usda.gov/bulletins/2026/1774379018.htm"
+    },
+    {
+     "name": "Indiana Department of Revenue, Income Tax Information Bulletin #128",
+     "url": "https://www.in.gov/dor/files/reference/ib128.pdf"
     }
    ],
-   "changed": "Dependent children now receive the additional $1,500 exemption; all 92 county rates added."
+   "changed": "Dependent children now receive the additional $1,500 exemption; all 92 county rates added. State treatment of the federal tips and overtime deductions added.",
+   "params": {
+    "tipsOvertimeFollowFederal": true,
+    "tipsOvertimeYears": "2026 only"
+   }
   },
   {
    "id": "IA",
@@ -1718,7 +1749,7 @@
     "dependent": 40
    },
    "why": "Iowa taxes federal taxable income at a flat 3.8%, less a $40 credit per person.",
-   "notes": "Iowa starts from federal taxable income, so the federal standard deduction applies. Some school districts add a surtax on the state tax, which is not included.",
+   "notes": "Iowa starts from federal taxable income, so the federal standard deduction applies. Some school districts add a surtax on the state tax, which is not included. Iowa starts from federal taxable income and follows the federal deductions for tips and overtime premium pay, so the amounts deducted on the federal return also come off Iowa taxable income. Iowa withholding does not take them into account, so the saving arrives at tax time.",
    "sources": [
     {
      "name": "Tax Foundation, State Individual Income Tax Rates and Brackets, 2026",
@@ -1727,8 +1758,16 @@
     {
      "name": "Iowa Department of Revenue, 2026 withholding formula",
      "url": "https://revenue.iowa.gov/media/53/download?inline="
+    },
+    {
+     "name": "Iowa Department of Revenue, Impact of the One Big Beautiful Bill Act on employee withholding",
+     "url": "https://revenue.iowa.gov/taxes/tax-guidance/withholding-tax/impact-one-big-beautiful-bill-act-employee-withholding"
     }
-   ]
+   ],
+   "params": {
+    "tipsOvertimeFollowFederal": true
+   },
+   "changed": "State treatment of the federal tips and overtime deductions added."
   },
   {
    "id": "KS",
@@ -2242,7 +2281,7 @@
     "dependent": 5900
    },
    "why": "Michigan taxes income at a flat 4.25% after a $5,900 exemption per person. About two dozen cities add their own income tax.",
-   "notes": "The 2026 personal exemption is $5,900 for each taxpayer and dependent. Michigan has no standard deduction.",
+   "notes": "The 2026 personal exemption is $5,900 for each taxpayer and dependent. Michigan has no standard deduction. For 2026 through 2028 Michigan allows the same deductions for tips and overtime premium pay as the federal return. Michigan city income taxes do not.",
    "sources": [
     {
      "name": "USDA National Finance Center, Michigan withholding formula, 2026",
@@ -2251,8 +2290,17 @@
     {
      "name": "Tax Foundation, State Individual Income Tax Rates and Brackets, 2026",
      "url": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/"
+    },
+    {
+     "name": "Michigan Department of Treasury, New deductions for qualified overtime compensation and qualified tips (January 6, 2026)",
+     "url": "https://www.michigan.gov/treasury/reference/taxpayer-notices/2026/01/06/new-deductions-for-qualified-overtime-compensation-and-qualified-tips"
     }
-   ]
+   ],
+   "params": {
+    "tipsOvertimeFollowFederal": true,
+    "tipsOvertimeYears": "2026 to 2028"
+   },
+   "changed": "State treatment of the federal tips and overtime deductions added."
   },
   {
    "id": "MN",
@@ -2537,7 +2585,7 @@
    "mfsUses": "single",
    "sd": "federal",
    "why": "Montana taxes income at 4.7% and 5.65% after the federal standard deduction.",
-   "notes": "House Bill 337 lowered the top rate to 5.65% for 2026 and widened the lower bracket to $47,500 (single), $71,250 (head of household) and $95,000 (joint).",
+   "notes": "House Bill 337 lowered the top rate to 5.65% for 2026 and widened the lower bracket to $47,500 (single), $71,250 (head of household) and $95,000 (joint). Montana starts from federal taxable income, so the federal deductions for tips and overtime premium pay also come off Montana taxable income.",
    "sources": [
     {
      "name": "Montana Department of Revenue, 2026 withholding updates (House Bill 337)",
@@ -2546,9 +2594,16 @@
     {
      "name": "Tax Foundation, State Individual Income Tax Rates and Brackets, 2026",
      "url": "https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/"
+    },
+    {
+     "name": "Thomson Reuters, Which states are decoupling from federal tax provisions? (updated March 30, 2026)",
+     "url": "https://tax.thomsonreuters.com/blog/state-decoupling-from-federal-tax-provisions/"
     }
    ],
-   "changed": "Head-of-household bracket added."
+   "changed": "Head-of-household bracket added. State treatment of the federal tips and overtime deductions added.",
+   "params": {
+    "tipsOvertimeFollowFederal": true
+   }
   },
   {
    "id": "NE",
@@ -3121,14 +3176,21 @@
    },
    "sd": "federal",
    "why": "North Dakota does not tax the first $49,575 of taxable income ($82,800 joint), then charges 1.95% and 2.5%, after the federal standard deduction.",
-   "notes": "Thresholds are the 2026 tax rate schedules in Form ND-1ES.",
+   "notes": "Thresholds are the 2026 tax rate schedules in Form ND-1ES. North Dakota starts from federal taxable income, so the federal deductions for tips and overtime premium pay also come off North Dakota taxable income.",
    "sources": [
     {
      "name": "North Dakota Office of State Tax Commissioner, Form ND-1ES 2026",
      "url": "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/28709-form-nd-1es-2026.pdf"
+    },
+    {
+     "name": "Thomson Reuters, Which states are decoupling from federal tax provisions? (updated March 30, 2026)",
+     "url": "https://tax.thomsonreuters.com/blog/state-decoupling-from-federal-tax-provisions/"
     }
    ],
-   "changed": "Brackets updated from 2025 thresholds to the 2026 schedule; head-of-household and separate schedules added."
+   "changed": "Brackets updated from 2025 thresholds to the 2026 schedule; head-of-household and separate schedules added. State treatment of the federal tips and overtime deductions added.",
+   "params": {
+    "tipsOvertimeFollowFederal": true
+   }
   },
   {
    "id": "OH",
@@ -3385,17 +3447,22 @@
      "mfs": 100000,
      "hoh": 200000,
      "mfj": 200000
-    }
+    },
+    "tipsOvertimeFollowFederal": true
    },
    "why": "Oregon taxes income at 4.75% to 9.9% after a small standard deduction, a subtraction for federal income tax of up to $8,750, and a $263 credit per person.",
-   "notes": "Figures follow the Department of Revenue's 2026 withholding formulas. Federal income tax is subtracted from income up to $8,750; the limit shrinks above $125,000 of income (single) or $250,000 (joint, head of household) and disappears at $145,000 / $290,000. The $263 exemption credit is not allowed above $100,000 of income (single) or $200,000 (joint, head of household). The head-of-household standard deduction of $4,685 is the 2025 amount raised by the same factor as the single deduction. Paid Leave Oregon, the statewide transit tax and the Workers' Benefit Fund assessment are separate paycheck lines.",
+   "notes": "Figures follow the Department of Revenue's 2026 withholding formulas. Federal income tax is subtracted from income up to $8,750; the limit shrinks above $125,000 of income (single) or $250,000 (joint, head of household) and disappears at $145,000 / $290,000. The $263 exemption credit is not allowed above $100,000 of income (single) or $200,000 (joint, head of household). The head-of-household standard deduction of $4,685 is the 2025 amount raised by the same factor as the single deduction. Paid Leave Oregon, the statewide transit tax and the Workers' Benefit Fund assessment are separate paycheck lines. Oregon follows the federal deductions for tips and overtime premium pay (Senate Bill 1507 of 2026 kept them), so the amounts deducted on the federal return also come off Oregon taxable income.",
    "sources": [
     {
      "name": "Oregon Department of Revenue, 2026 withholding tax formulas (150-206-436)",
      "url": "https://www.oregon.gov/dor/forms/FormsPubs/withholding-tax-formulas_206-436_2026.pdf"
+    },
+    {
+     "name": "Thomson Reuters, Which states are decoupling from federal tax provisions? (updated March 30, 2026)",
+     "url": "https://tax.thomsonreuters.com/blog/state-decoupling-from-federal-tax-provisions/"
     }
    ],
-   "changed": "The federal income tax subtraction (up to $8,750) is now calculated; exemption credit updated to $263; head of household uses the joint brackets; Paid Leave Oregon added."
+   "changed": "The federal income tax subtraction (up to $8,750) is now calculated; exemption credit updated to $263; head of household uses the joint brackets; Paid Leave Oregon added. State treatment of the federal tips and overtime deductions added."
   },
   {
    "id": "PA",

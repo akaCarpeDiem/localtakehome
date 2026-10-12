@@ -202,7 +202,7 @@ const overtime = {
         ${figure("Saved by the overtime deduction", usd0(saved), `${usd0(withOt.annual.overtimeDeduction)} of premium pay is deducted from federal taxable income`)}
       </div>
       ${compareTable(none, withOt, { labelA: "No overtime", labelB: "With overtime", perPeriod: false })}
-      <p class="fine">From 2025 through 2028 the premium part of overtime pay (the extra half in time-and-a-half) can be deducted on the federal return, up to $12,500 a year ($25,000 for a joint return), shrinking above $150,000 of income ($300,000 joint). Social Security and Medicare still apply to all overtime pay, and most states still tax it. Your employer may keep withholding as before, in which case the saving arrives as a refund.</p>
+      <p class="fine">From 2025 through 2028 the premium part of overtime pay (the extra half in time-and-a-half) can be deducted on the federal return, up to $12,500 a year ($25,000 for a joint return), shrinking above $150,000 of income ($300,000 joint). Social Security and Medicare still apply to all overtime pay. Some states follow the federal deduction and most do not; the state figures here use the rule for the state you chose. Your employer may keep withholding as before, in which case the saving arrives as a refund.</p>
       ${fine()}`;
   },
 };
@@ -228,7 +228,7 @@ const tips = {
         ${figure("Take-home pay", usd0(withDeduction.annual.net), `a year · ${usd(withDeduction.annual.net / 12)} a month`)}
       </div>
       ${compareTable(without, withDeduction, { labelA: "Without the deduction", labelB: "With it", perPeriod: false })}
-      <p class="fine">From 2025 through 2028, workers in jobs that customarily receive tips can deduct up to $25,000 of qualified tips on the federal return. The limit shrinks by $100 for every $1,000 of income above $150,000 ($300,000 on a joint return). Tips are still subject to Social Security and Medicare, and most states still tax them. Mandatory service charges are not tips.</p>
+      <p class="fine">From 2025 through 2028, workers in jobs that customarily receive tips can deduct up to $25,000 of qualified tips on the federal return. The limit shrinks by $100 for every $1,000 of income above $150,000 ($300,000 on a joint return). Tips are still subject to Social Security and Medicare. Some states follow the federal deduction and most do not; the state figures here use the rule for the state you chose. Mandatory service charges are not tips.</p>
       ${fine()}`;
   },
 };

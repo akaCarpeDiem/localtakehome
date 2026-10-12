@@ -1,6 +1,6 @@
 /** The smaller calculators, each on its own page, plus the hourly and W-4 versions of the main one. */
 import { faqHTML, faqLd } from "../lib/layout.mjs";
-import { calculatorBlock, cardGrid, pct, toolBlock, usd, usd0 } from "../lib/shared.mjs";
+import { calculatorBlock, cardGrid, pct, tipsOvertimeSentence, toolBlock, usd, usd0 } from "../lib/shared.mjs";
 import { TOOL_LINKS } from "../lib/layout.mjs";
 import { grossForNet } from "../../src/js/engine.mjs";
 import { rankStates } from "../../src/js/tools.mjs";
@@ -70,7 +70,7 @@ export function toolPages(ctx) {
       <h1>Hourly paycheck calculator</h1>
       <p class="lede">Enter your hourly rate and your hours. Add overtime, night or weekend rates if you have them, and see what reaches your bank account.</p>
     </header>
-    ${calculatorBlock(ctx, { payType: "hourly", state: "TX" }, { examples: false })}
+    ${calculatorBlock(ctx, { payType: "hourly" }, { examples: false })}
     <div class="below">
       <section class="prose">
         <h2>From an hourly wage to a paycheck</h2>
@@ -106,7 +106,7 @@ export function toolPages(ctx) {
       <h1>W-4 calculator</h1>
       <p class="lede">Form W-4 tells your employer how much federal income tax to hold back. Change an entry below and watch what it does to your paycheck.</p>
     </header>
-    ${calculatorBlock(ctx, { state: "TX", openW4: true }, { examples: false })}
+    ${calculatorBlock(ctx, { openW4: true }, { examples: false })}
     <div class="below">
       <section class="prose">
         <h2>What each step of the W-4 does</h2>
@@ -192,10 +192,12 @@ export function toolPages(ctx) {
         <p>Overtime is usually paid at one and a half times your regular rate for hours over 40 in a week. It is taxed like the rest of your pay, at whatever rates your total income reaches.</p>
         <h3>The overtime deduction (“no tax on overtime”)</h3>
         <p>For tax years 2025 through 2028 you can deduct the <strong>premium</strong> part of overtime pay from your federal taxable income. The premium is the extra half in time-and-a-half: if your regular rate is $28 and overtime pays $42, the premium is $14 an hour. The limit is ${usd0(wd.overtimeMax.single)} a year, or ${usd0(wd.overtimeMax.mfj)} on a joint return, and it shrinks by $${wd.phaseoutPer1000} for every $1,000 of income above ${usd0(wd.phaseoutStart.single)} (${usd0(wd.phaseoutStart.mfj)} joint).</p>
-        <p>It lowers federal income tax only. Social Security and Medicare are still charged on all overtime pay, and most states still tax it. It is not available to married people filing separately.</p>
+        <p>Social Security and Medicare are still charged on all overtime pay. The federal deduction is not available to married people filing separately.</p>
+        <p><strong>State income tax:</strong> ${tipsOvertimeSentence(ctx)}</p>
         <p>The <a href="/guides/no-tax-on-overtime/">guide to the overtime deduction</a> has the details and worked examples.</p>`,
       faqs: [
-        ["Is overtime really tax free now?", "No. Only the premium part (the extra half) can be deducted, only from federal income tax, and only up to a yearly limit. Social Security, Medicare and most state income taxes still apply to all of it."],
+        ["Is overtime really tax free now?", "No. Only the premium part (the extra half) can be deducted from federal taxable income, and only up to a yearly limit. Social Security and Medicare still apply to all of it, and most states still tax it."],
+        ["Does my state tax overtime?", tipsOvertimeSentence(ctx)],
         ["Will my paycheck show the saving?", "Only if your employer's withholding takes it into account, for example because you updated your W-4. Otherwise the same tax is withheld as before and you get the saving as a refund."],
         ["Does double time count?", "The deduction covers the overtime premium that federal law requires, which is the extra half of your regular rate. The calculator counts at most half the regular rate per overtime hour, whatever multiplier you enter."],
       ],
@@ -210,12 +212,13 @@ export function toolPages(ctx) {
       lede: "Enter your wages and tips to see how much the federal deduction for tips saves you, and your take-home pay with tips included.",
       prose: `<h2>How the tips deduction works</h2>
         <p>For tax years 2025 through 2028, people who work in jobs where tips are customary can deduct up to ${usd0(wd.tipsMax)} of qualified tips a year from federal taxable income. The limit shrinks by $${wd.phaseoutPer1000} for every $1,000 of income above ${usd0(wd.phaseoutStart.single)} (${usd0(wd.phaseoutStart.mfj)} on a joint return).</p>
-        <p>Tips are still wages for Social Security and Medicare, so ${pct(fica.socialSecurity.employeeRate + fica.medicare.employeeRate)} still comes out, and most states still tax them. Mandatory service charges added to a bill are not tips. The deduction is not available to married people filing separately.</p>
+        <p>Tips are still wages for Social Security and Medicare, so ${pct(fica.socialSecurity.employeeRate + fica.medicare.employeeRate)} still comes out. Mandatory service charges added to a bill are not tips. The deduction is not available to married people filing separately.</p>
+        <p><strong>State income tax:</strong> ${tipsOvertimeSentence(ctx)}</p>
         <p>The <a href="/guides/no-tax-on-tips/">guide to the tips deduction</a> explains who qualifies.</p>`,
       faqs: [
         ["Are tips tax free in 2026?", "Up to $25,000 of qualified tips can be deducted from federal taxable income. Social Security and Medicare still apply to every dollar of tips, and most states still tax them."],
         ["Do I still have to report my tips?", "Yes. Tips must still be reported to your employer and on your tax return. The deduction is claimed on the return."],
-        ["Does my state tax tips?", "Most states that have an income tax still tax tips. The calculator applies a state deduction only where state law provides one."],
+        ["Does my state tax tips?", tipsOvertimeSentence(ctx)],
       ],
     },
     {

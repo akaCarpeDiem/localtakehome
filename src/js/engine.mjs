@@ -682,8 +682,15 @@ export function stateIncomeTax(state, ctx) {
     },
   };
 
-  // Deductions that follow the federal return in this state.
-  if (p.tipsOvertimeFollowFederal && (ctx.federalWorkerDeduction || 0) > 0) c.subtract("Tips and overtime deducted on the federal return", ctx.federalWorkerDeduction);
+  // Tips and overtime: states that follow the federal deductions, and states with an exclusion of their own.
+  const fedTips = ctx.federalWorker?.tips || 0;
+  const fedOvertime = ctx.federalWorker?.overtime || 0;
+  const followTips = p.tipsOvertimeFollowFederal || p.tipsFollowFederal;
+  const followOvertime = p.tipsOvertimeFollowFederal || p.overtimeFollowFederal;
+  if (followTips && fedTips > 0) c.subtract("Tips deducted on the federal return", fedTips);
+  if (followOvertime && fedOvertime > 0) c.subtract("Overtime premium deducted on the federal return", fedOvertime);
+  if (p.ownTipsMax > 0 && (ctx.tips || 0) > 0) c.subtract(`Tips exclusion (up to ${dollars(p.ownTipsMax)})`, Math.min(p.ownTipsMax, ctx.tips));
+  if (p.ownOvertimeMax > 0 && c.overtimePremium > 0) c.subtract(`Overtime exclusion (up to ${dollars(p.ownOvertimeMax)})`, Math.min(p.ownOvertimeMax, c.overtimePremium));
 
   if (ex) {
     let personal = ex[status] ?? ex.single ?? 0;
@@ -1114,7 +1121,8 @@ export function calculateTakeHome(raw, tables) {
       federalTax: federalDetail.tax,
       federal,
       overtimePremium,
-      federalWorkerDeduction: workerDeduction,
+      tips: input.tipsAnnual,
+      federalWorker: worker,
     });
     stateIncome = money(computed.tax);
     stateTaxable = money(computed.taxable);

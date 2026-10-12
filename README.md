@@ -18,7 +18,7 @@ Read AGENTS.md first. It has the rules for what must not change.
 | `scripts/lib/` | The page frame (`layout.mjs`: head, header, footer, GA and AdSense tags) and shared helpers. |
 | `scripts/pages/` | One builder per kind of page: home, tools, states, cities, salaries and hourly wages, guides, info pages. |
 | `scripts/content/cities.mjs` | The list of city and county pages. |
-| `scripts/deploy.sh`, `scripts/compare-live.sh` | Deploy with wrangler; compare `build/out` with the live site byte for byte. |
+| `scripts/deploy.sh`, `scripts/check-live.mjs`, `scripts/compare-live.sh` | Deploy with wrangler; check a deployed copy; compare `build/out` with the live site byte for byte. |
 | `functions/_middleware.ts` | A Pages Function that 301s www to the apex and returns 404 for `/.publish/*`. |
 | `tests/engine.test.mjs` | Engine and data tests with hand-worked expected values. |
 | `tests/build.test.mjs` | Builds the site and checks it: old URLs still exist, required tags on every page, figures match the engine, repeatable output. |
@@ -30,7 +30,8 @@ Read AGENTS.md first. It has the rules for what must not change.
 npm ci                    # installs wrangler only (the site has no runtime dependencies)
 npm test                  # engine tests, then a full build and checks on the output
 npm run build             # -> build/out (deploy folder) + build/functions
-npm run compare-live      # build/out vs https://localtakehome.com
+npm run check-live -- https://preview.localtakehome.pages.dev   # read-only checks on a deployed copy
+npm run compare-live      # build/out vs https://localtakehome.com, byte for byte
 npm run deploy:preview    # preview deploy (needs CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID)
 npm run deploy            # PRODUCTION; only with the owner's go-ahead
 ```

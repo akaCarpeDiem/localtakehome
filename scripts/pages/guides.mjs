@@ -1,6 +1,6 @@
 /** Guides. Every figure comes from the rate files or the engine. */
 import { faqHTML, faqLd } from "../lib/layout.mjs";
-import { bracketRows, cardGrid, esc, longDate, pct, rateLabel, sourcesList, statePath, topRate, usd, usd0 } from "../lib/shared.mjs";
+import { bracketRows, cardGrid, esc, longDate, pct, rateLabel, sourcesList, statePath, tipsOvertimeSentence, topRate, usd, usd0 } from "../lib/shared.mjs";
 import { renderLines } from "../../src/js/view.mjs";
 import { rankStates } from "../../src/js/tools.mjs";
 
@@ -229,7 +229,9 @@ export function guidePages(ctx) {
             <li><strong>Not available</strong> to married people who file separately.</li>
           </ul>
           <h2>What it does not cover</h2>
-          <p>Social Security and Medicare (${pct(fica.socialSecurity.employeeRate + fica.medicare.employeeRate)}) still apply to all overtime pay. Most states still tax overtime in full, though a few have their own rules: Alabama, for example, lets workers deduct up to $1,000 of overtime premium pay for 2026 through 2028.</p>
+          <p>Social Security and Medicare (${pct(fica.socialSecurity.employeeRate + fica.medicare.employeeRate)}) still apply to all overtime pay.</p>
+          <h2>What about state income tax?</h2>
+          <p>It depends on the state. ${tipsOvertimeSentence(ctx)} The calculator applies each state's rule.</p>
           <h2>A worked example</h2>
           <p>Someone earning $28 an hour who works 8 hours of overtime every week earns ${usd0(on.annual.gross)} a year, of which ${usd0(on.annual.overtimePremium)} is overtime premium. Deducting it lowers federal income tax from ${usd0(off.annual.federalIncome)} to ${usd0(on.annual.federalIncome)}: a saving of <strong>${usd0(off.annual.federalIncome - on.annual.federalIncome)}</strong> for the year.</p>
           <h2>Will I see it in my paycheck?</h2>
@@ -237,7 +239,8 @@ export function guidePages(ctx) {
           <p><a class="btn ghost" href="/overtime-calculator/">Work out your own overtime</a></p>
           </div>`,
         faqs: [
-          ["Is overtime tax free in 2026?", `No. Up to ${usd0(wd.overtimeMax.single)} of overtime premium pay (${usd0(wd.overtimeMax.mfj)} joint) can be deducted from federal taxable income. Social Security, Medicare and most state taxes still apply.`],
+          ["Is overtime tax free in 2026?", `No. Up to ${usd0(wd.overtimeMax.single)} of overtime premium pay (${usd0(wd.overtimeMax.mfj)} joint) can be deducted from federal taxable income. Social Security and Medicare still apply, and so does state income tax in most states.`],
+          ["Which states do not tax overtime?", tipsOvertimeSentence(ctx)],
           ["How long does the overtime deduction last?", "It applies to tax years 2025 through 2028."],
           ["Do salaried workers qualify?", "Only for overtime pay that federal law requires their employer to pay. Salaried employees who are exempt from overtime rules do not receive qualifying overtime pay."],
         ],
@@ -270,7 +273,9 @@ export function guidePages(ctx) {
             <li><strong>Not available</strong> to married people who file separately.</li>
           </ul>
           <h2>What is still taxed</h2>
-          <p>Tips remain wages for Social Security and Medicare, so ${pct(fica.socialSecurity.employeeRate + fica.medicare.employeeRate)} still comes out. Most states with an income tax still tax tips. Tips must still be reported to your employer.</p>
+          <p>Tips remain wages for Social Security and Medicare, so ${pct(fica.socialSecurity.employeeRate + fica.medicare.employeeRate)} still comes out. Tips must still be reported to your employer.</p>
+          <h2>What about state income tax?</h2>
+          <p>It depends on the state. ${tipsOvertimeSentence(ctx)} The calculator applies each state's rule.</p>
           <h2>A worked example</h2>
           <p>A server with ${usd0(24000)} in wages and ${usd0(22000)} in tips has ${usd0(on.annual.gross)} of income. Without the deduction, federal income tax would be ${usd0(off.annual.federalIncome)}. With it, ${usd0(on.annual.federalIncome)}: a saving of <strong>${usd0(off.annual.federalIncome - on.annual.federalIncome)}</strong>. Social Security and Medicare take ${usd0(on.annual.socialSecurity + on.annual.medicare)} either way.</p>
           <p><a class="btn ghost" href="/no-tax-on-tips-calculator/">Work out your own tips</a></p>
@@ -278,6 +283,7 @@ export function guidePages(ctx) {
         faqs: [
           ["Are tips taxed in 2026?", `Up to ${usd0(wd.tipsMax)} of qualified tips can be deducted from federal taxable income. Social Security and Medicare still apply, and so does state income tax in most states.`],
           ["Do I need to report tips if they are deductible?", "Yes. Report them as before. The deduction is claimed on your tax return."],
+          ["Which states do not tax tips?", tipsOvertimeSentence(ctx)],
           ["Is a service charge a tip?", "No. An amount the business adds to the bill automatically is a service charge, not a tip, and does not qualify."],
         ],
         sources: wd.sources,

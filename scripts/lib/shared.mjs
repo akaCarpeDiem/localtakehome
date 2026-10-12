@@ -171,3 +171,21 @@ export function cardGrid(items) {
 export function linkList(items, cls = "link-cloud") {
   return `<p class="${cls}">${items.map((item) => `<a href="${item.href}">${esc(item.label)}</a>`).join(" ")}</p>`;
 }
+
+/** How each state treats the federal tips and overtime deductions, as a sentence built from the rate file. */
+export function tipsOvertimeSentence(ctx) {
+  const list = (names) => (names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names.at(-1)}` : names[0] || "");
+  const label = (state) => `${state.name}${state.params?.tipsOvertimeYears && state.params.tipsOvertimeYears !== "2026 to 2028" ? ` (${state.params.tipsOvertimeYears})` : ""}`;
+  const taxed = ctx.states.filter((state) => state.wageTax);
+  const both = taxed.filter((state) => state.params?.tipsOvertimeFollowFederal).map(label);
+  const tipsOnly = taxed.filter((state) => state.params?.tipsFollowFederal && !state.params?.tipsOvertimeFollowFederal).map(label);
+  const own = taxed.filter((state) => state.params?.ownTipsMax || state.params?.ownOvertimeMax);
+  const overtimeOnly = taxed.filter((state) => state.params?.overtimePremiumDeductionMax);
+  const parts = [];
+  if (both.length) parts.push(`${list(both)} also take the federal deductions for tips and overtime off state taxable income.`);
+  if (tipsOnly.length) parts.push(`${list(tipsOnly)} ${tipsOnly.length > 1 ? "follow" : "follows"} the tips deduction but taxes overtime in full.`.replace("follow the tips deduction but taxes", "follow the tips deduction but tax"));
+  for (const state of own) parts.push(`${state.name} excludes up to ${usd0(state.params.ownTipsMax)} of tips and up to ${usd0(state.params.ownOvertimeMax)} of overtime premium pay.`);
+  for (const state of overtimeOnly) parts.push(`${state.name} lets you deduct up to ${usd0(state.params.overtimePremiumDeductionMax)} of overtime premium pay.`);
+  parts.push("Every other state with an income tax still taxes tips and overtime in full.");
+  return parts.join(" ");
+}

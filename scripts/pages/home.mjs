@@ -16,9 +16,9 @@ export function homePages(ctx) {
   const faqs = [
     ["Is my salary sent anywhere?", "No. The tax tables load with the page and all of the arithmetic happens in your browser. Your last inputs are remembered on your own device so they are there next time, and you can clear them with one click."],
     ["Is this my exact paycheck?", "It is a close estimate, not a copy of your pay stub. It works out the tax for the whole year and spreads it evenly across your paychecks, which is how withholding is designed to work. Your employer's payroll system, your W-4 and benefits this page does not know about can move the real figure by a few dollars."],
-    ["Why is local tax sometimes zero?", `Local income tax is added only when you choose a city or county, or type in your own local percentage. The calculator covers ${localCount} local income taxes in ${localStates} states and the District of Columbia. It never guesses a rate for a place it does not have.`],
+    ["Why is local tax sometimes zero?", `Local income tax is added only when you choose a city or county, or type in your own local percentage. The calculator covers ${localCount} local income taxes in ${localStates} states. It never guesses a rate for a place it does not have.`],
     ["Does a 401(k) lower Social Security and Medicare?", "No. A traditional 401(k) lowers federal income tax and, in most states, state income tax. Social Security and Medicare are still charged on the full amount. Health insurance premiums and HSA contributions taken through your employer do lower them."],
-    ["Does it include the new deductions for tips and overtime?", "Yes. From 2025 through 2028 you can deduct up to $25,000 of tips and up to $12,500 of overtime premium pay ($25,000 on a joint return) from federal taxable income. Enter tips or overtime and the deduction is applied. You can switch it off to see the difference."],
+    ["Does it include the new deductions for tips and overtime?", "Yes. From 2025 through 2028 you can deduct up to $25,000 of tips and up to $12,500 of overtime premium pay ($25,000 on a joint return) from federal taxable income. Enter tips or overtime and the deduction is applied, along with your state's own rule where it has one. You can switch it off to see the difference."],
     ["Why do two calculators give different answers?", "Some copy the withholding tables employers use, some spread the year's tax evenly as this one does, and many skip city taxes or use last year's state rates. This site shows the working for every line, links the official source for every rate, and dates each check."],
     ["I work in New York City but live in New Jersey. Do I pay the city tax?", "No. New York City income tax is charged to people who live in the five boroughs. Choose your home state and leave the city unselected. You may still owe New York State tax on wages earned there, which this estimate does not work out."],
     ["Why is so much taken from my bonus?", "Employers usually withhold federal tax from bonuses at a flat 22%, plus Social Security, Medicare and state tax. That is a withholding rule, not a higher tax on bonuses. If 22% is more than the bonus really adds to your tax, the difference comes back as a refund."],
@@ -55,7 +55,7 @@ export function homePages(ctx) {
     ld: [faqLd(faqs)],
     body: `<div class="wrap page">
     <header class="mast">
-      <p class="kicker">Tax year 2026 · all 50 states and D.C.</p>
+      <p class="kicker">2026 paycheck calculator · all 50 states and D.C.</p>
       <h1>What do you actually take home?</h1>
       <p class="lede">Enter your pay and where you live. See every tax line on your paycheck, including the city and county taxes most calculators skip.</p>
       <p class="mast-note"><span>Runs in your browser. Nothing you type is uploaded.</span><span>Rates checked against official sources on ${ctx.verifiedLong}.</span></p>

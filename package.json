@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node --test tests/engine.test.mjs tests/build.test.mjs",
     "build": "node scripts/build.mjs",
+    "check-live": "node scripts/check-live.mjs",
     "compare-live": "bash scripts/compare-live.sh",
     "deploy:preview": "bash scripts/deploy.sh preview",
     "deploy": "bash scripts/deploy.sh main"

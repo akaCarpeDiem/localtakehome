@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { EMAIL_LINK, SITE } from "../lib/layout.mjs";
-import { bracketRows, esc, longDate, pct, rateLabel, sourcesList, statePath, usd, usd0 } from "../lib/shared.mjs";
+import { bracketRows, esc, longDate, pct, rateLabel, sourcesList, statePath, tipsOvertimeSentence, usd, usd0 } from "../lib/shared.mjs";
 import { ROOT } from "../lib/tables.mjs";
 import { stateOptions } from "../../src/js/calc-form.mjs";
 
@@ -117,6 +117,7 @@ function methodology(ctx) {
       <h2 id="states">State income tax</h2>
       <p>${esc(tables.states.method)}</p>
       <p>Each state page sets out that state's deduction, exemptions, brackets and any special rule, such as Oregon's subtraction for federal tax, Connecticut's and New York's recapture of lower-bracket benefits at higher incomes, Wisconsin's sliding standard deduction, or Alabama's and Missouri's deduction for federal income tax. Head of household uses the state's own schedule wherever it has one.</p>
+      <p><strong>Tips and overtime.</strong> ${tipsOvertimeSentence(ctx)}</p>
     </div>
     <div class="table-wrap"><table><thead><tr><th scope="col">State</th><th scope="col">2026 rates</th><th scope="col">Status</th><th scope="col">Last checked</th><th scope="col">Sources</th></tr></thead><tbody>${stateRows}</tbody></table></div>
     <div class="prose">

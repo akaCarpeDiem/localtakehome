@@ -15,7 +15,7 @@ adopted are the ones in `src/data/*.json`, each with its own source link.
 - South Carolina: whether a dependent exemption survives Act 110 (none is applied).
 - California: the exemption-credit phase-out at high incomes is not calculated.
 - Minnesota Paid Leave: rate taken from a secondary source.
-- State treatment of the federal tips and overtime deductions: applied only for Arizona, and Alabama's own $1,000 overtime deduction. Other states are assumed to tax tips and overtime in full.
+- State treatment of the federal tips and overtime deductions (second pass, October 11): official sources for Arizona, Iowa, Michigan (2026 to 2028), Indiana (2026 only) and Alabama; secondary sources agreeing for Idaho (HB 559), Montana, North Dakota and Oregon (SB 1507), Colorado (tips only; overtime added back from 2026, HB 25-1296) and Georgia ($1,750 each, HB 463). All other states are treated as taxing tips and overtime in full.
 - Michigan cities other than Detroit: the city's personal exemption amount is not applied.
 - Wilmington, Delaware: charged on gross wages (the city's own definition was not found).
 

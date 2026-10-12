@@ -99,7 +99,9 @@ export function mountCalculator(root, options = {}) {
       // A page about one place keeps its place; the rest of what you typed last time comes back.
       const lastValues = fromQuery(new URLSearchParams(last.q));
       values = preset.state ? { ...lastValues, state: preset.state, local: preset.local || "", lives: preset.lives !== false, custom: "", workState: "" } : lastValues;
-      if (preset.payType && !num(lastValues.gross) && !num(lastValues.rate)) values.payType = preset.payType;
+      // A page about hourly pay opens in hourly mode even if a salary was typed last time.
+      if (preset.payType) values.payType = preset.payType;
+      if (preset.openW4) values.openW4 = true;
       restored = !isBlank(values);
     } else values = defaults(preset);
   }
@@ -372,6 +374,16 @@ export function mountCalculator(root, options = {}) {
       out.querySelector(`[data-view="${ui.view}"]`)?.focus();
     } else if (target.matches("[data-copy-link]")) {
       const link = `${location.origin}${location.pathname}?${toQuery(readForm(form, ui.blocksOn)).toString()}`;
+      // Phones get their own share sheet; everything else copies the link.
+      const touch = window.matchMedia("(pointer: coarse)").matches;
+      if (touch && navigator.share) {
+        try {
+          await navigator.share({ title: document.title, text: `Take-home pay estimate: ${usd(ui.last.periodNet)} per paycheck`, url: link });
+          return;
+        } catch (error) {
+          if (error?.name === "AbortError") return;
+        }
+      }
       try {
         await navigator.clipboard.writeText(link);
         showToast("Link copied. Anyone who opens it sees these inputs.");

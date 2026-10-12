@@ -348,6 +348,43 @@ test("Arizona follows the federal overtime deduction", () => {
   near(r.annual.stateIncome, 1361.25);
 });
 
+test("states that follow the federal tips and overtime deductions", () => {
+  // $30 x 40 x 52 = 62,400 plus 5 h x $45 x 52 = 11,700 of overtime: 74,100, of which 3,900 is premium.
+  const hourly = { payType: "hourly", hourlyRate: 30, hoursPerWeek: 40, overtimeHoursPerWeek: 5 };
+  // Oregon: 74,100 - 2,910 - 6,614 federal tax - 3,900 = 60,676.
+  // 216.13 + 462.38 + 8.75% x 49,276 (4,311.65) = 4,990.15, less the $263 credit.
+  near(calc({ ...hourly, state: "OR" }).annual.stateIncome, 4727.15, 0.02);
+  // Indiana (2026 only), and its counties: (74,100 - 1,000 - 3,900) = 69,200 at 2.95% and Marion County's 2.02%.
+  const indiana = calc({ ...hourly, state: "IN", localId: "marion-in" });
+  near(indiana.annual.stateIncome, 2041.4);
+  near(indiana.annual.local, 1397.84);
+  // Switching the federal deductions off removes the state deduction too.
+  near(calc({ ...hourly, state: "IN", workerDeductions: false }).annual.stateIncome, 73100 * 0.0295);
+  for (const id of ["AZ", "ID", "IA", "MI", "MT", "ND", "OR", "IN"]) {
+    const withIt = calc({ ...hourly, state: id }).annual.stateIncome;
+    const without = calc({ ...hourly, state: id, workerDeductions: false }).annual.stateIncome;
+    assert.ok(withIt < without, `${id} should tax less when the overtime premium is deducted`);
+  }
+  // A state that does not follow: the same tax either way.
+  assert.equal(calc({ ...hourly, state: "IL" }).annual.stateIncome, calc({ ...hourly, state: "IL", workerDeductions: false }).annual.stateIncome);
+});
+
+test("Colorado follows the tips deduction but not the overtime one", () => {
+  // 74,100 of wages (3,900 overtime premium) plus 5,000 of tips = 79,100.
+  // Colorado taxable income: 79,100 - 16,100 - 5,000 tips = 58,000 at 4.4%.
+  const r = calc({ payType: "hourly", hourlyRate: 30, hoursPerWeek: 40, overtimeHoursPerWeek: 5, tipsAnnual: 5000, state: "CO" });
+  near(r.annual.stateTaxable, 58000);
+  near(r.annual.stateIncome, 2552);
+});
+
+test("Georgia excludes up to $1,750 of tips and $1,750 of overtime premium", () => {
+  // 30,000 wages + 10,000 tips: 40,000 - 15,000 - 1,750 = 23,250 at 4.99%.
+  near(calc({ grossAnnual: 30000, tipsAnnual: 10000, state: "GA" }).annual.stateIncome, 23250 * 0.0499);
+  // Overtime premium of 3,900: only 1,750 comes off.
+  const r = calc({ payType: "hourly", hourlyRate: 30, hoursPerWeek: 40, overtimeHoursPerWeek: 5, state: "GA" });
+  near(r.annual.stateTaxable, 74100 - 15000 - 1750);
+});
+
 test("Colorado caps the deduction above $300,000", () => {
   near(stateTax("CO", 400000), 17072); // (400,000 - 12,000) x 4.4%
 });
