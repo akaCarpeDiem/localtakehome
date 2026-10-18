@@ -7,7 +7,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"; OUT="$ROOT/build/out"; BASE=${1:-https
 test -d "$OUT" || { echo "run scripts/build.sh first"; exit 2; }
 tmp=$(mktemp); ok=0; bad=0
 while IFS= read -r f; do
-  rel=${f#"$OUT"}; case "$rel" in /_headers) continue;; esac
+  rel=${f#"$OUT"}; case "$rel" in /_headers|/_routes.json) continue;; esac
   url="$BASE${rel%index.html}"; want=200
   # Pages 308s /404.html; the 404 page is what a missing path serves
   [ "$rel" = "/404.html" ] && { url="$BASE/__compare-live-missing-page__"; want=404; }
