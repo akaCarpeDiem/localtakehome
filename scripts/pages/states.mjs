@@ -3,6 +3,7 @@ import { faqHTML, faqLd } from "../lib/layout.mjs";
 import { NEIGHBORS, STATE_SALARY_PAGES, calculatorBlock, esc, linkList, longDate, pct, rateLabel, salaryPath, sourcesList, stateBracketTables, statePath, takeHomeTable, usd, usd0 } from "../lib/shared.mjs";
 import { CITY_BY_LOCAL, citiesInState, cityPath } from "../content/cities.mjs";
 import { rankStates } from "../../src/js/tools.mjs";
+import { stateExplainer } from "../content/state-explainers.mjs";
 
 const STATUS_NAMES = { single: "single", mfj: "married filing jointly", hoh: "head of household", mfs: "married filing separately" };
 
@@ -153,6 +154,8 @@ function statePage(ctx, state, rankAt) {
             .join(", ")}. They are added only when you choose one.`
         : `Not in this calculator. If your city or county charges one, you can enter the percentage yourself.`,
   ]);
+  const explainer = stateExplainer(ctx, state);
+  if (explainer.faq) faqs.push(explainer.faq);
   if (programs.length) {
     faqs.push([`What else comes out of a paycheck in ${the}?`, `${programs.map((row) => `${row.name} (${pct(row.employeeRate, 4)})`).join(", ")}. ${programs.length > 1 ? "These are" : "This is"} separate from income tax and shown as ${programs.length > 1 ? "their own lines" : "its own line"}.`]);
   }
@@ -178,6 +181,11 @@ function statePage(ctx, state, rankAt) {
     ${calculatorBlock(ctx, { state: state.id }, { examples: false })}
     <div class="below">
       ${kpis}
+      <section class="prose" id="how-${state.id.toLowerCase()}-taxes-pay">
+        <h2>How ${esc(the)} taxes your paycheck</h2>
+        ${explainer.html}
+        <p class="fine">More on how the numbers are worked out: <a href="/methodology/">our method and sources</a> · <a href="/guides/local-income-taxes/">why local taxes matter</a></p>
+      </section>
       <section>
         <h2>Take-home pay in ${esc(the)} by salary</h2>
         ${takeHomeTable(ctx, { state: state.id }, { link: (amount) => (STATE_SALARY_PAGES.includes(amount) ? salaryPath(amount, state) : salaryPath(amount)), amounts: [30000, 40000, 50000, 60000, 75000, 100000, 150000, 200000], caption: "Single filer, no dependents, no retirement or benefit deductions. Tax year 2026." })}

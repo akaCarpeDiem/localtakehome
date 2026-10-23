@@ -18,10 +18,10 @@ export function homePages(ctx) {
     ["Is this my exact paycheck?", "It is a close estimate, not a copy of your pay stub. It works out the tax for the whole year and spreads it evenly across your paychecks, which is how withholding is designed to work. Your employer's payroll system, your W-4 and benefits this page does not know about can move the real figure by a few dollars."],
     ["Why is local tax sometimes zero?", `Local income tax is added only when you choose a city or county, or type in your own local percentage. The calculator covers ${localCount} local income taxes in ${localStates} states. It never guesses a rate for a place it does not have.`],
     ["Does a 401(k) lower Social Security and Medicare?", "No. A traditional 401(k) lowers federal income tax and, in most states, state income tax. Social Security and Medicare are still charged on the full amount. Health insurance premiums and HSA contributions taken through your employer do lower them."],
-    ["Does it include the new deductions for tips and overtime?", "Yes. From 2025 through 2028 you can deduct up to $25,000 of tips and up to $12,500 of overtime premium pay ($25,000 on a joint return) from federal taxable income. Enter tips or overtime and the deduction is applied, along with your state's own rule where it has one. You can switch it off to see the difference."],
+    ["Does it include the new deductions for tips and overtime?", `Yes. From 2025 through 2028 you can deduct up to ${usd0(fed.workerDeductions.tipsMax)} of tips and up to ${usd0(fed.workerDeductions.overtimeMax.single)} of overtime premium pay (${usd0(fed.workerDeductions.overtimeMax.mfj)} on a joint return) from federal taxable income. Enter tips or overtime and the deduction is applied, along with your state's own rule where it has one. You can switch it off to see the difference.`],
     ["Why do two calculators give different answers?", "Some copy the withholding tables employers use, some spread the year's tax evenly as this one does, and many skip city taxes or use last year's state rates. This site shows the working for every line, links the official source for every rate, and dates each check."],
     ["I work in New York City but live in New Jersey. Do I pay the city tax?", "No. New York City income tax is charged to people who live in the five boroughs. Choose your home state and leave the city unselected. You may still owe New York State tax on wages earned there, which this estimate does not work out."],
-    ["Why is so much taken from my bonus?", "Employers usually withhold federal tax from bonuses at a flat 22%, plus Social Security, Medicare and state tax. That is a withholding rule, not a higher tax on bonuses. If 22% is more than the bonus really adds to your tax, the difference comes back as a refund."],
+    ["Why is so much taken from my bonus?", `Employers usually withhold federal tax from bonuses at a flat ${pct(fed.limits.supplementalWithholdingRate)}, plus Social Security, Medicare and state tax. That is a withholding rule, not a higher tax on bonuses. If ${pct(fed.limits.supplementalWithholdingRate)} is more than the bonus really adds to your tax, the difference comes back as a refund. The <a href="/guides/bonus-tax-withholding/">bonus withholding guide</a> explains it.`],
     ["Do states with no income tax take nothing from a paycheck?", `No. Federal income tax, Social Security (${pct(fica.socialSecurity.employeeRate)} up to ${usd0(fica.socialSecurity.wageBase)}) and Medicare (${pct(fica.medicare.employeeRate)}) apply everywhere. A few states without an income tax still take small payroll premiums, such as Washington's paid leave and long-term care programs.`],
   ];
 
@@ -29,6 +29,65 @@ export function homePages(ctx) {
   const popularStates = ["CA", "TX", "FL", "NY", "PA", "IL", "OH", "GA", "NC", "MI", "NJ", "VA", "WA", "AZ", "MA"].map((id) => ({ href: statePath(ctx.byId[id]), label: ctx.byId[id].name }));
   const salaries = [40000, 50000, 60000, 75000, 100000, 150000].map((amount) => ({ href: salaryPath(amount), label: `${usd0(amount)} after taxes` }));
   const single = fed.brackets.single;
+
+  /* Why a local calculator: the same salary in the same state, different places. */
+  const range = (stateId, field = "residentRate") => {
+    const vals = ctx.locals.filter((row) => row.state === stateId && typeof row[field] === "number").map((row) => row[field]);
+    return [Math.min(...vals), Math.max(...vals)];
+  };
+  const localById = (id) => ctx.locals.find((row) => row.id === id);
+  const inRange = range("IN");
+  const mdRange = range("MD");
+  const inLow = ctx.locals.filter((row) => row.state === "IN").find((row) => row.residentRate === inRange[0]);
+  const inHigh = ctx.locals.filter((row) => row.state === "IN").find((row) => row.residentRate === inRange[1]);
+  const mdLow = ctx.locals.filter((row) => row.state === "MD" && typeof row.residentRate === "number").find((row) => row.residentRate === mdRange[0]);
+  const mdHigh = ctx.locals.filter((row) => row.state === "MD" && typeof row.residentRate === "number").find((row) => row.residentRate === mdRange[1]);
+  const placeName = (row) => row.name.replace(/, (Indiana|Maryland|Ohio|Missouri|Delaware)$/, "");
+  const pairs = [
+    { state: "NY", a: null, aLabel: "Albany, Buffalo or anywhere outside New York City", b: "nyc", bLabel: "New York City resident" },
+    { state: "PA", a: "pittsburgh", aLabel: "Pittsburgh resident", b: "philadelphia", bLabel: "Philadelphia resident" },
+    { state: "MI", a: null, aLabel: "Most of Michigan (no city income tax)", b: "detroit", bLabel: "Detroit resident" },
+    { state: "MD", a: mdLow.id, aLabel: `${placeName(mdLow)} resident`, b: mdHigh.id, bLabel: `${placeName(mdHigh)} resident` },
+    { state: "IN", a: inLow.id, aLabel: `${placeName(inLow)} resident`, b: inHigh.id, bLabel: `${placeName(inHigh)} resident` },
+    { state: "MO", a: null, aLabel: "Springfield or anywhere outside the two cities", b: "kansas-city-mo", bLabel: "Kansas City resident" },
+  ];
+  const pairRows = pairs
+    .map((pair) => {
+      const a = run({ grossAnnual: 85000, state: pair.state, ...(pair.a ? { localId: pair.a } : {}) });
+      const b = run({ grossAnnual: 85000, state: pair.state, localId: pair.b });
+      const gap = a.annual.net - b.annual.net;
+      return `<tr><th scope="row"><a href="${statePath(ctx.byId[pair.state])}">${ctx.byId[pair.state].name}</a></th><td>${pair.aLabel}<br><small>${usd0(a.annual.local)} local tax · keeps ${usd0(a.annual.net)}</small></td><td>${pair.bLabel}<br><small>${usd0(b.annual.local)} local tax · keeps ${usd0(b.annual.net)}</small></td><td class="num">${usd0(Math.abs(gap))}</td></tr>`;
+    })
+    .join("");
+  const nycRates = localById("nyc").brackets.single;
+  const why = `<section class="prose wide explainer" id="why-local">
+    <div class="prose">
+      <h2>Why you need a paycheck calculator that knows your city</h2>
+      <p>Most paycheck calculators stop at the state line. They take your salary, subtract federal tax, Social Security, Medicare and one state income tax, and call the result your take-home pay. For many people that is wrong, because <strong>in a large part of the country the city, county or school district you live or work in takes its own share of your wages.</strong></p>
+      <p>Local income taxes are not rare. The <a href="https://taxfoundation.org/research/all/state/local-income-taxes-2023/" rel="noopener">Tax Foundation</a> counts them in 17 states, levied by thousands of cities, counties, school districts and special districts. They go by different names: wage tax, earnings tax, earned income tax (EIT), occupational license tax, occupational privilege tax, or simply city or county income tax. Each sets its own rate, decides whether it taxes residents, commuters or both, and decides which part of your pay counts. So two people with the same salary in the same state can take home very different amounts, and moving a few miles can change your paycheck by hundreds or thousands of dollars a year.</p>
+      <h3>Same salary, same state, different take-home</h3>
+      <p>Each row compares two single people earning ${usd0(85000)} a year in the same state, with the same federal and state tax. The only difference is the local tax where they live.</p>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th scope="col">State</th><th scope="col">Lives in</th><th scope="col">Lives in</th><th scope="col" class="num">Difference a year</th></tr></thead><tbody>${pairRows}</tbody></table></div>
+    <div class="prose">
+      <h3>Where local wage taxes show up</h3>
+      <ul>
+        <li><strong>New York:</strong> New York City residents pay a city income tax of ${pct(nycRates[0].rate, 3)} to ${pct(nycRates[nycRates.length - 1].rate, 3)} on top of state tax. Yonkers adds a resident surcharge and a tax on people who work there.</li>
+        <li><strong>Pennsylvania:</strong> almost every municipality and school district charges a local earned income tax. Philadelphia's wage tax is ${pct(localById("philadelphia").residentRate, 3)} for residents, and Pittsburgh-area residents pay ${pct(localById("pittsburgh").residentRate)} combined.</li>
+        <li><strong>Ohio:</strong> hundreds of cities and villages, including Columbus, Cleveland and Cincinnati, tax wages, and many school districts add their own income tax.</li>
+        <li><strong>Maryland and Indiana:</strong> every county charges an income tax, from ${pct(mdRange[0])} to ${pct(mdRange[1])} in Maryland and ${pct(inRange[0])} to ${pct(inRange[1])} in Indiana.</li>
+        <li><strong>Michigan:</strong> about two dozen cities tax income, led by Detroit at ${pct(localById("detroit").residentRate)} for residents.</li>
+        <li><strong>Kentucky:</strong> many cities and counties charge an occupational license tax on wages earned there, such as Louisville at ${pct(localById("louisville-ky").residentRate)} for residents.</li>
+        <li><strong>Missouri:</strong> Kansas City and St. Louis charge a ${pct(localById("kansas-city-mo").residentRate)} earnings tax on residents and commuters.</li>
+        <li><strong>Oregon:</strong> Portland-area residents with higher incomes owe Metro and Multnomah County income taxes, and every worker pays the statewide transit tax.</li>
+        <li><strong>Delaware, Colorado and Alabama:</strong> Wilmington has a ${pct(localById("wilmington-de").residentRate)} wage tax, Denver and a few nearby cities charge a flat monthly occupational privilege tax, and Birmingham and other Alabama cities charge occupational taxes.</li>
+        <li><strong>Elsewhere:</strong> Iowa school districts add a surtax to state tax, some West Virginia cities charge weekly service fees, and Newark and Jersey City charge payroll taxes that employers pay.</li>
+      </ul>
+      <h3>What this calculator does about it</h3>
+      <p>LocalTakehome includes ${localCount} city and county income taxes in ${localStates} states, each with its 2026 rate, its rules about who pays, and a link to the official source. Pick your place and the local tax appears as its own line, worked out on the right part of your pay. If your city is not on the list, open "W-4 and other details" and enter its rate. Nothing is ever guessed: a local tax is added only when you choose it.</p>
+      <p><a href="/local-taxes/">See every local tax in the calculator</a> · <a href="/guides/local-income-taxes/">Local income taxes explained</a> · <a href="/cities/">City paycheck calculators</a></p>
+    </div>
+  </section>`;
 
   const guide = `<section class="prose" id="how-it-works">
     <h2>How take-home pay is worked out in 2026</h2>
@@ -62,6 +121,7 @@ export function homePages(ctx) {
     </header>
     ${calculatorBlock(ctx)}
     <div class="below">
+      ${why}
       <section>
         <div class="section-head"><h2>More calculators</h2></div>
         ${cardGrid(tools)}

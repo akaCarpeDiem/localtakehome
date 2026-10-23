@@ -3,6 +3,7 @@ import { faqHTML, faqLd } from "../lib/layout.mjs";
 import { bracketRows, cardGrid, esc, longDate, pct, rateLabel, sourcesList, statePath, tipsOvertimeSentence, topRate, usd, usd0 } from "../lib/shared.mjs";
 import { renderLines } from "../../src/js/view.mjs";
 import { rankStates } from "../../src/js/tools.mjs";
+import { extraGuides } from "./guides-extra.mjs";
 
 function guide(ctx, def) {
   return {
@@ -457,7 +458,7 @@ export function guidePages(ctx) {
           <p>These lines are not income tax and are not reduced by the standard deduction. Most are charged on pay up to a yearly limit.</p>
           </div>`,
         faqs: [
-          ["What is SDI on my paycheck?", "State disability insurance. In California it is 1.3% of all pay in 2026 and also funds paid family leave."],
+          ["What is SDI on my paycheck?", `State disability insurance. In California it is ${pct(tables.payroll.programs.find((row) => row.id === "ca-sdi").employeeRate, 2)} of all pay in 2026 and also funds paid family leave.`],
           ["Do all states have paid family leave deductions?", "No. Only the states in the table take one from employees in this calculator."],
         ],
       }),
@@ -496,6 +497,8 @@ export function guidePages(ctx) {
       }),
     );
   }
+
+  guides.push(...extraGuides(ctx, guide));
 
   const index = {
     path: "/guides/",
