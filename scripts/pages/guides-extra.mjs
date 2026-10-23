@@ -44,10 +44,10 @@ export function extraGuides(ctx, guide) {
         title: "Local Income Taxes Explained: City and County Wage Taxes in 2026 | LocalTakehome",
         description: "How city, county and school district income taxes work in 2026: where they exist, who pays, what pay they apply to, and how they change take-home pay.",
         h1: "Local income taxes explained",
-        lede: "Federal and state income taxes get the attention, but in parts of at least 17 states a city, county or school district also taxes your wages. Here is how those local taxes work and how to tell whether you owe one.",
+        lede: "Federal and state income taxes get the attention, but in parts of more than a dozen states a city, county or school district also taxes your wages. Here is how those local taxes work and how to tell whether you owe one.",
         body: `<div class="prose">
           <h2>What a local income tax is</h2>
-          <p>A local income tax is a tax on earnings charged by a government smaller than a state: a city, a county, a school district, or a special district such as a transit authority. The <a href="https://taxfoundation.org/research/all/state/local-income-taxes-2023/" rel="noopener">Tax Foundation</a> counts local income taxes in 17 states, levied by thousands of separate jurisdictions. Most of them are in Pennsylvania and Ohio, where nearly every town or school district has one, but some of the largest are single cities: New York City, Philadelphia, Detroit, Kansas City and St. Louis.</p>
+          <p>A local income tax is a tax on earnings charged by a government smaller than a state: a city, a county, a school district, or a special district such as a transit authority. The <a href="https://taxfoundation.org/research/all/state/local-income-taxes-2023/" rel="noopener">Tax Foundation</a> counts local income taxes in more than a dozen states, levied by thousands of separate jurisdictions. Most of them are in Pennsylvania and Ohio, where nearly every town or school district has one, but some of the largest are single cities: New York City, Philadelphia, Detroit, Kansas City and St. Louis.</p>
           <p>For a worker, the important thing is that a local tax is a separate line on top of state tax. It is usually withheld by your employer along with federal and state tax, and it can be larger than the state tax itself. In Columbus, Ohio, for example, the city charges ${pct(cbus.residentRate)} of wages, which for many people is more than Ohio's state income tax.</p>
 
           <h2>The names they go by</h2>
