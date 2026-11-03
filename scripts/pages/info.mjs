@@ -296,6 +296,7 @@ function notFound(ctx) {
   return {
     path: "/404.html",
     noindex: true,
+    ads: false,
     title: "Page Not Found | LocalTakehome",
     description: "That page is not here, but the 2026 paycheck calculator is. Enter a salary and a state.",
     body: `<div class="wrap page prose">
