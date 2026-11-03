@@ -38,7 +38,7 @@ npm run deploy            # PRODUCTION; only with the owner's go-ahead
 
 Requirements: Node 20 or newer. Nothing else: the build uses no packages. Local preview: any static server pointed at `build/out`, for example `python3 -m http.server 5180 --directory build/out`.
 
-The build stops with a list of problems if a rate file fails its checks, a link is broken, a figure failed to compute, or a page is missing the analytics or AdSense tag. `LTH_DRAFT=1 npm run build` lets a half-finished site build while you are writing pages; never deploy a draft build.
+The build stops with a list of problems if a rate file fails its checks, a link is broken, a figure failed to compute, a page is missing the analytics tag, or a page other than the 404 is missing the AdSense tag. The 404 page must not load AdSense. `LTH_DRAFT=1 npm run build` lets a half-finished site build while you are writing pages; never deploy a draft build.
 
 ## What gets generated
 

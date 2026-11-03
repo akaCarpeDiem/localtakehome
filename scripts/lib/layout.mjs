@@ -4,7 +4,8 @@
  * Rules that must hold on every page (see AGENTS.md):
  *  - the Google Analytics tag is the first thing in <head>, exactly once, in
  *    its privacy-safe form (no query string is ever sent);
- *  - the AdSense script is in <head>; there are no fixed ad units;
+ *  - the AdSense script is in <head> unless the page sets ads: false (the 404);
+ *    there are no fixed ad units;
  *  - support@localtakehome.com is the only email, wrapped in email_off markers.
  */
 import { esc } from "../../src/js/format.mjs";
@@ -106,6 +107,7 @@ export function faqHTML(faqs, title = "Questions") {
  * @param {Array}  [page.trail]     breadcrumb items after Home
  * @param {Array}  [page.ld]        extra JSON-LD objects
  * @param {boolean}[page.noindex]
+ * @param {boolean}[page.ads]       false leaves the AdSense loader off this page
  * @param {object} assets           { css, js, preload[] } hashed paths
  */
 export function renderPage(page, assets) {
@@ -125,6 +127,8 @@ export function renderPage(page, assets) {
     ...(page.ld || []),
   ]);
   const preload = (assets.preload || []).map((href) => `<link rel="modulepreload" href="${href}">`).join("\n  ");
+  // ads: false leaves the AdSense loader off this page. The 404 page sets it.
+  const adsense = page.ads !== false ? `\n  ${ADSENSE_TAG}` : "";
 
   return `<!doctype html>
 <html lang="en">
@@ -152,8 +156,7 @@ ${GA_TAG}
   <link rel="preload" href="/fonts/source-serif-4-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/plex-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="${assets.css}">
-  ${preload}
-  ${ADSENSE_TAG}
+  ${preload}${adsense}
   ${ld}
 </head>
 <body data-page="${page.kind || "page"}">

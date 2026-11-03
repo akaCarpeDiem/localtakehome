@@ -97,6 +97,7 @@ write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="htt
 
 /* 7. checks on what was written */
 const problems = [];
+const skipAds = new Set(pages.filter((page) => page.ads === false).map((page) => (page.path.endsWith("/") ? `${page.path}index.html` : page.path)));
 const GA_START = '<head>\n<!-- Google tag (gtag.js) -->\n<script async src="https://www.googletagmanager.com/gtag/js?id=G-S9BK9NYDGC"></script>';
 const htmlFiles = [];
 (function walk(dir) {
@@ -118,7 +119,9 @@ for (const file of htmlFiles) {
   if (!html.includes(GA_START)) problems.push(`${rel}: the Google Analytics tag is not the first thing in <head>`);
   if (html.split("googletagmanager.com/gtag/js").length !== 2) problems.push(`${rel}: the Google Analytics tag must appear exactly once`);
   if (!html.includes("page_location: location.origin + location.pathname, page_referrer: document.referrer.split('?')[0]")) problems.push(`${rel}: the Google Analytics tag is not the privacy-safe version`);
-  if (html.split("adsbygoogle.js?client=ca-pub-4059575347806121").length !== 2) problems.push(`${rel}: the AdSense script must appear exactly once`);
+  if (skipAds.has(rel)) {
+    if (html.includes("pagead2.googlesyndication.com") || html.includes("ca-pub-4059575347806121")) problems.push(`${rel}: ads is false, so this page must not load AdSense`);
+  } else if (html.split("adsbygoogle.js?client=ca-pub-4059575347806121").length !== 2) problems.push(`${rel}: the AdSense script must appear exactly once`);
   if (/<ins class="adsbygoogle"/.test(html)) problems.push(`${rel}: fixed ad units are not allowed`);
   if (/\b(NaN|undefined|Infinity)\b/.test(html.replace(/<script[\s\S]*?<\/script>/g, ""))) problems.push(`${rel}: a figure did not compute (NaN or undefined in the page)`);
   for (const mail of html.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}/g) || []) if (mail !== SITE.email) problems.push(`${rel}: unexpected email address ${mail}`);

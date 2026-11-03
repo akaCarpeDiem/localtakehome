@@ -57,7 +57,7 @@ test("required files are present", () => {
   assert.ok(existsSync(join(root, "build", "functions", "_middleware.ts")));
 });
 
-test("every page starts <head> with the privacy-safe Google Analytics tag and carries the AdSense script once", () => {
+test("every page starts <head> with the privacy-safe Google Analytics tag, and only the 404 omits AdSense", () => {
   const files = [];
   (function walk(folder) {
     for (const name of readdirSync(folder)) {
@@ -69,9 +69,16 @@ test("every page starts <head> with the privacy-safe Google Analytics tag and ca
   assert.ok(files.length > 800);
   for (const file of files) {
     const html = readFileSync(file, "utf8");
+    const is404 = file.endsWith("/404.html");
     assert.ok(html.includes('<head>\n<!-- Google tag (gtag.js) -->\n<script async src="https://www.googletagmanager.com/gtag/js?id=G-S9BK9NYDGC"></script>'), `${file}: analytics tag is not first in head`);
     assert.ok(html.includes("gtag('config', 'G-S9BK9NYDGC', { page_location: location.origin + location.pathname, page_referrer: document.referrer.split('?')[0] });"), `${file}: analytics tag is not the privacy-safe one`);
-    assert.equal(html.split("adsbygoogle.js?client=ca-pub-4059575347806121").length, 2, `${file}: AdSense script count`);
+    if (is404) {
+      assert.equal(html.includes("pagead2.googlesyndication.com"), false, `${file}: 404 must not load the AdSense script`);
+      assert.equal(html.includes("ca-pub-4059575347806121"), false, `${file}: 404 must not include the AdSense client id`);
+      assert.match(html, /<meta name="robots" content="noindex,follow">/, `${file}: 404 keeps noindex`);
+    } else {
+      assert.equal(html.split("adsbygoogle.js?client=ca-pub-4059575347806121").length, 2, `${file}: AdSense script count`);
+    }
     assert.ok(!html.includes('class="adsbygoogle"'), `${file}: fixed ad unit found`);
     assert.ok(html.includes('True take-home pay for where you actually <span class="tagline-live">live.</span>'), `${file}: slogan`);
   }
