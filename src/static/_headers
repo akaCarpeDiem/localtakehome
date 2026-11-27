@@ -18,3 +18,10 @@
   Cache-Control: no-store
   CDN-Cache-Control: no-store
   X-Robots-Tag: noindex
+
+# pages.dev copies (the production alias and preview deploys) stay out of search;
+# localtakehome.com itself is not matched here and stays indexable.
+https://localtakehome.pages.dev/*
+  X-Robots-Tag: noindex
+https://:alias.localtakehome.pages.dev/*
+  X-Robots-Tag: noindex
